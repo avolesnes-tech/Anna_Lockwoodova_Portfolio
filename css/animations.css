@@ -1,0 +1,446 @@
+/* =============================================================
+   ANNA LOCKWOODOVÁ — PORTFOLIO
+   animations.css — Všetky animácie a pohybové efekty
+   ============================================================= */
+
+
+/* -------------------------------------------------------------
+   0. PREFERS-REDUCED-MOTION — záväzné pravidlo
+   Ak používateľ preferuje redukovaný pohyb, všetky animácie
+   sa vypnú. Toto je na vrchole súboru — má prednosť.
+   ------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:   0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:  0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee__inner {
+    animation: none !important;
+  }
+
+  .typewriter-cursor {
+    display: none !important;
+  }
+}
+
+
+/* -------------------------------------------------------------
+   1. SCROLL-TRIGGERED REVEAL
+   IntersectionObserver pridá triedu .visible
+   ------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity   var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delay pre skupiny prvkov */
+.reveal-group .reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal-group .reveal:nth-child(2) { transition-delay: 120ms; }
+.reveal-group .reveal:nth-child(3) { transition-delay: 240ms; }
+.reveal-group .reveal:nth-child(4) { transition-delay: 360ms; }
+.reveal-group .reveal:nth-child(5) { transition-delay: 480ms; }
+.reveal-group .reveal:nth-child(6) { transition-delay: 600ms; }
+
+/* Fade-in bez translate — pre jemnejšie prvky */
+.reveal--fade {
+  opacity: 0;
+  transform: none;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.reveal--fade.visible {
+  opacity: 1;
+}
+
+/* Slide from left */
+.reveal--left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition:
+    opacity   var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+}
+
+.reveal--left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* -------------------------------------------------------------
+   2. HERO FADE-IN — meno Anny
+   ------------------------------------------------------------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-name {
+  animation: fadeInUp 800ms var(--ease-out) 200ms both;
+}
+
+.hero-line {
+  animation: drawHeroLine 600ms var(--ease-out) 600ms both;
+}
+
+@keyframes drawHeroLine {
+  from { transform: scaleX(0); transform-origin: left; }
+  to   { transform: scaleX(1); transform-origin: left; }
+}
+
+.hero-subtitle {
+  animation: fadeInUp 800ms var(--ease-out) 3200ms both;
+}
+
+.hero-cta {
+  animation: fadeInUp 800ms var(--ease-spring) 3600ms both;
+}
+
+
+/* -------------------------------------------------------------
+   3. TYPEWRITER EFEKT
+   Riadi typewriter.js — tu sú len kurzor a blikanie
+   ------------------------------------------------------------- */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  background-color: var(--color-blue-main);
+  margin-left: 3px;
+  vertical-align: middle;
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.typewriter-cursor--done {
+  animation: blinkFadeOut 1.4s var(--ease-out) forwards;
+}
+
+@keyframes blinkFadeOut {
+  0%   { opacity: 1; }
+  60%  { opacity: 0; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+/* -------------------------------------------------------------
+   4. MARQUEE — pohyblivý text
+   ------------------------------------------------------------- */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: var(--color-off-white);
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-top:    1px solid rgba(58, 95, 160, 0.08);
+  border-bottom: 1px solid rgba(58, 95, 160, 0.08);
+}
+
+.marquee:hover .marquee__inner {
+  animation-play-state: paused;
+}
+
+.marquee__inner {
+  display: inline-flex;
+  animation: marqueeScroll 40s linear infinite;
+  will-change: transform;
+}
+
+.marquee__text {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-blue-main);
+  padding: 0 40px;
+  opacity: 0.8;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+/* -------------------------------------------------------------
+   5. NAVIGÁCIA — sticky efekty a hover linky
+   ------------------------------------------------------------- */
+
+/* Backdrop pri scrolle */
+.nav--scrolled {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: 0 1px 0 rgba(26, 47, 82, 0.07) !important;
+}
+
+/* Nav link — podčiarknutie sprava doľava */
+.nav__link {
+  position: relative;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  right: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--color-blue-main);
+  transition: width var(--dur-mid) var(--ease-out);
+}
+
+.nav__link:hover::after,
+.nav__link--active::after {
+  width: 100%;
+  left: 0;
+  right: auto;
+}
+
+/* Aktívna bodka */
+.nav__link--active::before {
+  content: '·';
+  position: absolute;
+  left: -12px;
+  color: var(--color-blue-main);
+  font-size: 18px;
+  line-height: 1;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+/* -------------------------------------------------------------
+   6. PROJEKT KARTY — hover efekty
+   ------------------------------------------------------------- */
+.project-card {
+  transition:
+    transform    var(--dur-mid) var(--ease-out),
+    box-shadow   var(--dur-mid) var(--ease-out);
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.project-card__image-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.project-card__image-wrap img {
+  transition: transform 500ms var(--ease-out);
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.project-card:hover .project-card__image-wrap img {
+  transform: scale(1.04);
+}
+
+/* Overlay s textom pri hoveri */
+.project-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 47, 82, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--dur-mid) var(--ease-out);
+}
+
+.project-card__overlay span {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--text-sm);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.project-card:hover .project-card__overlay {
+  opacity: 1;
+}
+
+
+/* -------------------------------------------------------------
+   7. FORMULÁR — floating labels
+   ------------------------------------------------------------- */
+.form-field {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.form-field__label {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  pointer-events: none;
+  transition:
+    top      var(--dur-fast) var(--ease-out),
+    font-size var(--dur-fast) var(--ease-out),
+    color    var(--dur-fast) var(--ease-out),
+    letter-spacing var(--dur-fast) var(--ease-out);
+}
+
+.form-field__input:focus ~ .form-field__label,
+.form-field__input:not(:placeholder-shown) ~ .form-field__label,
+.form-field__textarea:focus ~ .form-field__label,
+.form-field__textarea:not(:placeholder-shown) ~ .form-field__label {
+  top: -8px;
+  font-size: 11px;
+  color: var(--color-blue-light);
+  letter-spacing: 0.1em;
+}
+
+.form-field__input,
+.form-field__textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(26, 47, 82, 0.2);
+  padding: 14px 0 8px;
+  color: var(--color-ink);
+  transition: border-color var(--dur-fast) var(--ease-out);
+  outline: none;
+}
+
+.form-field__input:focus,
+.form-field__textarea:focus {
+  border-bottom-color: var(--color-blue-main);
+}
+
+.form-field__textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+
+/* -------------------------------------------------------------
+   8. LEAF PARALLAX — riadi main.js
+   ------------------------------------------------------------- */
+.leaf-parallax {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+
+/* -------------------------------------------------------------
+   9. HAMBURGER MENU ANIMÁCIA
+   ------------------------------------------------------------- */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+  cursor: none;
+}
+
+.hamburger__line {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background-color: var(--color-ink);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    opacity   var(--dur-fast) var(--ease-out);
+  transform-origin: center;
+}
+
+.hamburger--open .hamburger__line:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.hamburger--open .hamburger__line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger--open .hamburger__line:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobilné menu overlay */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-white);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-mid) var(--ease-out);
+}
+
+.mobile-menu--open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-menu__link {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--color-ink);
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity   var(--dur-mid) var(--ease-out),
+    transform var(--dur-mid) var(--ease-out),
+    color     var(--dur-fast);
+}
+
+.mobile-menu--open .mobile-menu__link:nth-child(1) { opacity: 1; transform: none; transition-delay: 80ms; }
+.mobile-menu--open .mobile-menu__link:nth-child(2) { opacity: 1; transform: none; transition-delay: 140ms; }
+.mobile-menu--open .mobile-menu__link:nth-child(3) { opacity: 1; transform: none; transition-delay: 200ms; }
+.mobile-menu--open .mobile-menu__link:nth-child(4) { opacity: 1; transform: none; transition-delay: 260ms; }
+
+.mobile-menu__link:hover {
+  color: var(--color-blue-main);
+}
+
+
+/* -------------------------------------------------------------
+   10. PAGE LOAD — jemný fade
+   ------------------------------------------------------------- */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+body {
+  animation: pageFadeIn 600ms var(--ease-out) both;
+}

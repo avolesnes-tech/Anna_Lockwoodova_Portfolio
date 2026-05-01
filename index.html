@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Anna Lockwoodová — Webový dizajn & UI/UX</title>
+  <meta name="description" content="Navrhujem a tvorím weby, kde estetika a funkčnosť idú ruka v ruke. Webový dizajn, UI/UX — Bratislava.">
+  <meta name="author" content="Anna Lockwoodová">
+  <link rel="canonical" href="https://avolesnes-tech.github.io/Anna_Lockwoodova_Portfolio/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Anna Lockwoodová — Webový dizajn & UI/UX">
+  <meta property="og:description" content="Tvorím weby tak ako maľujem — zámer, detail, cit.">
+  <meta property="og:image" content="/images/og-image.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="sk_SK">
+
+  <!-- Fonty -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Cormorant+Garamond:ital,wght@1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       CUSTOM CURSOR
+       ========================================================= -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring"></div>
+    <span class="cursor__label">Zobraziť</span>
+  </div>
+
+  <!-- =========================================================
+       MOBILNÉ MENU OVERLAY
+       ========================================================= -->
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobilné menu" aria-hidden="true">
+    <a href="#projekty" class="mobile-menu__link" onclick="closeMobileMenu()">Projekty</a>
+    <a href="#o-mne" class="mobile-menu__link" onclick="closeMobileMenu()">O mne</a>
+    <a href="/atelier.html" class="mobile-menu__link">Ateliér</a>
+    <a href="#kontakt" class="mobile-menu__link" onclick="closeMobileMenu()">Kontakt</a>
+  </nav>
+
+  <!-- =========================================================
+       NAVIGÁCIA
+       ========================================================= -->
+  <header class="nav" id="mainNav" role="banner">
+    <div class="nav__inner">
+
+      <a href="/" class="nav__logo" aria-label="Anna Lockwoodová — domov">AL</a>
+
+      <nav class="nav__links" aria-label="Hlavná navigácia">
+        <a href="#projekty" class="nav__link">Projekty</a>
+        <a href="#o-mne" class="nav__link">O mne</a>
+        <a href="/atelier.html" class="nav__link">Ateliér</a>
+        <a href="#kontakt" class="nav__link">Kontakt</a>
+
+        <div class="nav__lang" aria-label="Jazyková verzia">
+          <button class="nav__lang-btn nav__lang-btn--active" lang="sk" aria-pressed="true" onclick="setLang('sk')">SK</button>
+          <span class="nav__lang-sep" aria-hidden="true">/</span>
+          <button class="nav__lang-btn" lang="en" aria-pressed="false" onclick="setLang('en')">EN</button>
+        </div>
+      </nav>
+
+      <button
+        class="nav__hamburger hamburger"
+        id="hamburgerBtn"
+        aria-label="Otvoriť menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        onclick="toggleMobileMenu()"
+      >
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- =======================================================
+         HERO SEKCIA
+         ======================================================= -->
+    <section class="hero" aria-label="Úvod">
+
+      <!-- Leaf dekorácia — parallax -->
+      <div class="hero__leaf leaf-parallax" aria-hidden="true" data-parallax-rate="0.15">
+        <img
+          src="images/leaves/leaves-full.png"
+          alt=""
+          role="presentation"
+          loading="eager"
+        >
+      </div>
+
+      <div class="hero__inner">
+        <div class="hero__content">
+
+          <span class="hero__eyebrow hero-name" lang="sk">Anna Lockwoodová</span>
+          <span class="hero__line-divider hero-line" aria-hidden="true"></span>
+
+          <h1 class="hero__tagline" id="heroTagline" aria-label="Tvorím weby tak ako maľujem — zámer, detail, cit.">
+            <!-- Typewriter tu vypíše text -->
+          </h1>
+
+          <p class="hero__subtitle hero-subtitle">
+            Webová dizajnérka &amp; umelkyňa z Bratislavy.
+          </p>
+
+          <div class="hero__cta-group hero-cta">
+            <a href="#projekty" class="btn btn--primary">
+              Pozrieť projekty
+              <span aria-hidden="true">↓</span>
+            </a>
+            <a href="#kontakt" class="btn btn--secondary">
+              Napísať mi
+            </a>
+          </div>
+
+        </div>
+
+        <div class="hero__visual" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         MARQUEE — pohyblivý text
+         ======================================================= -->
+    <div class="marquee" aria-hidden="true" role="presentation">
+      <div class="marquee__inner">
+        <span class="marquee__text">· Webový dizajn · UI &amp; UX Design · Akvarel · Papier-mâché · Výšivka · Tvorba s citom · Bratislava · Webový dizajn · UI &amp; UX Design · Akvarel · Papier-mâché · Výšivka · Tvorba s citom · Bratislava ·</span>
+        <span class="marquee__text" aria-hidden="true">· Webový dizajn · UI &amp; UX Design · Akvarel · Papier-mâché · Výšivka · Tvorba s citom · Bratislava · Webový dizajn · UI &amp; UX Design · Akvarel · Papier-mâché · Výšivka · Tvorba s citom · Bratislava ·</span>
+      </div>
+    </div>
+
+    <!-- =======================================================
+         PORTFOLIO SEKCIA
+         ======================================================= -->
+    <section class="section" id="projekty" aria-labelledby="projektySekcia">
+      <div class="container">
+
+        <div class="portfolio-section__header section-heading reveal">
+          <span class="section-heading__label">Vybrané projekty</span>
+          <h2 id="projektySekcia">Vybrané projekty.</h2>
+        </div>
+
+        <div class="portfolio-grid reveal-group">
+
+          <!-- KARTA 1 — ExpatEase Slovakia -->
+          <article class="project-card reveal" aria-labelledby="expatease-title">
+            <div class="project-card__image-wrap">
+              <div class="project-card__placeholder placeholder--screenshot-expatease">
+                <span>Screenshot — čoskoro</span>
+              </div>
+              <div class="project-card__overlay" aria-hidden="true">
+                <span>Pozrieť viac</span>
+              </div>
+              <div class="project-card__badge">
+                <span class="badge badge--blue">Osobný projekt</span>
+              </div>
+            </div>
+
+            <div class="project-card__body">
+              <div class="project-card__meta">
+                <div class="project-card__tags">
+                  <span class="badge badge--outline">Web dizajn</span>
+                  <span class="badge badge--outline">UI/UX</span>
+                  <span class="badge badge--outline">Cloudflare</span>
+                </div>
+                <span class="project-card__year">2025</span>
+              </div>
+              <hr class="project-card__divider">
+
+              <h3 class="project-card__title" id="expatease-title">ExpatEase Slovakia</h3>
+              <p class="project-card__desc">
+                Anglicky hovoriaci lekár, právnik alebo elektrikár v Bratislave?
+                ExpatEase ich nájde za vás — a ešte preloží každý slovenský formulár.
+                Plnohodnotná platforma navrhnutá a technicky realizovaná od nuly:
+                adresár 500+ overených odborníkov a AI prekladač úradných dokumentov.
+              </p>
+
+              <div class="project-card__footer">
+                <a href="projekty/expatease.html" class="btn btn--link">
+                  Zobraziť projekt →
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- KARTA 2 — Mapa Spomienok -->
+          <article class="project-card reveal" aria-labelledby="mapa-title">
+            <div class="project-card__image-wrap">
+              <div class="project-card__placeholder placeholder--screenshot-mapa">
+                <span>Screenshot — čoskoro</span>
+              </div>
+              <div class="project-card__overlay" aria-hidden="true">
+                <span>Pozrieť viac</span>
+              </div>
+              <div class="project-card__badge">
+                <span class="badge badge--blue">Osobný projekt</span>
+              </div>
+            </div>
+
+            <div class="project-card__body">
+              <div class="project-card__meta">
+                <div class="project-card__tags">
+                  <span class="badge badge--outline">Web dizajn</span>
+                  <span class="badge badge--outline">Storytelling</span>
+                  <span class="badge badge--outline">GitHub Pages</span>
+                </div>
+                <span class="project-card__year">2025</span>
+              </div>
+              <hr class="project-card__divider">
+
+              <h3 class="project-card__title" id="mapa-title">Mapa Spomienok</h3>
+              <p class="project-card__desc">
+                Čo ak by mapa mohla uchovávať príbehy?
+                Web venovaný Anne Šenšelovej a spolku Lipa som navrhla ako živý archív:
+                interaktívna mapa zbiera spomienky na predkov od návštevníkov
+                z celého Slovenska. Kultúrne dedičstvo, ktoré sa nestratí.
+              </p>
+
+              <div class="project-card__footer">
+                <a href="projekty/mapa-spomienok.html" class="btn btn--link">
+                  Zobraziť projekt →
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- KARTA 3 — LumenGlass -->
+          <article class="project-card reveal" aria-labelledby="lumenglass-title">
+            <div class="project-card__image-wrap">
+              <div class="project-card__placeholder placeholder--screenshot-lumenglass">
+                <span>Screenshot — čoskoro</span>
+              </div>
+              <div class="project-card__overlay" aria-hidden="true">
+                <span>Pozrieť viac</span>
+              </div>
+              <div class="project-card__badge">
+                <!-- Červená — jedna z dvoch výnimiek na celom webe -->
+                <span class="badge badge--red">Čoskoro</span>
+              </div>
+            </div>
+
+            <div class="project-card__body">
+              <div class="project-card__meta">
+                <div class="project-card__tags">
+                  <span class="badge badge--outline">Web dizajn</span>
+                  <span class="badge badge--outline">WordPress</span>
+                  <span class="badge badge--outline">Klientský</span>
+                </div>
+                <span class="project-card__year">2025</span>
+              </div>
+              <hr class="project-card__divider">
+
+              <h3 class="project-card__title" id="lumenglass-title">LumenGlass</h3>
+              <p class="project-card__desc">
+                Sklárska firma si zaslúži web, ktorý odráža precíznosť jej remesla.
+                Klientsky projekt realizovaný na WordPresse — čistý, prehľadný
+                a dôveryhodný dizajn, ktorý premieňa návštevníkov na zákazníkov.
+              </p>
+
+              <div class="project-card__footer">
+                <a href="projekty/lumenglass.html" class="btn btn--link">
+                  Zobraziť projekt →
+                </a>
+                <span class="label">Čoskoro online</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         O MNE SEKCIA
+         ======================================================= -->
+    <section class="section section--off-white" id="o-mne" aria-labelledby="oMneSekcia">
+
+      <!-- Leaf dekorácia — pravý horný roh -->
+      <div class="leaf-decor leaf-decor--faint" style="top:-60px;right:-80px;width:340px;transform:rotate(15deg);" aria-hidden="true">
+        <img src="images/leaves/leaves-full.png" alt="" role="presentation">
+      </div>
+
+      <div class="container">
+        <div class="about-section__inner">
+
+          <div class="about-section__text-col">
+            <div class="section-heading reveal">
+              <span class="section-heading__label">O mne</span>
+              <h2 id="oMneSekcia">O mne.</h2>
+            </div>
+
+            <div class="about-section__body reveal">
+              <p>
+                Nikdy som si nevybrala medzi umením a dizajnom.
+                Robím oboje — a práve to robí moju prácu inak.
+              </p>
+              <p>
+                Roky práce s akvarelom, papier-mâché a výšivkou
+                ma naučili niečo, čo sa na dizajnérskych kurzoch
+                neučí: ako vidieť. Ako pracovať s kompozíciou,
+                farbou a rytmom nie ako s pravidlami, ale ako s citom.
+              </p>
+              <p>
+                Keď som objavila webový dizajn, zaujala ma
+                možnosť preniesť ten istý prístup do digitálneho
+                priestoru. Zistila som, že krásny web a funkčný
+                web nie sú protiklady — sú to dve strany toho istého.
+              </p>
+              <p>
+                Dnes navrhujem a tvorím weby, kde estetika
+                neoberá funkčnosť o priestor. A kde funkčnosť
+                nepotlačí krásu.
+              </p>
+            </div>
+
+            <div class="about-section__skills reveal">
+              <span class="skill-tag">Webový dizajn</span>
+              <span class="skill-tag">UI &amp; UX</span>
+              <span class="skill-tag">Akvarel</span>
+              <span class="skill-tag">Papier-mâché</span>
+              <span class="skill-tag">Výšivka</span>
+            </div>
+          </div>
+
+          <div class="about-section__photo-col reveal">
+            <div class="about-section__photo-placeholder placeholder--anna-photo">
+              <span>Fotografia Anny<br>— bude doplnená</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         SLUŽBY SEKCIA
+         ======================================================= -->
+    <section class="section" id="sluzby" aria-labelledby="sluzbyNadpis">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="section-heading__label">Služby</span>
+          <h2 id="sluzbyNadpis">Ako môžem pomôcť.</h2>
+        </div>
+
+        <p class="services-intro reveal">
+          Tri projekty, tri svety — kultúrne dedičstvo, expat platforma
+          a remeselná firma. Každý si vyžiadal iný prístup, a každý
+          ma niečo naučil. Tu je to, čo dnes viem ponúknuť.
+        </p>
+
+        <div class="services-grid reveal-group">
+
+          <div class="service-card reveal">
+            <div class="service-card__ornament" aria-hidden="true"></div>
+            <h3 class="service-card__title">Prezentačné weby<br>na mieru.</h3>
+            <p class="service-card__desc">
+              Statické HTML weby alebo WordPress — podľa toho, čo dáva zmysel.
+              Vlastný dizajn, žiadne šablóny. Rýchle, mobilné, pripravené pre Google.
+            </p>
+            <p class="service-card__target">
+              <strong>Pre koho</strong>
+              malé firmy, remeselníci, ateliéry, butiky, freelanceri.
+            </p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card__ornament" aria-hidden="true"></div>
+            <h3 class="service-card__title">Storytelling &amp;<br>značkové weby.</h3>
+            <p class="service-card__desc">
+              Weby pre značky, ktoré majú príbeh. Galérie, časové osi,
+              interaktívne mapy, biografie, archívy. Vlastná typografia,
+              privacy-first, bez tracking skriptov.
+            </p>
+            <p class="service-card__target">
+              <strong>Pre koho</strong>
+              kultúrne projekty, neziskovky, múzeá, autori, umelci, rodinné firmy.
+            </p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card__ornament" aria-hidden="true"></div>
+            <h3 class="service-card__title">WordPress weby<br>a custom Elementor.</h3>
+            <p class="service-card__desc">
+              Komerčné WordPress weby s vlastnými Elementor widgetmi. Multi-page weby
+              s produktovými kategóriami, SEO optimalizáciou a performance tuningom.
+            </p>
+            <p class="service-card__target">
+              <strong>Pre koho</strong>
+              remeselníci, sklárske a stolárske firmy, stavbári, interiérové štúdiá.
+            </p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card__ornament" aria-hidden="true"></div>
+            <h3 class="service-card__title">Webové aplikácie<br>a adresáre.</h3>
+            <p class="service-card__desc">
+              Adresáre s filtrovaním a recenziami, membership weby, freemium platformy,
+              multi-step formuláre, AI nástroje. Cloudflare Pages + Supabase backend.
+            </p>
+            <p class="service-card__target">
+              <strong>Pre koho</strong>
+              komunity, oborové platformy, startupy, B2B portály.
+            </p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card__ornament" aria-hidden="true"></div>
+            <h3 class="service-card__title">UI / UX dizajn<br>&amp; redesign.</h3>
+            <p class="service-card__desc">
+              Návrh rozhraní, ktoré sa používajú ľahko a s radosťou. Redesign
+              existujúcich webov — od auditu po nový vzhľad. Wireframy, prototypy,
+              dizajn systémy.
+            </p>
+            <p class="service-card__target">
+              <strong>Pre koho</strong>
+              firmy s existujúcim webom, ktorý už nestíha. Startupy pred launchom.
+            </p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card__ornament" aria-hidden="true"></div>
+            <h3 class="service-card__title">SEO, performance<br>&amp; údržba.</h3>
+            <p class="service-card__desc">
+              Optimalizácia rýchlosti (preload, preconnect, WebP, font tuning),
+              SEO základy (canonical, OG tags, schema.org), Google Business profil.
+              Mesačná údržba a aktualizácie.
+            </p>
+            <p class="service-card__target">
+              <strong>Pre koho</strong>
+              firmy, ktoré už web majú, ale nie sú spokojné s rýchlosťou alebo
+              viditeľnosťou v Google.
+            </p>
+          </div>
+
+        </div>
+
+        <p class="services-note reveal">
+          Cenu pripravujem individuálne podľa rozsahu a charakteru projektu.
+          Napíšte mi pár slov o tom, čo plánujete — pošlem nezáväznú ponuku do 48 hodín.
+        </p>
+        <div class="text-center reveal mt-sm">
+          <a href="#kontakt" class="btn btn--link">Napísať mi →</a>
+        </div>
+
+        <!-- Technické zručnosti -->
+        <div class="skills-section reveal mt-lg">
+          <div class="skills-section__header">
+            <h2 style="font-size: var(--text-2xl);">Čo mám overené v praxi.</h2>
+            <p class="section-tagline">Nie zoznam buzzwordov — len to, čo som už reálne dodala.</p>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skills-col">
+              <div class="skills-col__title">Dizajn &amp; Frontend</div>
+              <ul>
+                <li>HTML5, CSS3, vanilla JavaScript</li>
+                <li>Custom typografia a font tuning</li>
+                <li>Akvarelové a ručné dekoratívne systémy</li>
+                <li>Animácie, parallax, IntersectionObserver</li>
+                <li>Custom kurzory, typewriter, marquee, scroll reveals</li>
+                <li>Prístupnosť (a11y), prefers-reduced-motion, kontrast</li>
+                <li>Plne responzívne (clamp, fluid grids)</li>
+              </ul>
+            </div>
+
+            <div class="skills-col">
+              <div class="skills-col__title">WordPress &amp; CMS</div>
+              <ul>
+                <li>WordPress + Elementor</li>
+                <li>Vlastné Elementor widgety (HTML+CSS)</li>
+                <li>Vlastné WP pluginy (PHP)</li>
+                <li>Migrácie a redesign existujúcich WP webov</li>
+                <li>SEO meta + canonical + OG tagy + schema</li>
+                <li>Performance tuning (preload, preconnect, WebP)</li>
+                <li>Backup a recovery stratégie</li>
+              </ul>
+            </div>
+
+            <div class="skills-col">
+              <div class="skills-col__title">Aplikácie &amp; Backend</div>
+              <ul>
+                <li>Cloudflare Pages</li>
+                <li>Supabase (DB, auth)</li>
+                <li>AI integrácie (preklad dokumentov, wizardy)</li>
+                <li>Multi-tier predplatné (freemium model)</li>
+                <li>Adresáre s filtrovaním a recenziami</li>
+                <li>Multi-step formuláre</li>
+                <li>Multi-jazyčnosť (SK / EN toggle)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prečo ja — diferenciátory -->
+        <div class="section-heading reveal mt-lg">
+          <h2 style="font-size: var(--text-2xl);">Prečo si vybrať mňa.</h2>
+        </div>
+
+        <div class="diff-grid reveal-group" style="margin-top: 32px;">
+          <div class="diff-card reveal">
+            <span class="diff-card__number">01.</span>
+            <h3 class="diff-card__title">Dizajn aj kód —<br>jedna osoba.</h3>
+            <p class="diff-card__desc">
+              Nemusíte hľadať dizajnérku a developera zvlášť.
+              Robím oboje — a viem, kde sa stretávajú.
+            </p>
+          </div>
+
+          <div class="diff-card reveal">
+            <span class="diff-card__number">02.</span>
+            <h3 class="diff-card__title">Tri rozdielne svety,<br>jedna ruka.</h3>
+            <p class="diff-card__desc">
+              Statický web pre kultúrnu pamiatku, freemium platforma pre expatov,
+              WordPress pre sklársku firmu. Ten istý dôraz na detail.
+            </p>
+          </div>
+
+          <div class="diff-card reveal">
+            <span class="diff-card__number">03.</span>
+            <h3 class="diff-card__title">Umelecké oko,<br>technická presnosť.</h3>
+            <p class="diff-card__desc">
+              Roky práce s akvarelom, papier-mâché a výšivkou — nie ako koníček,
+              ale ako spôsob, akým vidím kompozíciu, farbu a rytmus.
+            </p>
+          </div>
+
+          <div class="diff-card reveal">
+            <span class="diff-card__number">04.</span>
+            <h3 class="diff-card__title">Privacy-first<br>ako default.</h3>
+            <p class="diff-card__desc">
+              Žiadne tracking skripty, žiadne cookies tretích strán, vlastné fonty.
+              GDPR-friendly bez kompromisov.
+            </p>
+          </div>
+        </div>
+
+        <!-- Ako pracujeme spolu — proces -->
+        <div class="section-heading reveal mt-lg" style="margin-bottom: 40px;">
+          <h2 style="font-size: var(--text-2xl);">Ako pracujeme spolu.</h2>
+        </div>
+
+        <div class="process-grid reveal-group">
+          <div class="process-step reveal">
+            <div class="process-step__number">01.</div>
+            <h3 class="process-step__title">Brief &amp; návrh</h3>
+            <p class="process-step__desc">
+              Prejdeme spolu váš zámer, cieľovku, referencie a rozsah.
+              Dostanete ponuku do 5 dní.
+            </p>
+          </div>
+
+          <div class="process-step reveal">
+            <div class="process-step__number">02.</div>
+            <h3 class="process-step__title">Dizajn &amp; schválenie</h3>
+            <p class="process-step__desc">
+              Pripravím vizuálny návrh kľúčových stránok. Iterujeme do schválenia.
+            </p>
+          </div>
+
+          <div class="process-step reveal">
+            <div class="process-step__number">03.</div>
+            <h3 class="process-step__title">Realizácia</h3>
+            <p class="process-step__desc">
+              Naprogramujem web, optimalizujem rýchlosť, doplníme obsah
+              a otestujeme na všetkých zariadeniach.
+            </p>
+          </div>
+
+          <div class="process-step reveal">
+            <div class="process-step__number">04.</div>
+            <h3 class="process-step__title">Spustenie &amp; odovzdanie</h3>
+            <p class="process-step__desc">
+              Web ide naživo. Naučím vás, ako si ho viete sami spravovať.
+              Mesiac bezplatnej podpory po spustení.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================
+         ATELIÉR PREVIEW
+         ======================================================= -->
+    <section class="section section--off-white" id="atelier" aria-labelledby="atelierNadpis">
+      <div class="container">
+
+        <div class="atelier-preview__header section-heading reveal">
+          <span class="section-heading__label">Tradičné umenie</span>
+          <h2 id="atelierNadpis">Ateliér.</h2>
+          <p class="section-tagline">Umenie, z ktorého vychádza moja digitálna tvorba.</p>
+        </div>
+
+        <div class="atelier-grid">
+
+          <!-- Reálna fotografia — papier-mâché -->
+          <div class="atelier-grid__item">
+            <img
+              src="images/atelier/papier-mache-01.jpg"
+              alt="Papier-mâché — červený kvet so zlatými lístkami"
+              loading="lazy"
+            >
+          </div>
+
+          <!-- Placeholdery pre ďalšie fotografie -->
+          <div class="atelier-grid__item">
+            <div class="atelier-grid__placeholder placeholder--atelier-02">
+              <span>Akvarel</span>
+            </div>
+          </div>
+
+          <div class="atelier-grid__item">
+            <div class="atelier-grid__placeholder placeholder--atelier-03">
+              <span>Výšivka</span>
+            </div>
+          </div>
+
+          <div class="atelier-grid__item">
+            <div class="atelier-grid__placeholder placeholder--atelier-04">
+              <span>Akvarel</span>
+            </div>
+          </div>
+
+          <div class="atelier-grid__item">
+            <div class="atelier-grid__placeholder placeholder--atelier-05">
+              <span>Papier-mâché</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="atelier-preview__cta reveal">
+          <a href="atelier.html" class="btn btn--secondary">
+            Vstúpiť do ateliéru →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================
+         REFERENCIE
+         ======================================================= -->
+    <section class="section" id="referencie" aria-labelledby="referencieNadpis">
+      <div class="container">
+
+        <div class="section-heading reveal" style="margin-bottom: clamp(32px,5vw,56px);">
+          <span class="section-heading__label">Spokojní klienti</span>
+          <h2 id="referencieNadpis">Čo hovoria klienti.</h2>
+        </div>
+
+        <div class="testimonials-grid reveal-group">
+
+          <div class="testimonial-card reveal">
+            <p class="testimonial-card__text">Referencia bude doplnená po získaní spätnej väzby.</p>
+            <div>
+              <div class="testimonial-card__author placeholder--ref-meno">Meno Priezvisko</div>
+              <div class="testimonial-card__role placeholder--ref-rola">Pozícia, Firma</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <p class="testimonial-card__text">Referencia bude doplnená po získaní spätnej väzby.</p>
+            <div>
+              <div class="testimonial-card__author placeholder--ref-meno">Meno Priezvisko</div>
+              <div class="testimonial-card__role placeholder--ref-rola">Pozícia, Firma</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <p class="testimonial-card__text">Referencia bude doplnená po získaní spätnej väzby.</p>
+            <div>
+              <div class="testimonial-card__author placeholder--ref-meno">Meno Priezvisko</div>
+              <div class="testimonial-card__role placeholder--ref-rola">Pozícia, Firma</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         KONTAKT SEKCIA
+         ======================================================= -->
+    <section class="section section--off-white" id="kontakt" aria-labelledby="kontaktNadpis">
+
+      <!-- Leaf dekorácia — ľavý dolný roh -->
+      <div class="leaf-decor leaf-decor--faint" style="bottom:-40px;left:-60px;width:300px;transform:rotate(-10deg) scaleX(-1);" aria-hidden="true">
+        <img src="images/leaves/leaves-full.png" alt="" role="presentation">
+      </div>
+
+      <div class="container">
+        <div class="contact-section__inner">
+
+          <div class="contact-section__text reveal">
+            <div class="section-heading">
+              <span class="section-heading__label">Kontakt</span>
+              <h2 id="kontaktNadpis">Začnime<br>spoluprácu.</h2>
+            </div>
+            <p style="margin-top: 24px;">
+              Máte projekt, kde záleží na každom detaile?
+              Napíšte mi. Rada si vypočujem, čo potrebujete,
+              a poviem vám úprimne, ako vám viem pomôcť.
+            </p>
+            <p>Odpoviem do 48 hodín.</p>
+            <a href="mailto:placeholder@email.com" class="contact-section__email placeholder--email">
+              placeholder@email.com
+            </a>
+          </div>
+
+          <div class="reveal">
+            <form
+              class="contact-form"
+              id="contactForm"
+              action="https://formspree.io/f/placeholder"
+              method="POST"
+              novalidate
+            >
+
+              <div class="form-field">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-field__input"
+                  placeholder=" "
+                  required
+                  autocomplete="name"
+                  aria-required="true"
+                >
+                <label for="name" class="form-field__label">Vaše meno *</label>
+              </div>
+
+              <div class="form-field">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-field__input"
+                  placeholder=" "
+                  required
+                  autocomplete="email"
+                  aria-required="true"
+                >
+                <label for="email" class="form-field__label">E-mail *</label>
+              </div>
+
+              <div class="radio-group" role="group" aria-labelledby="radio-label">
+                <span class="radio-group__label" id="radio-label">O čo ide?</span>
+                <div class="radio-options">
+                  <label class="radio-option">
+                    <input type="radio" name="type" value="Nový web od nuly">
+                    <span>Nový web od nuly</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="type" value="Redesign existujúceho webu">
+                    <span>Redesign existujúceho webu</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="type" value="UI/UX konzultácia">
+                    <span>UI/UX konzultácia</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="type" value="Niečo iné">
+                    <span>Niečo iné</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-field__textarea"
+                  placeholder=" "
+                  required
+                  rows="4"
+                  aria-required="true"
+                ></textarea>
+                <label for="message" class="form-field__label">Správa *</label>
+              </div>
+
+              <button type="submit" class="btn btn--primary" id="submitBtn">
+                Odoslať správu →
+              </button>
+
+              <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+                ✓ Správa odoslaná. Ozvem sa do 48 hodín.
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="footer" role="contentinfo">
+
+    <div class="footer__leaf" aria-hidden="true">
+      <img src="images/leaves/leaves-full.png" alt="" role="presentation" loading="lazy">
+    </div>
+
+    <div class="footer__inner">
+      <div class="footer__top">
+
+        <div class="footer__brand">
+          <span class="footer__logo">AL</span>
+          <span class="footer__brand-name">Anna Lockwoodová</span>
+          <span class="footer__brand-role">Webová dizajnérka &amp; umelkyňa</span>
+
+          <div class="footer__social">
+            <a href="#" class="footer__social-link placeholder--instagram" aria-label="Instagram (čoskoro)">Instagram ↗</a>
+            <a href="#" class="footer__social-link placeholder--behance" aria-label="Behance (čoskoro)">Behance ↗</a>
+            <a href="#" class="footer__social-link placeholder--linkedin" aria-label="LinkedIn (čoskoro)">LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <nav class="footer__nav" aria-label="Footer navigácia">
+          <a href="#projekty" class="footer__nav-link">Projekty</a>
+          <a href="#o-mne" class="footer__nav-link">O mne</a>
+          <a href="atelier.html" class="footer__nav-link">Ateliér</a>
+          <a href="#kontakt" class="footer__nav-link">Kontakt</a>
+        </nav>
+
+      </div>
+
+      <hr class="footer__divider">
+
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Anna Lockwoodová · Všetky práva vyhradené</span>
+        <span class="footer__made-with">Vyrobené s citom <span>♡</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       JAVASCRIPT
+       ========================================================= -->
+  <script src="js/typewriter.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/marquee.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

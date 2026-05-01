@@ -1,0 +1,268 @@
+/* =============================================================
+   ANNA LOCKWOODOVÁ — PORTFOLIO
+   responsive.css — Breakpointy a mobilné kompozície
+   Mobilná verzia nie je zmenšenina — je vlastná kompozícia.
+   ============================================================= */
+
+
+/* -------------------------------------------------------------
+   TABLET — 768px až 1024px
+   ------------------------------------------------------------- */
+@media (max-width: 1024px) {
+
+  /* Nav */
+  .nav__links {
+    gap: 24px;
+  }
+
+  /* Hero — zmenšenie na 1 stĺpec */
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__visual {
+    display: none;
+  }
+
+  /* Portfolio — 2 stĺpce */
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Služby — 2 stĺpce */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Zručnosti — 1 stĺpec */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Diferenciátory — 2×2 */
+  .diff-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Proces — 2×2 */
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .process-grid::before {
+    display: none;
+  }
+
+  /* Ateliér galéria */
+  .atelier-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .atelier-grid__item:first-child {
+    grid-row: span 1;
+  }
+
+  /* Referencie — 1 stĺpec */
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* Kontakt — 1 stĺpec */
+  .contact-section__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  /* Footer */
+  .footer__top {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+
+
+/* -------------------------------------------------------------
+   MOBIL — do 767px
+   ------------------------------------------------------------- */
+@media (max-width: 767px) {
+
+  /* Nav — hamburger menu */
+  .nav__links,
+  .nav__lang {
+    display: none;
+  }
+
+  .nav__hamburger {
+    display: flex;
+  }
+
+  .nav__inner {
+    height: 60px;
+  }
+
+  /* Hero */
+  .hero {
+    padding-top: 60px;
+    min-height: 100svh;
+  }
+
+  .hero__inner {
+    grid-template-columns: 1fr;
+    padding-top: 20px;
+  }
+
+  .hero__content {
+    padding: 40px 0 60px;
+  }
+
+  .hero__tagline {
+    font-size: clamp(32px, 8vw, 42px);
+    min-height: auto;
+  }
+
+  .hero__subtitle {
+    font-size: var(--text-base);
+  }
+
+  .hero__cta-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero__cta-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero__leaf {
+    width: 260px;
+    left: -20px;
+    bottom: -10px;
+  }
+
+  /* Portfolio — 1 stĺpec */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* O mne — 1 stĺpec, foto pod textom */
+  .about-section__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .about-section__photo-col {
+    order: -1;
+  }
+
+  .about-section__photo-placeholder,
+  .about-section__photo-placeholder img {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+  }
+
+  /* Služby — 1 stĺpec */
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Zručnosti */
+  .skills-section {
+    padding: 24px 20px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Diferenciátory — 1 stĺpec */
+  .diff-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Proces — 1 stĺpec */
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ateliér */
+  .atelier-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Footer */
+  .footer__nav {
+    gap: 16px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 13px 22px;
+  }
+
+  /* Vypnutý custom cursor na mobile/touch */
+  .cursor {
+    display: none;
+  }
+}
+
+
+/* -------------------------------------------------------------
+   MALÝ MOBIL — do 400px
+   ------------------------------------------------------------- */
+@media (max-width: 400px) {
+
+  .atelier-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__cta-group {
+    gap: 10px;
+  }
+}
+
+
+/* -------------------------------------------------------------
+   VEĽKÝ DESKTOP — nad 1400px
+   ------------------------------------------------------------- */
+@media (min-width: 1400px) {
+  :root {
+    --container-width: 1320px;
+  }
+}
+
+
+/* -------------------------------------------------------------
+   PRINT — pre prípad tlače CV/portfolio
+   ------------------------------------------------------------- */
+@media print {
+  .nav,
+  .cursor,
+  .mobile-menu,
+  .hero__leaf,
+  .leaf-decor,
+  .marquee {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+    animation: none;
+  }
+
+  .section {
+    page-break-inside: avoid;
+  }
+}
