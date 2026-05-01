@@ -245,7 +245,11 @@ blockquote {
   pointer-events: none;
   user-select: none;
   z-index: 0;
-  /* Bez mix-blend-mode — filter rieši invertovanie farieb */
+  /* Mask-image — okraje sa plynulo strácajú do priehľadna,
+     ilustrácia nepôsobí ako obdĺžnikový obrázok ale ako organická akvarel kresba.
+     Smer fade-out sa nastavuje na konkrétnom prvku cez --mask-from. */
+  -webkit-mask-image: var(--mask, radial-gradient(ellipse at center, black 30%, transparent 75%));
+          mask-image: var(--mask, radial-gradient(ellipse at center, black 30%, transparent 75%));
 }
 
 .leaf-decor img {

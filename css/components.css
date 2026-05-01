@@ -197,23 +197,26 @@
 }
 
 /* Leaf — pravý dolný roh hero
-   Ilustrácia je otočená 180° + zrkadlená = vŕšky listov smerujú do vnútra sekcie,
-   korene/spodok sú pri rohu. Časť ilustrácie vyčnieva za okraj (overflow:hidden na .hero ju orezáva). */
+   Mask-image fade-out: ilustrácia sa plynulo stráca smerom k stredu sekcie,
+   takže nepôsobí ako obdĺžnik — vyzerá ako keby vyrástla z rohu. */
 .hero__leaf {
   position: absolute;
-  bottom: -40px;
-  right: -40px;
-  width: 340px;
+  bottom: -60px;
+  right: -60px;
+  width: 420px;
   pointer-events: none;
   user-select: none;
   z-index: 0;
-  transform: rotate(180deg);
+  /* Maska: fade z pravého dolného rohu do vnútra. Gradient končí v priehľadne
+     v opačnom rohu (top-left), takže okraje smerom dovnútra plynulo miznú. */
+  -webkit-mask-image: radial-gradient(ellipse at bottom right, black 0%, black 35%, transparent 80%);
+          mask-image: radial-gradient(ellipse at bottom right, black 0%, black 35%, transparent 80%);
 }
 
 .hero__leaf img {
   width: 100%;
   filter: invert(1) hue-rotate(160deg) saturate(2.8) brightness(0.52);
-  opacity: 0.55;
+  opacity: 0.7;
 }
 
 /* Na mobile leaf skryjeme — text zaberá celú šírku */
