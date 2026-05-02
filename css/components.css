@@ -228,6 +228,203 @@
 
 
 /* -------------------------------------------------------------
+   2.A FOTKA V PASPARTOVOM RÁMIKU
+   Univerzálny komponent pre Hero aj About section
+   ------------------------------------------------------------- */
+.photo-frame {
+  position: relative;
+  margin: 0;
+  background-color: var(--color-white);
+  /* Pasparta — biela "doska" okolo fotografie */
+  padding: 18px 18px 56px 18px;
+  /* Tieň pre realistický pocit fyzického rámika */
+  box-shadow:
+    0 1px 2px rgba(26, 47, 82, 0.06),
+    0 8px 24px rgba(26, 47, 82, 0.10),
+    0 24px 48px rgba(26, 47, 82, 0.08);
+  border-radius: 2px;
+  /* Drobný textúra papiera v paspart — veľmi jemne */
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(248,247,244,0.95) 100%);
+  isolation: isolate;
+}
+
+.photo-frame__mat {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px;
+  /* Vnútorný tieň pre pocit "vsadenej" fotografie do paspart */
+  box-shadow: inset 0 0 0 1px rgba(26, 47, 82, 0.06);
+}
+
+.photo-frame__mat picture,
+.photo-frame__mat img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Pin — vizuálny detail v hornej časti hero rámika */
+.photo-frame__pin {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--color-blue-light) 0%, var(--color-blue-main) 60%, var(--color-ink) 100%);
+  box-shadow:
+    0 2px 4px rgba(26, 47, 82, 0.4),
+    inset -1px -1px 2px rgba(0,0,0,0.2),
+    inset 1px 1px 2px rgba(255,255,255,0.3);
+  z-index: 2;
+}
+
+
+/* -------------------------------------------------------------
+   2.B HERO PHOTO FRAME — naklonenie + jemný "swing" efekt
+   Unikátna animácia: ako visiaca polaroidka — pri load sa
+   "spustí" zhora a po dopade jemne osciluje (mierny pendul efekt).
+   ------------------------------------------------------------- */
+.photo-frame--hero {
+  width: min(380px, 100%);
+  margin-left: auto;  /* Posun do pravej časti hero stĺpca */
+  /* Initial pozícia + animácia: drop-in z vrchu */
+  transform-origin: top center;
+  animation:
+    photoDropIn 1400ms cubic-bezier(0.34, 1.56, 0.64, 1) 400ms backwards,
+    photoSwing 6s ease-in-out 2000ms infinite;
+}
+
+.photo-frame--hero:hover {
+  animation-play-state: paused;
+}
+
+/* Drop-in — fotka spadne ako polaroidka prevedená na špendlík */
+@keyframes photoDropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px) rotate(-15deg) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) rotate(7deg) scale(1.02);
+  }
+  80% {
+    transform: translateY(-4px) rotate(2deg) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(4deg) scale(1);
+  }
+}
+
+/* Swing — jemný pendul, ako keby fotka oscilovala na špendlíku */
+@keyframes photoSwing {
+  0%, 100% { transform: translateY(0) rotate(4deg); }
+  25%      { transform: translateY(-1px) rotate(2.5deg); }
+  50%      { transform: translateY(0) rotate(4deg); }
+  75%      { transform: translateY(-1px) rotate(5.2deg); }
+}
+
+/* Hover na hero rámik — fotka sa "vyrovná" */
+.photo-frame--hero:hover {
+  animation: none;
+  transform: rotate(0deg) translateY(-6px);
+  transition: transform 600ms var(--ease-spring);
+}
+
+
+/* -------------------------------------------------------------
+   2.C ABOUT PHOTO FRAME — lesklý "shine" efekt na hover
+   Diagonálna lesklá línia prebehne cez fotografiu.
+   ------------------------------------------------------------- */
+.photo-frame--about {
+  width: 100%;
+  max-width: 380px;
+  transform: rotate(-2deg);
+  transition: transform 500ms var(--ease-spring);
+}
+
+.photo-frame--about:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+/* Shine overlay — diagonálny gradient ktorý prebehne cez fotku */
+.photo-frame--shine .photo-frame__mat::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.18) 48%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.18) 52%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 3;
+  transition: left 1100ms var(--ease-out);
+}
+
+.photo-frame--shine:hover .photo-frame__mat::after {
+  left: 150%;
+}
+
+/* Pri shine fotka tiež dostane jemný "rozsvietenie" */
+.photo-frame--shine .photo-frame__mat img {
+  transition: filter 500ms var(--ease-out);
+}
+
+.photo-frame--shine:hover .photo-frame__mat img {
+  filter: brightness(1.05) contrast(1.04);
+}
+
+/* Mobile — fotky bez rotácie, na šírku */
+@media (max-width: 767px) {
+  .photo-frame--hero {
+    width: min(320px, 100%);
+    margin: 0 auto;
+    animation: photoDropIn 1200ms cubic-bezier(0.34, 1.56, 0.64, 1) 200ms backwards;
+  }
+
+  .photo-frame--hero:hover {
+    transform: none;
+  }
+
+  .photo-frame--about {
+    max-width: 320px;
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .photo-frame--about:hover {
+    transform: translateY(-2px);
+  }
+}
+
+
+/* Prefers-reduced-motion — vypnúť všetky animácie rámika */
+@media (prefers-reduced-motion: reduce) {
+  .photo-frame--hero {
+    animation: none;
+    transform: rotate(4deg);
+  }
+  .photo-frame--shine .photo-frame__mat::after {
+    display: none;
+  }
+}
+
+
+/* -------------------------------------------------------------
    3. PORTFOLIO KARTY
    ------------------------------------------------------------- */
 .portfolio-section__header {

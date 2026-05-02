@@ -94,12 +94,10 @@
 
       <!-- Leaf dekorácia — parallax -->
       <div class="hero__leaf leaf-parallax" aria-hidden="true" data-parallax-rate="0.15">
-        <img
-          src="images/leaves/leaves-full.png"
-          alt=""
-          role="presentation"
-          loading="eager"
-        >
+        <picture>
+          <source srcset="images/leaves/leaves-full.webp" type="image/webp">
+          <img src="images/leaves/leaves-full.png" alt="" role="presentation" loading="lazy" decoding="async" width="700" height="700">
+        </picture>
       </div>
 
       <div class="hero__inner">
@@ -128,7 +126,25 @@
 
         </div>
 
-        <div class="hero__visual" aria-hidden="true"></div>
+        <!-- Hero vizuálny stĺpec — fotka v paspartovom rámiku, naklonená -->
+        <div class="hero__visual">
+          <figure class="photo-frame photo-frame--hero" aria-label="Anna v ateliéri — papier-mâché práca s plátkovým zlatom">
+            <div class="photo-frame__mat">
+              <picture>
+                <source srcset="images/atelier/papier-mache-hero.webp" type="image/webp">
+                <img
+                  src="images/atelier/papier-mache-01.jpg"
+                  alt="Detail papier-mâché práce — červené listy s plátkovým zlatom, Annino oko v pozadí"
+                  width="800" height="600"
+                  fetchpriority="high"
+                  decoding="async"
+                >
+              </picture>
+            </div>
+            <!-- Pin v hornej časti — vizuálny detail rámika -->
+            <span class="photo-frame__pin" aria-hidden="true"></span>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -290,7 +306,10 @@
 
       <!-- Leaf dekorácia — pravý horný roh, fade do vnútra -->
       <div class="leaf-decor leaf-decor--faint" style="top:-50px;right:-50px;width:280px;--mask:radial-gradient(ellipse at top right, black 0%, black 35%, transparent 80%);-webkit-mask-image:var(--mask);mask-image:var(--mask);" aria-hidden="true">
-        <img src="images/leaves/leaves-full.png" alt="" role="presentation">
+        <picture>
+          <source srcset="images/leaves/leaves-full.webp" type="image/webp">
+          <img src="images/leaves/leaves-full.png" alt="" role="presentation" loading="lazy" decoding="async" width="700" height="700">
+        </picture>
       </div>
 
       <div class="container">
@@ -336,9 +355,20 @@
           </div>
 
           <div class="about-section__photo-col reveal">
-            <div class="about-section__photo-placeholder">
-              <img src="images/anna-portrait.png" alt="Anna Lockwoodová — webová dizajnérka a umelkyňa" loading="lazy">
-            </div>
+            <figure class="photo-frame photo-frame--about photo-frame--shine" aria-label="Anna Lockwoodová">
+              <div class="photo-frame__mat">
+                <picture>
+                  <source srcset="images/anna-portrait.webp" type="image/webp">
+                  <img
+                    src="images/anna-portrait.png"
+                    alt="Anna Lockwoodová — webová dizajnérka a umelkyňa"
+                    width="600" height="800"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </picture>
+              </div>
+            </figure>
           </div>
 
         </div>
@@ -609,11 +639,10 @@
 
           <!-- Reálna fotografia — papier-mâché -->
           <div class="atelier-grid__item">
-            <img
-              src="images/atelier/papier-mache-01.jpg"
-              alt="Papier-mâché — červený kvet so zlatými lístkami"
-              loading="lazy"
-            >
+            <picture>
+              <source srcset="images/atelier/papier-mache-hero.webp" type="image/webp">
+              <img src="images/atelier/papier-mache-01.jpg" alt="Papier-mâché — červený kvet so zlatými lístkami" loading="lazy" decoding="async" width="800" height="600">
+            </picture>
           </div>
 
           <!-- Placeholdery pre ďalšie fotografie -->
@@ -700,7 +729,10 @@
 
       <!-- Leaf dekorácia — ľavý dolný roh, fade do vnútra -->
       <div class="leaf-decor leaf-decor--faint" style="bottom:-50px;left:-50px;width:280px;--mask:radial-gradient(ellipse at bottom left, black 0%, black 35%, transparent 80%);-webkit-mask-image:var(--mask);mask-image:var(--mask);" aria-hidden="true">
-        <img src="images/leaves/leaves-full.png" alt="" role="presentation">
+        <picture>
+          <source srcset="images/leaves/leaves-full.webp" type="image/webp">
+          <img src="images/leaves/leaves-full.png" alt="" role="presentation" loading="lazy" decoding="async" width="700" height="700">
+        </picture>
       </div>
 
       <div class="container">
@@ -817,7 +849,10 @@
   <footer class="footer" role="contentinfo">
 
     <div class="footer__leaf" aria-hidden="true">
-      <img src="images/leaves/leaves-full.png" alt="" role="presentation" loading="lazy">
+      <picture>
+        <source srcset="images/leaves/leaves-full.webp" type="image/webp">
+        <img src="images/leaves/leaves-full.png" alt="" role="presentation" loading="lazy" decoding="async" width="700" height="700">
+      </picture>
     </div>
 
     <div class="footer__inner">
