@@ -16,10 +16,10 @@
   /* Farby */
   --color-white:        #FFFFFF;
   --color-off-white:    #F8F7F4;
-  --color-blue-main:    #3A5FA0;
-  --color-blue-light:   #7BA7D4;
-  --color-blue-pale:    #D6E6F5;
-  --color-ink:          #1A2F52;
+  --color-blue-main:    #2540B8;  /* royal blue — sýtejšia, viac fialového podtónu, žiadna zeleň */
+  --color-blue-light:   #6E8AE3;  /* royal blue light — pre hover stavy a dekoračné akcenty */
+  --color-blue-pale:    #DDE3F7;  /* royal blue pale — sýtejšie ako pôvodne, ladí s royal main */
+  --color-ink:          #16245A;  /* atramentová — hlboká royal modrá, žiadny zelený podtón */
   --color-red-accent:   #C0392B;
   --color-text-muted:   #6B7280;
 
@@ -254,14 +254,19 @@ blockquote {
 
 .leaf-decor img {
   display: block;
-  /* Konverzia: čierne pozadie → biele, neon-blue → soft navy watercolor
-     1. invert:       čierne bg → biele, electric blue → amber
-     2. hue-rotate:   amber (35°) → navy blue (240°)
-     3. saturate:     sýtosť pre navy blue charakter
-     4. brightness:   stmavenie na tmavomodrú
-     5. contrast:     jemne zvýši kresbu ilustrácie
-     Výsledok: soft navy #1A3870 štýl — ako v PDF portfóliu */
-  filter: invert(1) hue-rotate(160deg) saturate(2.8) brightness(0.52);
+  /* Preservuj prirodzený aspect ratio ilustrácie (700x700, 1:1).
+     width: 100% z parent; height: auto = obrázok sa nikdy nedeformuje. */
+  width: 100%;
+  height: auto;
+  /* Konverzia: čierne pozadie → biele, neon-blue → royal navy watercolor.
+     Po prechode na royal blue paletu posúvame hue na 195° pre čistšiu
+     modrú bez zeleného podtónu. */
+  filter: invert(1) hue-rotate(195deg) saturate(2.6) brightness(0.55);
+}
+
+.leaf-decor picture {
+  display: block;
+  width: 100%;
 }
 
 .leaf-decor--faint  { opacity: 0.45; }

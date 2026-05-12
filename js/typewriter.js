@@ -13,8 +13,8 @@
 
   // Text, ktorý sa píše — dve čiary
   const lines = [
-    'Tvorím weby tak ako maľujem —',
-    'zámer, detail, cit.'
+    'Robím weby ako umenie —',
+    's dôrazom na zámer, cit a detail.'
   ];
 
   // Rýchlosť písania (ms na znak)
