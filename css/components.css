@@ -164,23 +164,32 @@
   font-family: var(--font-display);
   font-size: var(--text-hero);
   color: var(--color-ink);
-  line-height: 1.2;
-  margin-bottom: 28px;
-  min-height: 2.4em; /* Priestor pre typewriter */
+  line-height: 1.15;        /* tesnejší riadok — text dýcha, ale nepláva */
+  letter-spacing: -0.005em; /* Special Elite má dobrý prirodzený tracking, len jemne stiahneme */
+  margin-bottom: 18px;      /* zmenšené z 28px — bližšie k podtitulku */
+  min-height: 3.4em;        /* priestor pre typewriter — pokrýva 3 vizuálne riadky bez CLS */
 }
 
 .hero__tagline-line {
   display: block;
+  margin-bottom: 0;
+}
+
+/* Typewriter JS vkladá medzi dva tagline-line spany element <br> — keďže oba
+   spany už majú display: block, BR navyše robí prázdny riadok navyše.
+   Skryjeme ho, gap medzi riadkami určuje len line-height parent elementu. */
+.hero__tagline br {
+  display: none;
 }
 
 .hero__subtitle {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: var(--text-lg);
+  font-size: var(--text-base);   /* zmenšené z text-lg — menej dominantné */
   color: var(--color-text-muted);
-  line-height: 1.6;
-  margin-bottom: 44px;
-  max-width: 440px;
+  line-height: 1.55;
+  margin-bottom: 32px;           /* zmenšené z 44px — kompaktnejšia kompozícia */
+  max-width: 420px;
 }
 
 .hero__cta-group {
@@ -512,11 +521,16 @@
 }
 
 .project-card__title {
-  font-family: var(--font-display);
+  /* Elegantný Playfair Italic namiesto typewriter — sedí lepšie ku knihhovej italike
+     použitej v ostatných podnadpisoch (sekcia O mne, Ako môžem pomôcť, Ateliér). */
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
   font-size: var(--text-xl);
   color: var(--color-ink);
   margin-bottom: 12px;
   line-height: 1.2;
+  letter-spacing: -0.005em;
 }
 
 .project-card__desc {

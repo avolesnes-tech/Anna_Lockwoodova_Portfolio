@@ -36,7 +36,7 @@
   --text-xl:   clamp(22px, 2.5vw, 28px);
   --text-2xl:  clamp(28px, 3.5vw, 36px);
   --text-3xl:  clamp(36px, 4.5vw, 48px);
-  --text-hero: clamp(36px, 5.5vw, 64px);
+  --text-hero: clamp(26px, 2.8vw, 38px); /* Hero text — menšie ako klasický hero, aby Special Elite (široký font) zmestil typewriter slogan na 2 prirodzené riadky */
 
   /* Spacing */
   --section-padding-y:  clamp(80px, 10vw, 140px);

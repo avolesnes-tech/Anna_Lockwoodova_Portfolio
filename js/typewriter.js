@@ -24,22 +24,22 @@
 
   // Ak user preferuje redukovaný pohyb — zobraz text okamžite
   if (prefersReduced) {
-    lines.forEach((line, i) => {
+    lines.forEach((line) => {
       const span = document.createElement('span');
       span.className = 'hero__tagline-line';
       span.textContent = line;
       container.appendChild(span);
-      if (i < lines.length - 1) container.appendChild(document.createElement('br'));
     });
     return;
   }
 
-  // Vytvor elementy pre obe čiary
-  const lineEls = lines.map((_, i) => {
+  // Vytvor elementy pre obe čiary.
+  // Žiadny <br> medzi nimi — spany sú display:block, BR by tvoril prázdny
+  // riadok navyše a pridával nechcený vertikálny gap.
+  const lineEls = lines.map(() => {
     const span = document.createElement('span');
     span.className = 'hero__tagline-line';
     container.appendChild(span);
-    if (i < lines.length - 1) container.appendChild(document.createElement('br'));
     return span;
   });
 
