@@ -1451,17 +1451,16 @@
   margin-bottom: clamp(32px, 5vw, 56px);
 }
 
-/* ─── Ateliér Bento Gallery ───────────────────────────────── */
+/* ─── Ateliér Gallery ─────────────────────────────────────── */
 
-/* Grid: 3 stĺpce, 4 riadky × 260px
-   Rozloženie:
-     riadok 1–2 : [papermache 2×2] [citrony 1×2]
-     riadok 3   : [vysivka] [frida] [srdce]
-     riadok 4   : [kvet] [portret] [devin]                   */
+/* Editoriálny 3-stĺpcový layout rešpektujúci orientáciu fotiek.
+   Riadok 1 (440px) : [akvarel ≈1:1] [citrony 3:4] [digitál 3:4]
+   Riadok 2 (290px) : [frida 4:3 — 2 stĺpce     ] [výšivka ≈1:1]
+   Riadok 3 (440px) : [papermache ≈1:1] [zoe 3:4] [devin 3:4]   */
 .atelier-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 260px);
+  grid-template-rows: 440px 290px 440px;
   gap: 10px;
   margin-bottom: clamp(32px, 5vw, 48px);
 }
@@ -1502,13 +1501,9 @@
 }
 
 /* ─── rozsahy v gridi ─── */
-.atelier-item--large {
+/* krajinka (frida) zaberá 2 stĺpce v riadku 2 */
+.atelier-item--landscape {
   grid-column: span 2;
-  grid-row: span 2;
-}
-
-.atelier-item--tall {
-  grid-row: span 2;
 }
 
 /* ─── obrázok ─── */
@@ -1544,8 +1539,8 @@
   z-index: 2;
 }
 
-.atelier-item--large .atelier-item__overlay {
-  padding: 28px;
+.atelier-item--landscape .atelier-item__overlay {
+  padding: 24px 28px;
 }
 
 .atelier-item:hover .atelier-item__overlay {
@@ -1603,7 +1598,7 @@
   margin: 0 0 6px 0;
 }
 
-.atelier-item--large .atelier-item__title {
+.atelier-item--landscape .atelier-item__title {
   font-size: 18px;
 }
 

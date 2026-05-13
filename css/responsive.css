@@ -55,21 +55,15 @@
     display: none;
   }
 
-  /* Ateliér galéria — tablet: 2 stĺpce, 260px riadky */
+  /* Ateliér galéria — tablet: 2 stĺpce */
   .atelier-gallery {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 240px);
+    grid-template-rows: 380px 220px 380px 380px;
   }
 
-  /* veľký item si zachová 2 stĺpce, ale iba 1 riadok výšky */
-  .atelier-item--large {
+  /* frida (landscape) naďalej 2 stĺpce = full width */
+  .atelier-item--landscape {
     grid-column: span 2;
-    grid-row: span 1;
-  }
-
-  /* vysoký item bude normálny */
-  .atelier-item--tall {
-    grid-row: span 1;
   }
 
   /* Referencie — 1 stĺpec */
@@ -198,20 +192,16 @@
     grid-template-columns: 1fr;
   }
 
-  /* Ateliér — mobil: 2 stĺpce, menšie riadky */
+  /* Ateliér — mobil: 2 stĺpce */
   .atelier-gallery {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 180px);
+    grid-template-rows: repeat(5, 200px);
     gap: 8px;
   }
 
-  .atelier-item--large {
+  /* frida na mobile: plná šírka */
+  .atelier-item--landscape {
     grid-column: span 2;
-    grid-row: span 1;
-  }
-
-  .atelier-item--tall {
-    grid-row: span 1;
   }
 
   /* Footer */
