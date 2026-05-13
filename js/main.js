@@ -248,6 +248,19 @@
 
 
   /* -----------------------------------------------------------
+     SIGNATURE — cleanup will-change po dokončení pen-write animácie
+     Uvoľní GPU vrstvu, ktorú by inak browser držal celý čas.
+     ----------------------------------------------------------- */
+  function initSignature() {
+    const logo = document.querySelector('.nav__logo');
+    if (!logo) return;
+    logo.addEventListener('animationend', () => {
+      logo.dataset.signed = 'true';
+    }, { once: true });
+  }
+
+
+  /* -----------------------------------------------------------
      INIT — spusti všetko po načítaní DOM
      ----------------------------------------------------------- */
   function init() {
@@ -258,6 +271,7 @@
     initMobileMenu();
     initContactForm();
     initSmoothScroll();
+    initSignature();
   }
 
   if (document.readyState === 'loading') {

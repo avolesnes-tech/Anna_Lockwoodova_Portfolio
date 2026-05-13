@@ -20,13 +20,15 @@
   <!-- Fonty -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Preload kritického fontu pre signature — minimalizuje FOIT/CLS pri pen-write animácii -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/main.css?v=15">
-  <link rel="stylesheet" href="css/animations.css?v=15">
-  <link rel="stylesheet" href="css/components.css?v=15">
-  <link rel="stylesheet" href="css/responsive.css?v=15">
+  <link rel="stylesheet" href="css/main.css?v=18">
+  <link rel="stylesheet" href="css/animations.css?v=18">
+  <link rel="stylesheet" href="css/components.css?v=18">
+  <link rel="stylesheet" href="css/responsive.css?v=18">
 </head>
 <body>
 
@@ -54,7 +56,7 @@
   <header class="nav" id="mainNav" role="banner">
     <div class="nav__inner">
 
-      <a href="/" class="nav__logo" aria-label="Anna Lockwoodová — domov">AL</a>
+      <a href="/" class="nav__logo" aria-label="Anna Lockwoodová — domov">Anna Lockwoodová</a>
 
       <nav class="nav__links" aria-label="Hlavná navigácia">
         <a href="#projekty" class="nav__link">Projekty</a>
@@ -182,6 +184,7 @@
 
           <!-- KARTA 1 — ExpatEase Slovakia -->
           <article class="project-card reveal" aria-labelledby="expatease-title">
+            <span class="project-card__pin" aria-hidden="true"></span>
             <a href="https://expatease-final.pages.dev/" target="_blank" rel="noopener" class="project-card__image-wrap" aria-label="Otvoriť ExpatEase Slovakia v novom okne">
               <picture>
                 <source srcset="images/projects/expatease.webp" type="image/webp">
@@ -225,6 +228,7 @@
 
           <!-- KARTA 2 — Mapa Spomienok -->
           <article class="project-card reveal" aria-labelledby="mapa-title">
+            <span class="project-card__pin" aria-hidden="true"></span>
             <a href="https://avolesnes-tech.github.io/anna-senselova/index.html" target="_blank" rel="noopener" class="project-card__image-wrap" aria-label="Otvoriť Mapa Spomienok v novom okne">
               <picture>
                 <source srcset="images/projects/mapa-spomienok.webp" type="image/webp">
@@ -268,6 +272,7 @@
 
           <!-- KARTA 3 — LumenGlass -->
           <article class="project-card reveal" aria-labelledby="lumenglass-title">
+            <span class="project-card__pin" aria-hidden="true"></span>
             <a href="https://lumenglass.sk/" target="_blank" rel="noopener" class="project-card__image-wrap" aria-label="Otvoriť LumenGlass v novom okne">
               <picture>
                 <source srcset="images/projects/lumenglass.webp" type="image/webp">
@@ -362,12 +367,24 @@
               </p>
             </div>
 
+            <!-- Inline poznámka o instagrame s atelier papier tvorbou -->
+            <p class="about-section__note reveal">
+              Moja staršia papierová tvorba žije na Instagrame
+              <a
+                href="https://www.instagram.com/atelier_papier.sk/"
+                target="_blank"
+                rel="noopener"
+                class="about-section__note-link"
+              >@atelier_papier.sk <span aria-hidden="true">↗</span></a>
+            </p>
+
             <div class="about-section__skills reveal">
               <span class="skill-tag">Webový dizajn</span>
               <span class="skill-tag">UI &amp; UX</span>
               <span class="skill-tag">Akvarel</span>
               <span class="skill-tag">Papier-mâché</span>
               <span class="skill-tag">Výšivka</span>
+              <span class="skill-tag">Content Creation</span>
             </div>
           </div>
 
@@ -882,8 +899,7 @@
       <div class="footer__top">
 
         <div class="footer__brand">
-          <span class="footer__logo">AL</span>
-          <span class="footer__brand-name">Anna Lockwoodová</span>
+          <span class="footer__logo">Anna Lockwoodová</span>
           <span class="footer__brand-role">Webová dizajnérka &amp; umelkyňa</span>
 
           <div class="footer__social">
@@ -917,7 +933,7 @@
   <script src="js/typewriter.js?v=7"></script>
   <script src="js/cursor.js"></script>
   <script src="js/marquee.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=18"></script>
 
 </body>
 </html>

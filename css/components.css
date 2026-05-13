@@ -31,19 +31,59 @@
   padding: 0 var(--container-px);
 }
 
-/* Logo — monogram AL */
+/* Logo — signature „Anna Lockwoodová" v Homemade Apple
+   Autentický rukopis pera, pôsobí ako podpis pod obrazom.
+   Pri load sa „píše sám" — clip-path sa animuje zľava doprava,
+   text sa postupne odhaľuje ako keby ho pero kreslilo. */
 .nav__logo {
-  font-family: var(--font-display);
-  font-size: 22px;
+  /* Fallback chain: ak sa Homemade Apple ešte nenačítal, použije sa
+     najbližší system handwriting font. Tým eliminujeme CLS pri swape. */
+  font-family: var(--font-signature),
+               'Brush Script MT', 'Lucida Handwriting', cursive;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 400;
   color: var(--color-ink);
-  letter-spacing: 0.04em;
-  transition: color var(--dur-fast);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  /* Jemný sklon — ako keď podpis nie je presne horizontálny */
+  transform: rotate(-2deg);
+  transform-origin: left center;
+  transition: color var(--dur-mid) var(--ease-out),
+              transform var(--dur-mid) var(--ease-out);
   cursor: none;
-  line-height: 1;
+  white-space: nowrap;
+
+  /* Písanie signature animáciou — clip-path zľava doprava
+     Easing s miernou variabilitou imituje rytmus pera. */
+  clip-path: inset(0 100% 0 0);
+  animation: signatureWrite 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.6s forwards;
+  will-change: clip-path;
+  /* Antialiasing pre rukou-písané fonty na všetkých platformách */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Po dokončení animácie odstránime will-change pre uvoľnenie GPU vrstvy */
+.nav__logo[data-signed="true"] {
+  will-change: auto;
 }
 
 .nav__logo:hover {
   color: var(--color-blue-main);
+  transform: rotate(-1deg) translateX(2px);
+}
+
+@keyframes signatureWrite {
+  0%   { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+/* Reduced motion — signature sa zobrazí naraz, bez „písania" */
+@media (prefers-reduced-motion: reduce) {
+  .nav__logo {
+    animation: none;
+    clip-path: none;
+  }
 }
 
 /* Nav linky */
@@ -540,14 +580,124 @@
   gap: clamp(20px, 3vw, 32px);
 }
 
+/* Karty ako lístky pripnuté na korkovú nástenku.
+   - Pin v hornej časti pripína kartu vizuálne k podkladu
+   - Jemne odlišná rotácia pre každú kartu (naturálnejšie pôsobenie)
+   - Na hover sa pravý dolný roh "odlepí" ako papier
+   - overflow: visible aby pin mohol vyčnievať nad horný okraj */
 .project-card {
+  position: relative;
   background-color: var(--color-white);
   border: 1px solid rgba(26, 47, 82, 0.07);
   border-radius: var(--radius-md);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-card);
+  transition: transform var(--dur-mid) var(--ease-out),
+              box-shadow var(--dur-mid) var(--ease-out);
+  /* Drobné natiahnutie - ako keby bola karta pripnutá nedokonalo
+     Default rotácia 0, override v :nth-child nižšie. */
+  transform: rotate(var(--card-tilt, 0deg));
+}
+
+/* Stagger rotation — každá karta má unikátny prirodzený sklon
+   z pripínania, žiadna nie je presne rovná. */
+.portfolio-grid .project-card:nth-child(1) { --card-tilt: -0.6deg; }
+.portfolio-grid .project-card:nth-child(2) { --card-tilt:  0.4deg; }
+.portfolio-grid .project-card:nth-child(3) { --card-tilt: -0.3deg; }
+
+.project-card:hover {
+  transform: rotate(var(--card-tilt, 0deg)) translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ─── PIN ────────────────────────────────────────────────────────
+   Vizuálny špendlík v hornej časti karty — rovnaký jazyk ako pin
+   na hero polaroide, aby celý web mal jeden "nástenkový" rytmus. */
+.project-card__pin {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%,
+              var(--color-blue-light) 0%,
+              var(--color-blue-main) 55%,
+              var(--color-ink) 100%);
+  box-shadow:
+    0 3px 6px rgba(22, 36, 90, 0.35),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.25),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.35);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ─── PAPER PEEL — pravý dolný roh ──────────────────────────────
+   Default: jemný triangulárny tieň naznačujúci „papier sa
+   trochu zdvíha v rohu" (ako keby bol pripnutý nahor, ale spodok
+   visí slobodne).
+   Hover: trojuholník sa zväčší — papier sa „odlepí" výraznejšie. */
+.project-card__image-wrap {
+  position: relative;
+  overflow: hidden;
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  /* Trojuholník v rohu — gradient simulating zadnú stranu papiera
+     (svetlejšia s jemným tieňom) prechádzajúcu do tieňa pod rohom */
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 50%,
+      rgba(22, 36, 90, 0.08) 50.5%,
+      rgba(248, 247, 244, 0.95) 51%,
+      var(--color-off-white) 100%
+    );
+  /* Jemný tieň pod „zdvihnutým" rohom */
+  filter: drop-shadow(-2px -2px 3px rgba(22, 36, 90, 0.10));
+  border-bottom-right-radius: var(--radius-md);
+  transition: width var(--dur-mid) var(--ease-out),
+              height var(--dur-mid) var(--ease-out),
+              filter var(--dur-mid) var(--ease-out);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.project-card:hover::after {
+  /* Papier sa „odlepí" výraznejšie — roh sa zdvíha a otočí */
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(-4px -4px 8px rgba(22, 36, 90, 0.18));
+}
+
+/* Pri hover trochu zvýrazníme pin (oko zaregistruje pohyb) */
+.project-card:hover .project-card__pin {
+  box-shadow:
+    0 5px 10px rgba(22, 36, 90, 0.45),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.25),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.35);
+}
+
+/* Reduced motion — bez rotácií ani peel animácie */
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-card:hover,
+  .project-card::after,
+  .project-card:hover::after {
+    transform: none;
+    transition: none;
+  }
 }
 
 .project-card__image-wrap {
@@ -792,6 +942,56 @@
 #o-mne {
   position: relative;
   overflow: hidden;
+}
+
+/* Inline poznámka pod 4 odsekmi — odkaz na Instagram s papierovou tvorbou.
+   Special Elite typewriter font, žiadny "tlačidlový" feel, len jemný odkaz. */
+.about-section__note {
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1vw, 14px);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 24px 0 28px;
+  letter-spacing: 0.01em;
+}
+
+.about-section__note-link {
+  position: relative;
+  color: var(--color-blue-main);
+  text-decoration: none;
+  transition: color var(--dur-mid) var(--ease-out);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.about-section__note-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+
+.about-section__note-link:hover {
+  color: var(--color-ink);
+}
+
+.about-section__note-link:hover::after {
+  transform: scaleX(1);
+}
+
+.about-section__note-link span[aria-hidden] {
+  display: inline-block;
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+
+.about-section__note-link:hover span[aria-hidden] {
+  transform: translate(3px, -3px);
 }
 
 .about-section__inner {
@@ -1555,13 +1755,17 @@
 .footer__brand {}
 
 .footer__logo {
-  font-family: var(--font-display);
-  font-size: 28px;
+  font-family: var(--font-signature);
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 400;
   color: var(--color-white);
-  letter-spacing: 0.04em;
-  display: block;
-  margin-bottom: 8px;
-  opacity: 0.95;
+  letter-spacing: -0.01em;
+  display: inline-block;
+  margin-bottom: 14px;
+  opacity: 0.96;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+  line-height: 1.1;
 }
 
 .footer__brand-name {
