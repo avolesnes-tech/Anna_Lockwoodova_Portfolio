@@ -248,6 +248,55 @@
 
 
   /* -----------------------------------------------------------
+     9. HEART DRAW — SVG srdce kreslené stroke-dashoffset
+        Meria skutočnú dĺžku path cez getTotalLength() a spustí
+        animáciu keď sekcia vojde do viewportu.
+     ----------------------------------------------------------- */
+  function initHeartDraw() {
+    const svg   = document.querySelector('.heart-draw');
+    const heart = document.querySelector('.heart-draw__heart');
+    if (!svg || !heart) return;
+
+    // Ak user preferuje redukovaný pohyb, okamžite zobraz
+    if (prefersReduced) {
+      heart.style.strokeDashoffset = '0';
+      svg.classList.add('heart-draw--visible');
+      return;
+    }
+
+    // Zmeraj skutočnú dĺžku cesty a nastav dasharray/dashoffset
+    const pathLen = Math.ceil(heart.getTotalLength());
+    heart.style.strokeDasharray  = `6 4`;
+    heart.style.strokeDashoffset = pathLen;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+
+          // Nastav transition až teraz (predíde bliknutiu pri load)
+          heart.style.transition =
+            `stroke-dashoffset 2.2s cubic-bezier(0.4, 0, 0.2, 1) 0.25s`;
+
+          // Spusti kreslenie srdca
+          requestAnimationFrame(() => {
+            heart.style.strokeDashoffset = '0';
+          });
+
+          // Zobraz vstupnú čiaru a bodky
+          svg.classList.add('heart-draw--visible');
+
+          observer.unobserve(svg);
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    observer.observe(svg);
+  }
+
+
+  /* -----------------------------------------------------------
      SIGNATURE — cleanup will-change po dokončení pen-write animácie
      Uvoľní GPU vrstvu, ktorú by inak browser držal celý čas.
      ----------------------------------------------------------- */
@@ -271,6 +320,7 @@
     initMobileMenu();
     initContactForm();
     initSmoothScroll();
+    initHeartDraw();
     initSignature();
   }
 

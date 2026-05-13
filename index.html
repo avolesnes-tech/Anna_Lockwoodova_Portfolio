@@ -25,10 +25,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/main.css?v=25">
-  <link rel="stylesheet" href="css/animations.css?v=25">
-  <link rel="stylesheet" href="css/components.css?v=25">
-  <link rel="stylesheet" href="css/responsive.css?v=25">
+  <link rel="stylesheet" href="css/main.css?v=26">
+  <link rel="stylesheet" href="css/animations.css?v=26">
+  <link rel="stylesheet" href="css/components.css?v=26">
+  <link rel="stylesheet" href="css/responsive.css?v=26">
 </head>
 <body>
 
@@ -581,6 +581,35 @@
         <!-- Prečo ja — diferenciátory -->
         <div class="section-heading reveal mt-lg">
           <h2 style="font-size: var(--text-2xl);">Prečo si vybrať mňa.</h2>
+
+          <!-- Animovaná SVG čiara — swoosh + srdce kreslené ťahom pera -->
+          <svg class="heart-draw" viewBox="0 0 220 126" fill="none"
+               aria-hidden="true" focusable="false">
+
+            <!-- Vstupná čiarkovaná čiara: prichádza zľava a plynulo
+                 vedie do začiatku srdca (vrcholový stred, bod 98,34) -->
+            <path class="heart-draw__entry"
+                  d="M 4,62 C 22,44 52,30 98,34"
+                  stroke-linecap="round"/>
+
+            <!-- Srdce — kreslí sa od vrcholového stredu v smere
+                 hodinových ručičiek. Bodkovaný ťah = ľahkosť. -->
+            <path class="heart-draw__heart"
+                  d="M 98,34
+                     C 114,15 130,6  148,6
+                     C 166,6  182,18 182,38
+                     C 182,62 156,84  98,108
+                     C 40,84  14,62  14,38
+                     C 14,18  30,6   48,6
+                     C 66,6   82,15  98,34 Z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+
+            <!-- Záverečný flourish — 3 bodky pod srdcom -->
+            <circle class="heart-draw__dot heart-draw__dot--1" cx="91"  cy="116" r="1.8"/>
+            <circle class="heart-draw__dot heart-draw__dot--2" cx="98"  cy="120" r="1.4"/>
+            <circle class="heart-draw__dot heart-draw__dot--3" cx="105" cy="116" r="1.8"/>
+          </svg>
         </div>
 
         <div class="diff-grid reveal-group" style="margin-top: 32px;">
@@ -1028,7 +1057,7 @@
   <script src="js/typewriter.js?v=7"></script>
   <script src="js/cursor.js"></script>
   <script src="js/marquee.js"></script>
-  <script src="js/main.js?v=18"></script>
+  <script src="js/main.js?v=26"></script>
 
 </body>
 </html>
