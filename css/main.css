@@ -8,7 +8,7 @@
    Pozn.: Hlavný font load je v <head> via <link rel="stylesheet">.
    Tento @import je fallback pre prípady, kde CSS sa načíta samostatne.
    ------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
 
 
 /* -------------------------------------------------------------
@@ -25,19 +25,20 @@
   --color-red-accent:   #C0392B;
   --color-text-muted:   #6B7280;
 
-  /* Typografia — 3-font systém (konsolidované z 4 fontov)
+  /* Typografia — 3-font systém
      ──────────────────────────────────────────────────────────────
      font-display = Special Elite — H1–H4, blockquote, project titles,
-                    service intro/note, testimonials, marquee, monogram
-                    (všetko, čo bolo predtým v Playfair Italic, je teraz tu)
-     font-text    = Cormorant Garamond — telo textu (odseky, popisy,
-                    hero subtitle, big quote glyph v testimonials)
+                    services intro/note, testimonials, marquee, monogram
+     font-text    = Inter — telo textu (odseky, popisy, hero subtitle)
+                    Maximálna screen readability, neutrálny grotesque,
+                    ustúpi do pozadia a nechá typewriter ako hlavný hlas.
      font-body    = DM Sans — UI labely (nav, buttons, eyebrow, badge,
                     form labely, footer chrome, project card link)
      ──────────────────────────────────────────────────────────────
-     Filozofia: typewriter pre expresívne, serif pre čítanie, sans pre interakciu. */
+     Filozofia: typewriter = hlas (expressive), Inter = obsah (invisible),
+     DM Sans = afordancia (utility). */
   --font-display:  'Special Elite', serif;
-  --font-text:     'Cormorant Garamond', serif;
+  --font-text:     'Inter', system-ui, -apple-system, sans-serif;
   --font-body:     'DM Sans', sans-serif;
 
   /* Veľkosti textu — fluid pomocou clamp() */
@@ -95,18 +96,23 @@ html {
 }
 
 body {
-  /* Editoriálne telo: Cormorant Garamond — elegantný knižný serif.
-     Veľkosť 17-18px (Cormorant má menšiu x-height než sans, potrebuje
-     väčší optical size pre rovnakú čitateľnosť). */
+  /* Inter — neutrálny grotesque, max screen readability.
+     Vysoká x-height znamená, že 15-16px je dostatočne čitateľné
+     (Inter pôsobí o stupeň väčšie ako iné sansy v rovnakej veľkosti). */
   font-family: var(--font-text);
-  font-size: clamp(16px, 1.15vw, 18px);
+  font-size: clamp(15px, 1.05vw, 16px);
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.65;
   color: var(--color-ink);
   background-color: var(--color-white);
   overflow-x: hidden;
+  /* Letter-spacing -0.005em = jemne tightenie pre lepší rhythm
+     v hustých blokoch textu */
+  letter-spacing: -0.005em;
   /* Vlastný kurzor — skryjeme default */
   cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Fallback pre touch zariadenia — kurzor tam nemá zmysel */
@@ -365,6 +371,11 @@ blockquote {
 /* Pri hover sa šípka v primary jemne posunie dolu (pre "Pozrieť projekty ↓") */
 .btn--primary:hover span[aria-hidden] {
   transform: translateY(2px);
+}
+
+/* Pri hover v secondary šípka → ide doprava (mikropohyb otvorenia cesty) */
+.btn--secondary:hover span[aria-hidden] {
+  transform: translateY(-1px) translateX(4px);
 }
 
 /* Text link so šípkou */

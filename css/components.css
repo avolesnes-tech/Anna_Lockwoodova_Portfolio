@@ -183,15 +183,16 @@
 }
 
 .hero__subtitle {
-  /* Editoriálne telo — Cormorant Garamond, mierne väčšia veľkosť
-     než DM Sans by mala (Cormorant má nižšiu x-height). */
+  /* Inter — neutrálne sans body. Mierne väčšia veľkosť pre hero,
+     aby podtitulok mal váhu pod typewriter sloganom. */
   font-family: var(--font-text);
   font-weight: 400;
-  font-size: clamp(17px, 1.35vw, 20px);
+  font-size: clamp(15px, 1.15vw, 17px);
   color: var(--color-text-muted);
-  line-height: 1.55;
+  line-height: 1.6;
   margin-bottom: 32px;
   max-width: 460px;
+  letter-spacing: -0.005em;
 }
 
 .hero__cta-group {
@@ -1155,9 +1156,9 @@
   position: absolute;
   top: 16px;
   left: 24px;
-  /* Veľký „ glyph — z Cormorant Garamond (má krásny serif quote glyph) */
-  font-family: var(--font-text);
-  font-size: 64px;
+  /* Veľký „ glyph — Special Elite typewriter quote, ladí s testimonial textom */
+  font-family: var(--font-display);
+  font-size: 56px;
   color: var(--color-blue-pale);
   line-height: 1;
   pointer-events: none;
