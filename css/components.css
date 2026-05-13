@@ -307,6 +307,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Hero photo má oko v hornej časti záberu — pri akomkoľvek nepasovaní
+     aspect ratio chceme aby horná časť (oko) zostala viditeľná, nie spodok. */
+  object-position: center top;
 }
 
 .photo-frame--hero:hover {
