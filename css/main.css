@@ -8,7 +8,7 @@
    Pozn.: Hlavný font load je v <head> via <link rel="stylesheet">.
    Tento @import je fallback pre prípady, kde CSS sa načíta samostatne.
    ------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Playfair+Display:ital,wght@0,400;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
 
 /* -------------------------------------------------------------
@@ -25,17 +25,18 @@
   --color-red-accent:   #C0392B;
   --color-text-muted:   #6B7280;
 
-  /* Typografia
+  /* Typografia — 3-font systém (konsolidované z 4 fontov)
      ──────────────────────────────────────────────────────────────
-     font-display = Special Elite — H1, H2, monogram, marquee
-     font-serif   = Playfair Display — Italic pre podnadpisy/citáty/projektové názvy
-     font-text    = Cormorant Garamond — telo textu (odseky, descripcie, citáty)
-     font-body    = DM Sans — UI labely (nav, buttons, eyebrow, badge, form labely)
+     font-display = Special Elite — H1–H4, blockquote, project titles,
+                    service intro/note, testimonials, marquee, monogram
+                    (všetko, čo bolo predtým v Playfair Italic, je teraz tu)
+     font-text    = Cormorant Garamond — telo textu (odseky, popisy,
+                    hero subtitle, big quote glyph v testimonials)
+     font-body    = DM Sans — UI labely (nav, buttons, eyebrow, badge,
+                    form labely, footer chrome, project card link)
      ──────────────────────────────────────────────────────────────
-     Stratifikácia: editoriálne telo (Cormorant) vs. utility UI (DM Sans).
-     Toto je klasická editoriálna typografická hierarchia ako v časopisoch. */
+     Filozofia: typewriter pre expresívne, serif pre čítanie, sans pre interakciu. */
   --font-display:  'Special Elite', serif;
-  --font-serif:    'Playfair Display', serif;
   --font-text:     'Cormorant Garamond', serif;
   --font-body:     'DM Sans', sans-serif;
 
@@ -156,10 +157,11 @@ h1, h2 {
 h1 { font-size: var(--text-hero); }
 h2 { font-size: var(--text-3xl); }
 
-/* Podnadpisy — Playfair Display Italic */
+/* Podnadpisy — Special Elite (typewriter, namiesto Playfair Italic).
+   Konsolidácia fontov: redakčný italic prešiel späť na typewriter
+   pre konzistenciu s H1, H2 a marquee. */
 h3, h4 {
-  font-family: var(--font-serif);
-  font-style: italic;
+  font-family: var(--font-display);
   font-weight: 400;
   color: var(--color-ink);
   line-height: 1.3;
@@ -175,12 +177,11 @@ p {
   color: var(--color-ink);
 }
 
-/* Citáty — Playfair Display Italic */
+/* Citáty — Special Elite (typewriter náhrada za Playfair Italic). */
 blockquote {
-  font-family: var(--font-serif);
-  font-style: italic;
+  font-family: var(--font-display);
   font-weight: 400;
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);     /* zmenšené z text-xl — Special Elite je širší */
   color: var(--color-blue-main);
   line-height: 1.5;
 }
@@ -195,15 +196,14 @@ blockquote {
   color: var(--color-text-muted);
 }
 
-/* Sekcia tagline — Cormorant pod nadpisom */
+/* Sekcia tagline — Special Elite (typewriter, namiesto Playfair Italic) */
 .section-tagline {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: var(--text-lg);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-base);   /* zmenšené z text-lg — Special Elite je širší */
   color: var(--color-text-muted);
   margin-top: 12px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 
