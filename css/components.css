@@ -493,10 +493,16 @@
 
 .project-card__meta {
   display: flex;
-  align-items: center;
+  align-items: flex-start;       /* tags + rok zarovnané na vrch — keď tagy
+                                    wrap-ujú na 2 riadky, rok zostane hore */
   gap: 12px;
   margin-bottom: 16px;
   flex-wrap: wrap;
+  /* Pevná výška pre 2 riadky tagov — zabezpečuje, že všetky karty
+     v gride majú nadpisy v rovnakej línii bez ohľadu na to, koľko
+     tagov má daná karta. Karty s 1 riadkom budú mať tichý priestor
+     pod tagmi, ale baseline grid celej kompozície zostane čistý. */
+  min-height: 60px;
 }
 
 .project-card__tags {
@@ -548,6 +554,92 @@
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+/* -------------------------------------------------------------
+   PROJECT CARD — EDITORIAL ACTION LINK
+   Nahradzuje generický btn--link. Inšpirácia: časopisecké "more"
+   afordancie — typografia ako podpis, mikropohyb šípky pri hover,
+   podčiarknutie kreslené zľava. Súlad s rytmom uppercase labelov
+   na celej stránke (eyebrow, section-heading__label).
+   ------------------------------------------------------------- */
+.project-card__link {
+  /* Reset (keďže to nahradzuje btn--link / btn) */
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  /* Typografia — rovnaký rytmus ako eyebrow a section labely */
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-ink);
+
+  position: relative;
+  transition: color var(--dur-mid) var(--ease-out);
+}
+
+/* Šípka — samostatný span aby sme ju mohli animovať bez ovplyvnenia textu */
+.project-card__link-arrow {
+  display: inline-block;
+  font-size: 13px;        /* mierne väčšia než text, aby mala vizuálnu váhu */
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 1;
+  transform: translateX(0);
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+
+/* Podčiarknutie — kreslí sa zľava doprava pri hover */
+.project-card__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  /* Šírka je len pod textom, nie pod šípkou — gap medzi nimi dáva
+     dýchací priestor, ktorý nemá byť podčiarknutý */
+  width: calc(100% - 22px);
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-mid) var(--ease-out),
+              background-color var(--dur-mid) var(--ease-out);
+}
+
+.project-card__link:hover,
+.project-card__link:focus-visible {
+  color: var(--color-blue-main);
+  outline: none;
+}
+
+.project-card__link:hover .project-card__link-arrow,
+.project-card__link:focus-visible .project-card__link-arrow {
+  transform: translateX(6px);  /* mikropohyb šípky — oko ho miluje */
+}
+
+.project-card__link:hover::after,
+.project-card__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Reduced motion — vypneme animácie, hover zostane farbou */
+@media (prefers-reduced-motion: reduce) {
+  .project-card__link,
+  .project-card__link-arrow,
+  .project-card__link::after {
+    transition: none;
+  }
+  .project-card__link:hover .project-card__link-arrow {
+    transform: none;
+  }
 }
 
 /* Placeholder obrázok projektu */
