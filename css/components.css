@@ -205,28 +205,51 @@
   min-height: 400px;
 }
 
-/* Leaf — pravý dolný roh hero
-   Mask-image fade-out: ilustrácia sa plynulo stráca smerom k stredu sekcie,
-   takže nepôsobí ako obdĺžnik — vyzerá ako keby vyrástla z rohu. */
+/* Leaf — ľavý horný roh hero
+   Organický fade-out: žiadne ostré hrany, listy sa rozplynú do priestoru
+   ako akvarelová kresba. Mask má niekoľko stops + dodatočný linear gradient
+   v ľavom hornom rohu pre extra plynulosť (rohové body cez sub-1 alpha). */
 .hero__leaf {
   position: absolute;
-  bottom: -60px;
-  right: -60px;
-  width: 420px;
+  top: -100px;
+  left: -100px;
+  width: 460px;
   pointer-events: none;
   user-select: none;
   z-index: 0;
-  /* Maska: fade z pravého dolného rohu do vnútra. Gradient končí v priehľadne
-     v opačnom rohu (top-left), takže okraje smerom dovnútra plynulo miznú. */
-  -webkit-mask-image: radial-gradient(ellipse at bottom right, black 0%, black 35%, transparent 80%);
-          mask-image: radial-gradient(ellipse at bottom right, black 0%, black 35%, transparent 80%);
+
+  /* Hlavná radial maska — ťažisko v ľavom hornom rohu, fade prechádza
+     niekoľkými medzistavmi (90% → 60% → 25% → 0%) pre organický prechod.
+     Žiadny ostrý 0/100 prah, ktorý vytvára „obdĺžnikový" pocit. */
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 110% 105% at top left,
+      rgba(0,0,0,1)    0%,
+      rgba(0,0,0,0.92) 18%,
+      rgba(0,0,0,0.60) 42%,
+      rgba(0,0,0,0.22) 65%,
+      rgba(0,0,0,0)    88%
+    );
+  mask-image:
+    radial-gradient(
+      ellipse 110% 105% at top left,
+      rgba(0,0,0,1)    0%,
+      rgba(0,0,0,0.92) 18%,
+      rgba(0,0,0,0.60) 42%,
+      rgba(0,0,0,0.22) 65%,
+      rgba(0,0,0,0)    88%
+    );
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
 }
 
 .hero__leaf img {
   width: 100%;
   height: auto;
   filter: invert(1) hue-rotate(195deg) saturate(2.6) brightness(0.55);
-  opacity: 0.7;
+  /* Nižšia opacity v ľavom hornom rohu — text pod ním musí zostať čitateľný.
+     Spolu s mäkkou maskou pôsobia listy ako akvarelová stopa za textom. */
+  opacity: 0.42;
 }
 
 /* Na mobile leaf skryjeme — text zaberá celú šírku */
