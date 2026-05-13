@@ -1455,59 +1455,171 @@
   margin-bottom: clamp(32px, 5vw, 56px);
 }
 
-/* Masonry galéria */
-.atelier-grid {
+/* ─── Ateliér Bento Gallery ───────────────────────────────── */
+
+/* Grid: 3 stĺpce, 4 riadky × 260px
+   Rozloženie:
+     riadok 1–2 : [papermache 2×2] [citrony 1×2]
+     riadok 3   : [vysivka] [frida] [srdce]
+     riadok 4   : [kvet] [portret] [devin]                   */
+.atelier-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  gap: clamp(10px, 1.5vw, 16px);
+  grid-template-rows: repeat(4, 260px);
+  gap: 10px;
   margin-bottom: clamp(32px, 5vw, 48px);
 }
 
-.atelier-grid__item {
-  overflow: hidden;
-  border-radius: var(--radius-sm);
+/* ─── jednotlivá položka ─── */
+.atelier-item {
   position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--color-blue-pale);
+  cursor: none;
+
+  /* lift + shadow pri hoveri */
+  transition:
+    transform 420ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 420ms ease;
 }
 
-.atelier-grid__item:first-child {
+.atelier-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px -10px rgba(22, 36, 90, 0.28);
+}
+
+/* subtílny žiarivý okraj pri hoveri */
+.atelier-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: border-color 420ms ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.atelier-item:hover::before {
+  border-color: rgba(110, 138, 227, 0.45);
+}
+
+/* ─── rozsahy v gridi ─── */
+.atelier-item--large {
+  grid-column: span 2;
   grid-row: span 2;
 }
 
-.atelier-grid__item img,
-.atelier-grid__placeholder {
+.atelier-item--tall {
+  grid-row: span 2;
+}
+
+/* ─── obrázok ─── */
+.atelier-item img {
   width: 100%;
   height: 100%;
-  min-height: 200px;
   object-fit: cover;
   display: block;
-  transition: transform 600ms var(--ease-out);
+  transition: transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.atelier-grid__item:hover img {
-  transform: scale(1.04);
+.atelier-item:hover img {
+  transform: scale(1.07);
 }
 
-.atelier-grid__placeholder {
+/* ─── overlay — tmavý gradient zdola nahor ─── */
+.atelier-item__overlay {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
-    135deg,
-    var(--color-blue-pale) 0%,
-    rgba(123, 167, 212, 0.2) 100%
+    to top,
+    rgba(14, 24, 64, 0.93) 0%,
+    rgba(14, 24, 64, 0.55) 38%,
+    rgba(14, 24, 64, 0.08) 68%,
+    transparent 100%
   );
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 360ms ease;
+  z-index: 2;
 }
 
-.atelier-grid__placeholder span {
-  font-family: var(--font-body);
-  font-size: 10px;
-  letter-spacing: 0.16em;
+.atelier-item--large .atelier-item__overlay {
+  padding: 28px;
+}
+
+.atelier-item:hover .atelier-item__overlay {
+  opacity: 1;
+}
+
+/* ─── obsah overlay — posúva sa nahor ─── */
+.atelier-item__content {
+  transform: translateY(12px);
+  transition: transform 420ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.atelier-item:hover .atelier-item__content {
+  transform: translateY(0);
+}
+
+/* ─── farebná linka — iná farba pre každé médium ─── */
+.atelier-item__accent {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 1px;
+  margin-bottom: 9px;
+  transition: width 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.06s;
+}
+
+.atelier-item:hover .atelier-item__accent {
+  width: 36px;
+}
+
+/* farby akcentu podľa média */
+.atelier-item[data-medium="papermache"] .atelier-item__accent { background: #C9963A; }
+.atelier-item[data-medium="akvarel"]    .atelier-item__accent { background: #6DAED4; }
+.atelier-item[data-medium="vysivka"]    .atelier-item__accent { background: #C97B8A; }
+.atelier-item[data-medium="digital"]    .atelier-item__accent { background: var(--color-blue-light); }
+.atelier-item[data-medium="print"]      .atelier-item__accent { background: #9B7ED4; }
+
+/* ─── typografia overlay ─── */
+.atelier-item__tag {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--color-blue-main);
-  opacity: 0.4;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 5px;
 }
 
+.atelier-item__title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.3;
+  margin: 0 0 6px 0;
+}
+
+.atelier-item--large .atelier-item__title {
+  font-size: 18px;
+}
+
+.atelier-item__desc {
+  font-family: var(--font-text);
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ─── CTA sekcia ─── */
 .atelier-preview__cta {
   text-align: center;
 }

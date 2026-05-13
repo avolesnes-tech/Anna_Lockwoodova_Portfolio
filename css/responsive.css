@@ -55,12 +55,20 @@
     display: none;
   }
 
-  /* Ateliér galéria */
-  .atelier-grid {
+  /* Ateliér galéria — tablet: 2 stĺpce, 260px riadky */
+  .atelier-gallery {
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 240px);
   }
 
-  .atelier-grid__item:first-child {
+  /* veľký item si zachová 2 stĺpce, ale iba 1 riadok výšky */
+  .atelier-item--large {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  /* vysoký item bude normálny */
+  .atelier-item--tall {
     grid-row: span 1;
   }
 
@@ -190,9 +198,20 @@
     grid-template-columns: 1fr;
   }
 
-  /* Ateliér */
-  .atelier-grid {
+  /* Ateliér — mobil: 2 stĺpce, menšie riadky */
+  .atelier-gallery {
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 180px);
+    gap: 8px;
+  }
+
+  .atelier-item--large {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .atelier-item--tall {
+    grid-row: span 1;
   }
 
   /* Footer */
