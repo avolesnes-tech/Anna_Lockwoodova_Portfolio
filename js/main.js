@@ -248,48 +248,47 @@
 
 
   /* -----------------------------------------------------------
-     9. HEART DRAW — SVG srdce kreslené stroke-dashoffset
+     9. HEART DRAW — jeden súvislý SVG ťah (swoosh + srdce + chvost)
         Meria skutočnú dĺžku path cez getTotalLength() a spustí
         animáciu keď sekcia vojde do viewportu.
      ----------------------------------------------------------- */
   function initHeartDraw() {
-    const svg   = document.querySelector('.heart-draw');
-    const heart = document.querySelector('.heart-draw__heart');
-    if (!svg || !heart) return;
+    const svg  = document.querySelector('.heart-draw');
+    const line = document.querySelector('.heart-draw__line');
+    if (!svg || !line) return;
 
     // Ak user preferuje redukovaný pohyb, okamžite zobraz
     if (prefersReduced) {
-      heart.style.strokeDashoffset = '0';
+      line.style.strokeDashoffset = '0';
       svg.classList.add('heart-draw--visible');
       return;
     }
 
-    // Zmeraj skutočnú dĺžku cesty a nastav dasharray/dashoffset
-    const pathLen = Math.ceil(heart.getTotalLength());
-    heart.style.strokeDasharray  = `6 4`;
-    heart.style.strokeDashoffset = pathLen;
+    // Zmeraj skutočnú dĺžku celej krivky a nastav dashoffset
+    const pathLen = Math.ceil(line.getTotalLength());
+    line.style.strokeDasharray  = '6 4';
+    line.style.strokeDashoffset = pathLen;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
 
-          // Nastav transition až teraz (predíde bliknutiu pri load)
-          heart.style.transition =
-            `stroke-dashoffset 2.2s cubic-bezier(0.4, 0, 0.2, 1) 0.25s`;
-
-          // Spusti kreslenie srdca
-          requestAnimationFrame(() => {
-            heart.style.strokeDashoffset = '0';
-          });
-
-          // Zobraz vstupnú čiaru a bodky
+          // Najprv zobraz SVG (opacity), potom spusti kreslenie
           svg.classList.add('heart-draw--visible');
+
+          // Transition na stroke-dashoffset nastav až teraz
+          line.style.transition =
+            `stroke-dashoffset 2.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s`;
+
+          requestAnimationFrame(() => {
+            line.style.strokeDashoffset = '0';
+          });
 
           observer.unobserve(svg);
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.5 }
     );
 
     observer.observe(svg);

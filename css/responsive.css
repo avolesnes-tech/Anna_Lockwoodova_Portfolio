@@ -98,6 +98,15 @@
     display: none;
   }
 
+  /* Heart draw — na mobile schová SVG, nadpis ostáva celou šírkou */
+  .diff-heading {
+    display: block;
+  }
+
+  .heart-draw {
+    display: none;
+  }
+
   .nav__hamburger {
     display: flex;
   }

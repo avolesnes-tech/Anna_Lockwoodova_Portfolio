@@ -2187,69 +2187,54 @@
 
 
 /* =============================================================
-   HEART DRAW — animovaná SVG čiara + srdce pri "Prečo ja"
-   Technika: stroke-dashoffset draw-in cez JS getTotalLength().
-   Vstupný swoosh a bodky sú čisto CSS (opacity transition).
+   HEART DRAW — animovaná SVG čiara: dlhý swoosh + kaligrafické
+   srdce + chvost. Jeden súvislý path, kreslený stroke-dashoffset.
+   JS meria getTotalLength() a spustí animáciu cez IntersectionObserver.
    ============================================================= */
+
+/* Kontajner nadpisu + SVG vedľa seba */
+.diff-heading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
 
 .heart-draw {
   display: block;
-  width: clamp(120px, 14vw, 160px);
+  width: clamp(200px, 30vw, 340px);
   height: auto;
-  margin-top: 10px;
-  overflow: visible;   /* tail dots sú mierne mimo viewBox */
-}
-
-/* ── Vstupná čiarkovaná čiara (zľava → srdce) ── */
-.heart-draw__entry {
-  stroke: var(--color-blue-light);
-  stroke-width: 1.4;
-  stroke-dasharray: 3 7;   /* vzdušné bodky/čiarky */
-  fill: none;
+  overflow: visible;
+  flex-shrink: 1;
+  min-width: 0;
   opacity: 0;
-  transition: opacity 0.5s ease 0.05s;
+  transition: opacity 0.4s ease 0.1s;
 }
 
-/* ── Srdce — bodkovaný ťah, kreslí sa stroke-dashoffset ── */
-.heart-draw__heart {
-  stroke: var(--color-blue-main);
-  stroke-width: 1.9;
-  stroke-dasharray: 6 4;   /* bodkovaná/čiarkovaná čiara */
-  stroke-dashoffset: 600;  /* JS prepíše na skutočnú dĺžku */
-  fill: none;
-  opacity: 0.78;
-  /* transition pridá JS po meraní dĺžky, aby nedošlo k bliknutiu */
-}
-
-/* ── Tri bodky pod srdcom — záverečný flourish ── */
-.heart-draw__dot {
-  fill: var(--color-blue-light);
-  opacity: 0;
-  transform-origin: center;
-  transform: scale(0);
-  transition:
-    opacity  0.3s ease,
-    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.heart-draw__dot--1 { transition-delay: 2.0s; }
-.heart-draw__dot--2 { transition-delay: 2.15s; }
-.heart-draw__dot--3 { transition-delay: 2.3s; }
-
-/* ── Aktívny stav — trieda pridaná JS po IntersectionObserver ── */
-.heart-draw--visible .heart-draw__entry {
+.heart-draw--visible {
   opacity: 1;
 }
 
-.heart-draw--visible .heart-draw__dot {
-  opacity: 0.7;
-  transform: scale(1);
+/* ── Jeden súvislý ťah — farba, hrúbka, bodkovaný rytmus ── */
+.heart-draw__line {
+  stroke: var(--color-blue-main);
+  stroke-width: 1.6;
+  stroke-dasharray: 6 4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* stroke-dashoffset nastaví JS na getTotalLength(), potom animuje na 0 */
 }
 
-/* ── prefers-reduced-motion: zobraz okamžite bez animácie ── */
+/* ── prefers-reduced-motion: zobraz okamžite ── */
 @media (prefers-reduced-motion: reduce) {
-  .heart-draw__entry  { opacity: 1;    transition: none; }
-  .heart-draw__heart  { stroke-dashoffset: 0 !important; transition: none !important; }
-  .heart-draw__dot    { opacity: 0.7;  transform: scale(1); transition: none; }
+  .heart-draw {
+    opacity: 1;
+    transition: none;
+  }
+  .heart-draw__line {
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
 }
 

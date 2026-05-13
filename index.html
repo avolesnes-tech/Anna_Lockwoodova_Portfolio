@@ -25,10 +25,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/main.css?v=26">
-  <link rel="stylesheet" href="css/animations.css?v=26">
-  <link rel="stylesheet" href="css/components.css?v=26">
-  <link rel="stylesheet" href="css/responsive.css?v=26">
+  <link rel="stylesheet" href="css/main.css?v=27">
+  <link rel="stylesheet" href="css/animations.css?v=27">
+  <link rel="stylesheet" href="css/components.css?v=27">
+  <link rel="stylesheet" href="css/responsive.css?v=27">
 </head>
 <body>
 
@@ -579,36 +579,29 @@
         </div>
 
         <!-- Prečo ja — diferenciátory -->
-        <div class="section-heading reveal mt-lg">
+        <div class="section-heading diff-heading reveal mt-lg">
           <h2 style="font-size: var(--text-2xl);">Prečo si vybrať mňa.</h2>
 
-          <!-- Animovaná SVG čiara — swoosh + srdce kreslené ťahom pera -->
-          <svg class="heart-draw" viewBox="0 0 220 126" fill="none"
+          <!-- Animovaná SVG čiara — dlhý swoosh + malé kaligrafické srdce + chvost
+               Jeden súvislý ťah pera, kreslený stroke-dashoffset animáciou. -->
+          <svg class="heart-draw" viewBox="0 0 360 70" fill="none"
                aria-hidden="true" focusable="false">
-
-            <!-- Vstupná čiarkovaná čiara: prichádza zľava a plynulo
-                 vedie do začiatku srdca (vrcholový stred, bod 98,34) -->
-            <path class="heart-draw__entry"
-                  d="M 4,62 C 22,44 52,30 98,34"
-                  stroke-linecap="round"/>
-
-            <!-- Srdce — kreslí sa od vrcholového stredu v smere
-                 hodinových ručičiek. Bodkovaný ťah = ľahkosť. -->
-            <path class="heart-draw__heart"
-                  d="M 98,34
-                     C 114,15 130,6  148,6
-                     C 166,6  182,18 182,38
-                     C 182,62 156,84  98,108
-                     C 40,84  14,62  14,38
-                     C 14,18  30,6   48,6
-                     C 66,6   82,15  98,34 Z"
+            <path class="heart-draw__line"
+                  d="M 5,46
+                     C 40,18 80,62 122,40
+                     C 140,28 156,16 170,22
+                     C 176,26 182,18 190,22
+                     C 196,18 202,12 210,14
+                     C 218,16 222,24 222,34
+                     C 222,46 212,56 198,60
+                     L 190,64
+                     C 182,60 172,54 164,46
+                     C 158,38 158,26 164,20
+                     C 170,14 178,16 184,20
+                     C 188,24 210,14 268,32
+                     C 300,40 330,46 355,50"
                   stroke-linecap="round"
                   stroke-linejoin="round"/>
-
-            <!-- Záverečný flourish — 3 bodky pod srdcom -->
-            <circle class="heart-draw__dot heart-draw__dot--1" cx="91"  cy="116" r="1.8"/>
-            <circle class="heart-draw__dot heart-draw__dot--2" cx="98"  cy="120" r="1.4"/>
-            <circle class="heart-draw__dot heart-draw__dot--3" cx="105" cy="116" r="1.8"/>
           </svg>
         </div>
 
@@ -1057,7 +1050,7 @@
   <script src="js/typewriter.js?v=7"></script>
   <script src="js/cursor.js"></script>
   <script src="js/marquee.js"></script>
-  <script src="js/main.js?v=26"></script>
+  <script src="js/main.js?v=27"></script>
 
 </body>
 </html>
