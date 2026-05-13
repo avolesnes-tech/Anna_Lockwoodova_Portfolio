@@ -2193,3 +2193,41 @@
 .section-heading h2 {
   margin-bottom: 0;
 }
+
+/* ─── Ratolesť — organický ornament pod vybrané labely sekcií ───
+   Zobrazuje sa len tam kde .section-heading--branch je použité.
+   Transparentná plocha okolo vetvy sa stráca (nezaberá vizuálny
+   priestor), preto negatívna spodná medzera h2 pritiahne blízko. */
+.section-heading--branch .section-heading__label {
+  margin-bottom: 0;
+}
+
+.section-heading--branch .section-heading__label::after {
+  content: '';
+  display: block;
+  width: 210px;
+  height: 105px;
+  background: url('../images/decorations/branch.webp')
+    left -50px / 210px 210px no-repeat;
+  opacity: 0.62;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+  margin-bottom: -42px;
+  margin-left: -10px;
+  pointer-events: none;
+}
+
+/* ─── Footer ratolesť — vedľa podpisu ─── */
+.footer__branch {
+  display: block;
+  width: 160px;
+  height: 80px;
+  background: url('../images/decorations/branch.webp')
+    right -38px / 160px 160px no-repeat;
+  opacity: 0.45;
+  transform: rotate(178deg) translateX(8px); /* zrkadlová, smeruje doľava */
+  transform-origin: right center;
+  margin-top: -12px;
+  margin-bottom: 4px;
+  pointer-events: none;
+}
