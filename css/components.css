@@ -576,8 +576,12 @@
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(20px, 3vw, 32px);
+  /* 4 karty v 2×2 grid — pridaná karta pre print/brand projekt (Devín wine label).
+     Web + adresár + WordPress + print = ukáže plný rozsah služieb. */
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(24px, 3.5vw, 40px);
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 /* Karty ako lístky pripnuté na korkovú nástenku.
@@ -605,6 +609,7 @@
 .portfolio-grid .project-card:nth-child(1) { --card-tilt: -0.6deg; }
 .portfolio-grid .project-card:nth-child(2) { --card-tilt:  0.4deg; }
 .portfolio-grid .project-card:nth-child(3) { --card-tilt: -0.3deg; }
+.portfolio-grid .project-card:nth-child(4) { --card-tilt:  0.5deg; }
 
 .project-card:hover {
   transform: rotate(var(--card-tilt, 0deg)) translateY(-4px);
@@ -1175,8 +1180,9 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(20px, 3vw, 40px);
+  /* 4 stĺpce — pridali sme Brand & Print kategóriu */
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 32px);
 }
 
 .skills-col__title {
@@ -1225,10 +1231,98 @@
 }
 
 .diff-card {
+  position: relative;
   background-color: var(--color-white);
   border: 1px solid rgba(26, 47, 82, 0.07);
   border-radius: var(--radius-md);
   padding: clamp(24px, 3vw, 36px);
+  transition:
+    border-color   var(--dur-mid) var(--ease-out),
+    box-shadow     var(--dur-mid) var(--ease-out),
+    transform      var(--dur-mid) var(--ease-out),
+    background     var(--dur-mid) var(--ease-out);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Glow gradient na pozadí — viditeľný len pri hover.
+   Vytvára „svetlomodré podsvietenie" zospodu nahor. */
+.diff-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 80% 100% at center 110%,
+      rgba(110, 138, 227, 0.18) 0%,
+      rgba(110, 138, 227, 0.10) 35%,
+      rgba(110, 138, 227, 0) 70%
+    );
+  opacity: 0;
+  transition: opacity var(--dur-mid) var(--ease-out);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Gradient border efekt — jemný royal blue outline ktorý "zasvieti" */
+.diff-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-md);
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-light) 0%,
+    var(--color-blue-main) 50%,
+    var(--color-blue-light) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--dur-mid) var(--ease-out);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.diff-card:hover {
+  transform: translateY(-3px);
+  border-color: transparent;
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow:
+    0 0 0 1px rgba(110, 138, 227, 0.25),
+    0 8px 32px rgba(37, 64, 184, 0.12),
+    0 0 40px -8px rgba(110, 138, 227, 0.25);   /* royal blue glow halo */
+}
+
+.diff-card:hover::before {
+  opacity: 1;
+}
+
+.diff-card:hover::after {
+  opacity: 1;
+}
+
+/* Pri hover sa číslo zvýrazní a získa royal blue farbu */
+.diff-card:hover .diff-card__number {
+  color: var(--color-blue-main);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .diff-card,
+  .diff-card:hover,
+  .diff-card::before,
+  .diff-card::after {
+    transition: none;
+    transform: none;
+  }
 }
 
 .diff-card__number {
