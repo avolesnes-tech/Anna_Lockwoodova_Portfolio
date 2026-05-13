@@ -1098,6 +1098,45 @@
   font-size: 14px;
   color: var(--color-blue-main);
   margin-bottom: 20px;
+
+  /* Sekvenčná pulzná animácia — každá bublina sa postupne zväčší
+     po osi v poradí 1 → 2 → 3 → 4 a opakuje sa nekonečne.
+     GPU-accelerated transform + box-shadow, žiadny CPU dopad. */
+  transform: scale(1);
+  will-change: transform, box-shadow;
+  animation: processPulse 5s ease-in-out infinite;
+  animation-delay: var(--pulse-delay, 0s);
+}
+
+/* Stagger delays — každá bublina ide o 1.25s neskôr */
+.process-step:nth-child(1) .process-step__number { --pulse-delay: 0s;    }
+.process-step:nth-child(2) .process-step__number { --pulse-delay: 1.25s; }
+.process-step:nth-child(3) .process-step__number { --pulse-delay: 2.5s;  }
+.process-step:nth-child(4) .process-step__number { --pulse-delay: 3.75s; }
+
+@keyframes processPulse {
+  /* Cyklus 5s: vrchol pulzu ~20% (0.5–1s) trvá krátko,
+     zvyšok cyklu (4s) je v pokoji — pozornosť sa presunie na ďalšiu bublinu */
+  0%, 75%, 100% {
+    transform: scale(1);
+    background-color: var(--color-blue-pale);
+    border-color: var(--color-blue-light);
+    box-shadow: 0 0 0 0 rgba(37, 64, 184, 0);
+  }
+  10%, 18% {
+    transform: scale(1.18);
+    background-color: var(--color-blue-light);
+    border-color: var(--color-blue-main);
+    color: var(--color-white);
+    box-shadow: 0 0 0 10px rgba(37, 64, 184, 0.08);
+  }
+}
+
+/* Reduced motion — animácie sa vypnú */
+@media (prefers-reduced-motion: reduce) {
+  .process-step__number {
+    animation: none;
+  }
 }
 
 .process-step__title {
@@ -1243,6 +1282,51 @@
 /* -------------------------------------------------------------
    8. KONTAKT SEKCIA
    ------------------------------------------------------------- */
+
+/* Akvarelový list — ľavý dolný roh, väčšia mierka s 5-stop fade */
+.contact-section__leaf {
+  position: absolute;
+  bottom: -140px;
+  left: -140px;
+  width: 580px;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 115% 115% at bottom left,
+      rgba(0,0,0,1)    0%,
+      rgba(0,0,0,1)    15%,
+      rgba(0,0,0,0.82) 32%,
+      rgba(0,0,0,0.50) 55%,
+      rgba(0,0,0,0.20) 78%,
+      rgba(0,0,0,0)    100%
+    );
+          mask-image:
+    radial-gradient(
+      ellipse 115% 115% at bottom left,
+      rgba(0,0,0,1)    0%,
+      rgba(0,0,0,1)    15%,
+      rgba(0,0,0,0.82) 32%,
+      rgba(0,0,0,0.50) 55%,
+      rgba(0,0,0,0.20) 78%,
+      rgba(0,0,0,0)    100%
+    );
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+
+.contact-section__leaf img {
+  opacity: 0.46;
+}
+
+/* Kontakt sekcia musí byť relative pre absolútny list */
+#kontakt {
+  position: relative;
+  overflow: hidden;
+}
+
 .contact-section__inner {
   display: grid;
   grid-template-columns: 2fr 3fr;
@@ -1377,40 +1461,78 @@
   overflow: hidden;
 }
 
-/* Footer leaf — namiesto cez celú šírku (deformované, roztiahnuté)
-   dáme dva delikátne fragmenty v rohoch, prirodzene veľké. */
+/* Footer leaves — veľká, ale veľmi jemná textúra cez celú päťu.
+   Listy sú len lehko viditeľné ako vodoznak — pridávajú hĺbku
+   tmavomodremu pozadiu bez toho aby konkurovali obsahu. */
 .footer__leaf {
   position: absolute;
-  bottom: -40px;
-  right: -40px;
-  width: 260px;
-  height: 260px;
+  bottom: -120px;
+  right: -180px;
+  width: 720px;
+  height: auto;
   pointer-events: none;
   user-select: none;
-  -webkit-mask-image: radial-gradient(ellipse at bottom right, black 0%, black 35%, transparent 75%);
-          mask-image: radial-gradient(ellipse at bottom right, black 0%, black 35%, transparent 75%);
+  /* Soft fade-in/out — list sa rozplynie nadol aj smerom doľava */
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 110% 105% at bottom right,
+      rgba(0,0,0,1)    0%,
+      rgba(0,0,0,0.95) 30%,
+      rgba(0,0,0,0.70) 55%,
+      rgba(0,0,0,0.35) 80%,
+      rgba(0,0,0,0)    100%
+    );
+          mask-image:
+    radial-gradient(
+      ellipse 110% 105% at bottom right,
+      rgba(0,0,0,1)    0%,
+      rgba(0,0,0,0.95) 30%,
+      rgba(0,0,0,0.70) 55%,
+      rgba(0,0,0,0.35) 80%,
+      rgba(0,0,0,0)    100%
+    );
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
 }
 
 .footer__leaf img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0.18;
-  filter: invert(1) hue-rotate(200deg) saturate(2.4) brightness(0.85);
+  height: auto;
+  /* Veľmi jemná textúra — len 7% opacity. Filter zachováva charakter
+     listov ale rozjasní ich do trochu modrastejšej, ktorá ladí
+     s royal blue navy pozadím. */
+  opacity: 0.08;
+  filter: invert(1) hue-rotate(200deg) saturate(2.0) brightness(1.4);
 }
 
-/* Druhý footer leaf — zrkadlový v ľavom dolnom rohu pre kompozičnú rovnováhu */
+/* Zrkadlový list v ľavom dolnom rohu — spolu vytvárajú celkovú textúru */
 .footer__leaf--mirror {
   right: auto;
-  left: -40px;
+  left: -180px;
   transform: scaleX(-1);
-  -webkit-mask-image: radial-gradient(ellipse at bottom left, black 0%, black 35%, transparent 75%);
-          mask-image: radial-gradient(ellipse at bottom left, black 0%, black 35%, transparent 75%);
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 110% 105% at bottom right,  /* po scaleX(-1) je to vlastne bottom left */
+      rgba(0,0,0,1)    0%,
+      rgba(0,0,0,0.95) 30%,
+      rgba(0,0,0,0.70) 55%,
+      rgba(0,0,0,0.35) 80%,
+      rgba(0,0,0,0)    100%
+    );
+          mask-image:
+    radial-gradient(
+      ellipse 110% 105% at bottom right,
+      rgba(0,0,0,1)    0%,
+      rgba(0,0,0,0.95) 30%,
+      rgba(0,0,0,0.70) 55%,
+      rgba(0,0,0,0.35) 80%,
+      rgba(0,0,0,0)    100%
+    );
 }
 
 @media (max-width: 768px) {
   .footer__leaf--mirror { display: none; }
-  .footer__leaf { width: 180px; height: 180px; }
+  .footer__leaf { width: 480px; right: -100px; bottom: -80px; }
 }
 
 .footer__inner {
