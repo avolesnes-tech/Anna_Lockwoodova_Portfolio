@@ -5,8 +5,10 @@
 
 /* -------------------------------------------------------------
    1. GOOGLE FONTS IMPORT
+   Pozn.: Hlavný font load je v <head> via <link rel="stylesheet">.
+   Tento @import je fallback pre prípady, kde CSS sa načíta samostatne.
    ------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Playfair+Display:ital,wght@0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Playfair+Display:ital,wght@0,400;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
 
 /* -------------------------------------------------------------
@@ -23,9 +25,18 @@
   --color-red-accent:   #C0392B;
   --color-text-muted:   #6B7280;
 
-  /* Typografia */
+  /* Typografia
+     ──────────────────────────────────────────────────────────────
+     font-display = Special Elite — H1, H2, monogram, marquee
+     font-serif   = Playfair Display — Italic pre podnadpisy/citáty/projektové názvy
+     font-text    = Cormorant Garamond — telo textu (odseky, descripcie, citáty)
+     font-body    = DM Sans — UI labely (nav, buttons, eyebrow, badge, form labely)
+     ──────────────────────────────────────────────────────────────
+     Stratifikácia: editoriálne telo (Cormorant) vs. utility UI (DM Sans).
+     Toto je klasická editoriálna typografická hierarchia ako v časopisoch. */
   --font-display:  'Special Elite', serif;
-  --font-serif:    'Playfair Display', serif; /* Italic pre podnadpisy/citáty */
+  --font-serif:    'Playfair Display', serif;
+  --font-text:     'Cormorant Garamond', serif;
   --font-body:     'DM Sans', sans-serif;
 
   /* Veľkosti textu — fluid pomocou clamp() */
@@ -83,10 +94,13 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
-  font-size: var(--text-base);
+  /* Editoriálne telo: Cormorant Garamond — elegantný knižný serif.
+     Veľkosť 17-18px (Cormorant má menšiu x-height než sans, potrebuje
+     väčší optical size pre rovnakú čitateľnosť). */
+  font-family: var(--font-text);
+  font-size: clamp(16px, 1.15vw, 18px);
   font-weight: 400;
-  line-height: 1.75;
+  line-height: 1.7;
   color: var(--color-ink);
   background-color: var(--color-white);
   overflow-x: hidden;
@@ -277,54 +291,80 @@ blockquote {
 /* -------------------------------------------------------------
    7. TLAČIDLÁ
    ------------------------------------------------------------- */
+/* Tlačidlá — soft pill kompozícia
+   ──────────────────────────────────────────────────────────────
+   Filozofia: namiesto chunkovitých box-radius tlačidiel používame
+   plné pill tvary s refined typografiou. Letter-spacing 0.16em
+   v rovnakom rytme ako editorial labely (eyebrow, project-card__link).
+   Pôsobí jemne, ale zachováva afordanciu kliknuteľnosti. */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-family: var(--font-body);
+  gap: 10px;
+  font-family: var(--font-body);     /* DM Sans — UI labels zostávajú sans */
   font-weight: 400;
-  font-size: var(--text-sm);
-  letter-spacing: 0.06em;
-  padding: 14px 28px;
-  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 13px 28px;
+  border-radius: 999px;              /* plný pill — najmäkšia forma */
+  border: 1px solid transparent;     /* base — concrete jeho variant */
   transition:
-    background-color var(--dur-fast) var(--ease-default),
-    color            var(--dur-fast) var(--ease-default),
-    transform        var(--dur-fast) var(--ease-spring),
-    box-shadow       var(--dur-mid)  var(--ease-default);
+    background-color var(--dur-mid) var(--ease-default),
+    color            var(--dur-mid) var(--ease-default),
+    border-color     var(--dur-mid) var(--ease-default),
+    transform        var(--dur-mid) var(--ease-out);
   cursor: none;
   white-space: nowrap;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);       /* menej agresívny lift než predtým */
 }
 
 .btn:active {
   transform: translateY(0);
 }
 
-/* Primárny — modrý fill */
+/* Primárny — soft filled pill v royal blue
+   Žiadny box-shadow v default stave (eliminuje "kričaní"). */
 .btn--primary {
   background-color: var(--color-blue-main);
   color: var(--color-white);
+  border-color: var(--color-blue-main);
 }
 
 .btn--primary:hover {
-  background-color: var(--color-ink);
-  box-shadow: var(--shadow-hover);
+  background-color: var(--color-ink); /* hlbšia royal navy pri hover */
+  border-color: var(--color-ink);
 }
 
-/* Sekundárny — outline */
+/* Sekundárny — ghost pill s jemným borderom
+   Default border je polo-priehľadný ink — pôsobí ako „náznak", nie hranica. */
 .btn--secondary {
   background-color: transparent;
-  color: var(--color-blue-main);
-  border: 1.5px solid var(--color-blue-main);
+  color: var(--color-ink);
+  border: 1px solid rgba(22, 36, 90, 0.22);
 }
 
 .btn--secondary:hover {
-  background-color: var(--color-blue-pale);
+  color: var(--color-blue-main);
   border-color: var(--color-blue-main);
+  background-color: rgba(37, 64, 184, 0.05);  /* whisper royal blue fill */
+}
+
+/* Šípka v tlačidle — jemnejšia, lighter weight */
+.btn span[aria-hidden] {
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0;
+  transform: translateY(-1px);       /* optické zarovnanie s baseline */
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+
+/* Pri hover sa šípka v primary jemne posunie dolu (pre "Pozrieť projekty ↓") */
+.btn--primary:hover span[aria-hidden] {
+  transform: translateY(2px);
 }
 
 /* Text link so šípkou */

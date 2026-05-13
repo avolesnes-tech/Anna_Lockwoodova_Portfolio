@@ -20,13 +20,13 @@
   <!-- Fonty -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Playfair+Display:ital,wght@0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Playfair+Display:ital,wght@0,400;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/main.css?v=8">
-  <link rel="stylesheet" href="css/animations.css?v=8">
-  <link rel="stylesheet" href="css/components.css?v=8">
-  <link rel="stylesheet" href="css/responsive.css?v=8">
+  <link rel="stylesheet" href="css/main.css?v=10">
+  <link rel="stylesheet" href="css/animations.css?v=10">
+  <link rel="stylesheet" href="css/components.css?v=10">
+  <link rel="stylesheet" href="css/responsive.css?v=10">
 </head>
 <body>
 
@@ -92,8 +92,16 @@
          ======================================================= -->
     <section class="hero" aria-label="Úvod">
 
-      <!-- Leaf dekorácia — parallax -->
-      <div class="hero__leaf leaf-parallax" aria-hidden="true" data-parallax-rate="0.15">
+      <!-- Leaf dekorácia — ľavý horný roh (parallax) -->
+      <div class="hero__leaf hero__leaf--tl leaf-parallax" aria-hidden="true" data-parallax-rate="0.15">
+        <picture>
+          <source srcset="images/leaves/leaves-full.webp" type="image/webp">
+          <img src="images/leaves/leaves-full.png" alt="" role="presentation" loading="lazy" decoding="async" width="700" height="700">
+        </picture>
+      </div>
+
+      <!-- Leaf dekorácia — pravý dolný roh, zrkadlový pre kompozičnú diagonálu -->
+      <div class="hero__leaf hero__leaf--br leaf-parallax" aria-hidden="true" data-parallax-rate="0.10">
         <picture>
           <source srcset="images/leaves/leaves-full.webp" type="image/webp">
           <img src="images/leaves/leaves-full.png" alt="" role="presentation" loading="lazy" decoding="async" width="700" height="700">
@@ -153,8 +161,8 @@
          ======================================================= -->
     <div class="marquee" aria-hidden="true" role="presentation">
       <div class="marquee__inner">
-        <span class="marquee__text">· Webový dizajn · UI &amp; UX Design · Akvarel · Papier-mâché · Výšivka · Tvorba s citom · Bratislava · Webový dizajn · UI &amp; UX Design · Akvarel · Papier-mâché · Výšivka · Tvorba s citom · Bratislava ·</span>
-        <span class="marquee__text" aria-hidden="true">· Webový dizajn · UI &amp; UX Design · Akvarel · Papier-mâché · Výšivka · Tvorba s citom · Bratislava · Webový dizajn · UI &amp; UX Design · Akvarel · Papier-mâché · Výšivka · Tvorba s citom · Bratislava ·</span>
+        <span class="marquee__text">· Webový dizajn · UI &amp; UX Design · Digitálne aj tradičné umenie · Tvorba s citom · Senec · Komunikácia aj v angličtine · Webový dizajn · UI &amp; UX Design · Digitálne aj tradičné umenie · Tvorba s citom · Senec · Komunikácia aj v angličtine ·</span>
+        <span class="marquee__text" aria-hidden="true">· Webový dizajn · UI &amp; UX Design · Digitálne aj tradičné umenie · Tvorba s citom · Senec · Komunikácia aj v angličtine · Webový dizajn · UI &amp; UX Design · Digitálne aj tradičné umenie · Tvorba s citom · Senec · Komunikácia aj v angličtine ·</span>
       </div>
     </div>
 

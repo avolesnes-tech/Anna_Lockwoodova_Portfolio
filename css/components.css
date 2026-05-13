@@ -183,13 +183,15 @@
 }
 
 .hero__subtitle {
-  font-family: var(--font-body);
-  font-weight: 300;
-  font-size: var(--text-base);   /* zmenšené z text-lg — menej dominantné */
+  /* Editoriálne telo — Cormorant Garamond, mierne väčšia veľkosť
+     než DM Sans by mala (Cormorant má nižšiu x-height). */
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: clamp(17px, 1.35vw, 20px);
   color: var(--color-text-muted);
   line-height: 1.55;
-  margin-bottom: 32px;           /* zmenšené z 44px — kompaktnejšia kompozícia */
-  max-width: 420px;
+  margin-bottom: 32px;
+  max-width: 460px;
 }
 
 .hero__cta-group {
@@ -205,21 +207,26 @@
   min-height: 400px;
 }
 
-/* Leaf — ľavý horný roh hero
+/* Leaf — společné base štýly pre obe pozície v hero
    Organický fade-out: žiadne ostré hrany, listy sa rozplynú do priestoru
-   ako akvarelová kresba. Mask má niekoľko stops + dodatočný linear gradient
-   v ľavom hornom rohu pre extra plynulosť (rohové body cez sub-1 alpha). */
+   ako akvarelová kresba. Konkrétny mask-image sa nastavuje na modifier
+   class podľa rohu (--tl = top-left, --br = bottom-right). */
 .hero__leaf {
   position: absolute;
-  top: -100px;
-  left: -100px;
   width: 460px;
   pointer-events: none;
   user-select: none;
   z-index: 0;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
 
+/* --- ĽAVÝ HORNÝ ROH --------------------------------------------------- */
+.hero__leaf--tl {
+  top: -100px;
+  left: -100px;
   /* Hlavná radial maska — ťažisko v ľavom hornom rohu, fade prechádza
-     niekoľkými medzistavmi (90% → 60% → 25% → 0%) pre organický prechod.
+     niekoľkými medzistavmi (92% → 60% → 22% → 0%) pre organický prechod.
      Žiadny ostrý 0/100 prah, ktorý vytvára „obdĺžnikový" pocit. */
   -webkit-mask-image:
     radial-gradient(
@@ -230,7 +237,7 @@
       rgba(0,0,0,0.22) 65%,
       rgba(0,0,0,0)    88%
     );
-  mask-image:
+          mask-image:
     radial-gradient(
       ellipse 110% 105% at top left,
       rgba(0,0,0,1)    0%,
@@ -239,16 +246,64 @@
       rgba(0,0,0,0.22) 65%,
       rgba(0,0,0,0)    88%
     );
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+}
+
+/* --- PRAVÝ DOLNÝ ROH -------------------------------------------------- */
+/* Zrkadlovo otočený fragment pre kompozičnú diagonálu: oko ide
+   z ľavého horného rohu cez slogan a polaroid až dole vpravo —
+   listy v pravom dolnom rohu „zachytia" pohľad a zatvoria kompozíciu.
+
+   Tu chceme silnejšiu prítomnosť v rohu — gradient drží plnú intenzitu
+   dlhšie a fade-out je gradiálnejší smerom do stredu hero. */
+.hero__leaf--br {
+  bottom: -120px;
+  right: -120px;
+  width: 540px;                      /* o čosi väčšia plocha — corner anchor */
+  transform: scale(-1, -1);          /* zrkadlo: kompozícia listov ide do rohu */
+
+  /* Mask gradient (na element pred transformom — fyzicky to znamená:
+     plný pixel v "top left" elementu sa po scale(-1,-1) ocitne v pravom
+     dolnom rohu viewportu).
+     Stops:
+       0–35%  plná intenzita — listy sa drží farba v rohu výrazne dlhšie
+       35–60% jemný úbytok (do 0.7) — prirodzený akvarelový fade
+       60–85% výraznejšie miznutie (do 0.25)
+       85–100% úplne priehľadné — listy splynú s pozadím
+  */
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 125% 120% at top left,
+      rgba(0,0,0,1)    0%,
+      rgba(0,0,0,1)    20%,
+      rgba(0,0,0,0.85) 35%,
+      rgba(0,0,0,0.55) 55%,
+      rgba(0,0,0,0.22) 78%,
+      rgba(0,0,0,0)    100%
+    );
+          mask-image:
+    radial-gradient(
+      ellipse 125% 120% at top left,
+      rgba(0,0,0,1)    0%,
+      rgba(0,0,0,1)    20%,
+      rgba(0,0,0,0.85) 35%,
+      rgba(0,0,0,0.55) 55%,
+      rgba(0,0,0,0.22) 78%,
+      rgba(0,0,0,0)    100%
+    );
+}
+
+/* Listy v pravom dolnom rohu môžu byť výraznejšie ako vľavo hore —
+   pravý dolný roh je za fotkou, takže nekonkurujú obsahu. */
+.hero__leaf--br img {
+  opacity: 0.55;
 }
 
 .hero__leaf img {
   width: 100%;
   height: auto;
   filter: invert(1) hue-rotate(195deg) saturate(2.6) brightness(0.55);
-  /* Nižšia opacity v ľavom hornom rohu — text pod ním musí zostať čitateľný.
-     Spolu s mäkkou maskou pôsobia listy ako akvarelová stopa za textom. */
+  /* Nižšia opacity — text pod listami musí zostať čitateľný. Spolu
+     s mäkkou maskou pôsobia listy ako akvarelová stopa za obsahom. */
   opacity: 0.42;
 }
 
