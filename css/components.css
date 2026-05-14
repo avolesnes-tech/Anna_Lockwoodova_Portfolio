@@ -1113,23 +1113,27 @@
 
 /* ── 3D Unfold — karty ležia na stole, vstanú pri scrolle ── */
 .services-grid.grid--3d-active {
-  perspective: 1100px;
-  perspective-origin: 50% -30%;
+  perspective: 900px;
+  perspective-origin: 50% -20%;
 }
 
-.services-grid.grid--3d-active .service-card {
+/* Počiatočný stav — bez transition, aby sa neanimovalo DO flat pozície */
+.services-grid.grid--3d-active .service-card:not(.card--unfolded) {
   opacity: 0;
-  transform: rotateX(82deg) translateY(12px);
+  transform: rotateX(86deg) scale(0.94);
   transform-origin: bottom center;
   backface-visibility: hidden;
+  transition: none !important;
 }
 
+/* Unfold — výsledná pozícia s plynulou spring animáciou */
 .services-grid.grid--3d-active .service-card.card--unfolded {
   opacity: 1;
-  transform: rotateX(0deg) translateY(0);
+  transform: rotateX(0deg) scale(1);
+  transform-origin: bottom center;
   transition:
-    transform 0.85s cubic-bezier(0.34, 1.18, 0.64, 1) var(--card-delay, 0ms),
-    opacity   0.50s ease calc(var(--card-delay, 0ms) + 60ms);
+    transform 0.9s cubic-bezier(0.34, 1.22, 0.64, 1) var(--card-delay, 0ms),
+    opacity   0.55s ease calc(var(--card-delay, 0ms) + 50ms);
 }
 
 .service-card {

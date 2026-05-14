@@ -491,19 +491,25 @@
       card.style.setProperty('--card-delay', `${i * 90}ms`);
     });
 
-    grid.classList.add('grid--3d-active');
+    // Nastav počiatočný stav — dva rAF garantujú, že prehliadač vykreslí
+    // flat pozíciu PRED tým, než IntersectionObserver môže spustiť animáciu
+    requestAnimationFrame(() => {
+      grid.classList.add('grid--3d-active');
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.querySelectorAll('.service-card').forEach(card => {
-          card.classList.add('card--unfolded');
-        });
-        observer.unobserve(entry.target);
+      requestAnimationFrame(() => {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.querySelectorAll('.service-card').forEach(card => {
+              card.classList.add('card--unfolded');
+            });
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.10 });
+
+        observer.observe(grid);
       });
-    }, { threshold: 0.12 });
-
-    observer.observe(grid);
+    });
   }
 
 
