@@ -29,16 +29,16 @@
       time += 0.025;
 
       if (phase === 'rising') {
-        currentScale += (1.0 - currentScale) * 0.14;
-        if (currentScale > 0.65) phase = 'falling';
+        currentScale += (1.0 - currentScale) * 0.07; // pomalší nástup
+        if (currentScale > 0.72) phase = 'falling';
       } else if (phase === 'falling') {
-        currentScale *= 0.82; // exponenciálny útlm
+        currentScale *= 0.90; // hladší, pomalší útlm
       }
 
-      const fx = 0.013 + Math.sin(time * 1.1)  * 0.003;
-      const fy = 0.018 + Math.cos(time * 0.75) * 0.003;
+      const fx = 0.011 + Math.sin(time * 0.8)  * 0.002;
+      const fy = 0.015 + Math.cos(time * 0.55) * 0.002;
       turbulence.setAttribute('baseFrequency', fx.toFixed(4) + ' ' + fy.toFixed(4));
-      dispMap.setAttribute('scale', (currentScale * 14).toFixed(2));
+      dispMap.setAttribute('scale', (currentScale * 10).toFixed(2)); // −30% amplitúda
 
       if (currentScale > 0.004) {
         rafId = requestAnimationFrame(tick);
