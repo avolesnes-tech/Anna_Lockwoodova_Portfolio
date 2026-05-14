@@ -25,11 +25,11 @@
   }
 
   /* Jemný klik — nav linky, tlačidlá */
-  function playHover() {
+  async function playHover() {
     if (!enabled || !throttle(80)) return;
     try {
       const ac = getCtx();
-      if (ac.state === 'suspended') ac.resume();
+      if (ac.state === 'suspended') await ac.resume();
 
       const osc  = ac.createOscillator();
       const gain = ac.createGain();
@@ -48,14 +48,14 @@
     } catch (_) {}
   }
 
-  /* Bubble pop — galéria obrázkov
-     Tón: mäkký "plopp" — rýchly útok, exponenciálny pokles frekvencie
-     Podobný fyzikálnemu prasku bubliny (600Hz → 120Hz, 90ms) */
-  function playBubble() {
-    if (!enabled || !throttle(120)) return;
+  /* Bubble pop — galéria Tvorba
+     Pomalý, hlboký bublinkový efekt — teplý a jemný
+     280Hz → 55Hz za 380ms, mäkký lowpass, pomalý útok */
+  async function playBubble() {
+    if (!enabled || !throttle(260)) return;
     try {
       const ac = getCtx();
-      if (ac.state === 'suspended') ac.resume();
+      if (ac.state === 'suspended') await ac.resume();
 
       const osc    = ac.createOscillator();
       const gain   = ac.createGain();
@@ -65,23 +65,23 @@
       filter.connect(gain);
       gain.connect(ac.destination);
 
-      // Sine + rýchly frekvenčný pokles = "plopp"
+      // Hlboký, pomalý frekvenčný pokles = "plopp" s dychom
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(440, ac.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(90, ac.currentTime + 0.12);
+      osc.frequency.setValueAtTime(280, ac.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(55, ac.currentTime + 0.38);
 
-      // Lowpass filter — mäkký, zaoblený tón
+      // Mäkký lowpass — zaoblený, teplý tón
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(700, ac.currentTime);
-      filter.frequency.exponentialRampToValueAtTime(150, ac.currentTime + 0.12);
+      filter.frequency.setValueAtTime(480, ac.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(80, ac.currentTime + 0.38);
 
-      // Pomalší útok + dlhší jemný fade-out = tichší "dych"
+      // Pomalý útok, dlhý jemný fade-out
       gain.gain.setValueAtTime(0, ac.currentTime);
-      gain.gain.linearRampToValueAtTime(0.062, ac.currentTime + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 0.12);
+      gain.gain.linearRampToValueAtTime(0.072, ac.currentTime + 0.028);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 0.38);
 
       osc.start(ac.currentTime);
-      osc.stop(ac.currentTime + 0.13);
+      osc.stop(ac.currentTime + 0.40);
     } catch (_) {}
   }
 
