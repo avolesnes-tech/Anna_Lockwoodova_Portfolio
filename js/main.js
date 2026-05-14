@@ -564,8 +564,27 @@
   /* -----------------------------------------------------------
      INIT — spusti všetko po načítaní DOM
      ----------------------------------------------------------- */
+  function initHeroPhoto() {
+    const frame = document.querySelector('.photo-frame--hero');
+    const img   = frame && frame.querySelector('img');
+    if (!frame || !img) return;
+
+    frame.style.animationPlayState = 'paused';
+
+    const start = () => { frame.style.animationPlayState = ''; };
+
+    if (img.complete) {
+      img.decode ? img.decode().then(start).catch(start) : start();
+    } else {
+      img.addEventListener('load', () => {
+        img.decode ? img.decode().then(start).catch(start) : start();
+      }, { once: true });
+    }
+  }
+
   function init() {
-    initServiceCards3D(); // musí byť pred initReveal — vyradí karty z reveal systému
+    initHeroPhoto();
+    initServiceCards3D();
     initReveal();
     initNav();
     initActiveNav();
