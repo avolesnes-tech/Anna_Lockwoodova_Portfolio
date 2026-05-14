@@ -25,10 +25,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/main.css?v=27">
-  <link rel="stylesheet" href="css/animations.css?v=27">
-  <link rel="stylesheet" href="css/components.css?v=27">
-  <link rel="stylesheet" href="css/responsive.css?v=27">
+  <link rel="stylesheet" href="css/main.css?v=32">
+  <link rel="stylesheet" href="css/animations.css?v=32">
+  <link rel="stylesheet" href="css/components.css?v=32">
+  <link rel="stylesheet" href="css/responsive.css?v=32">
 </head>
 <body>
 
@@ -582,27 +582,8 @@
         <div class="section-heading diff-heading reveal mt-lg">
           <h2 style="font-size: var(--text-2xl);">Prečo si vybrať mňa.</h2>
 
-          <!-- Animovaná SVG čiara — dlhý swoosh + malé kaligrafické srdce + chvost
-               Jeden súvislý ťah pera, kreslený stroke-dashoffset animáciou. -->
-          <svg class="heart-draw" viewBox="0 0 360 70" fill="none"
-               aria-hidden="true" focusable="false">
-            <path class="heart-draw__line"
-                  d="M 5,46
-                     C 40,18 80,62 122,40
-                     C 140,28 156,16 170,22
-                     C 176,26 182,18 190,22
-                     C 196,18 202,12 210,14
-                     C 218,16 222,24 222,34
-                     C 222,46 212,56 198,60
-                     L 190,64
-                     C 182,60 172,54 164,46
-                     C 158,38 158,26 164,20
-                     C 170,14 178,16 184,20
-                     C 188,24 210,14 268,32
-                     C 300,40 330,46 355,50"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"/>
-          </svg>
+          <!-- Mlhovina hviezd — generovaná JS-om, spustená IntersectionObserverom -->
+          <div class="starfield" aria-hidden="true"></div>
         </div>
 
         <div class="diff-grid reveal-group" style="margin-top: 32px;">
@@ -1050,7 +1031,8 @@
   <script src="js/typewriter.js?v=7"></script>
   <script src="js/cursor.js"></script>
   <script src="js/marquee.js"></script>
-  <script src="js/main.js?v=27"></script>
+  <script src="js/main.js?v=32"></script>
+  <script src="js/sound.js?v=32"></script>
 
 </body>
 </html>

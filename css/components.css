@@ -55,7 +55,7 @@
 
   /* Písanie signature animáciou — clip-path zľava doprava
      Easing s miernou variabilitou imituje rytmus pera. */
-  clip-path: inset(0 100% 0 0);
+  clip-path: inset(-14px 100% -14px 0);
   animation: signatureWrite 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.6s forwards;
   will-change: clip-path;
   /* Antialiasing pre rukou-písané fonty na všetkých platformách */
@@ -74,8 +74,8 @@
 }
 
 @keyframes signatureWrite {
-  0%   { clip-path: inset(0 100% 0 0); }
-  100% { clip-path: inset(0 0 0 0); }
+  0%   { clip-path: inset(-14px 100% -14px 0); }
+  100% { clip-path: inset(-14px -8px -14px 0); }
 }
 
 /* Reduced motion — signature sa zobrazí naraz, bez „písania" */
@@ -687,6 +687,20 @@
     0 5px 10px rgba(22, 36, 90, 0.45),
     inset -1px -1px 2px rgba(0, 0, 0, 0.25),
     inset 1px 1px 2px rgba(255, 255, 255, 0.35);
+}
+
+/* JS tilt — keď JS prevezme kontrolu, CSS hover sa nevkladá */
+.project-card.card-tilt--active:hover {
+  transform: none; /* inline style z JS má prioritu */
+  box-shadow: none;
+  transition: none;
+}
+
+/* Thumbnail counter-parallax */
+.project-card__image-wrap img {
+  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+  transform-origin: center center;
 }
 
 /* Reduced motion — bez rotácií ani peel animácie */
@@ -2187,54 +2201,34 @@
 
 
 /* =============================================================
-   HEART DRAW — animovaná SVG čiara: dlhý swoosh + kaligrafické
-   srdce + chvost. Jeden súvislý path, kreslený stroke-dashoffset.
-   JS meria getTotalLength() a spustí animáciu cez IntersectionObserver.
+   STARFIELD — canvas mlhovina hviezd vedľa "Prečo si vybrať mňa"
+   Renderovaná cez Canvas API: radial gradient glow, sine twinkle,
+   gaussian Y-distribúcia (Milky Way band), HiDPI podpora.
    ============================================================= */
 
-/* Kontajner nadpisu + SVG vedľa seba */
 .diff-heading {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
-.heart-draw {
-  display: block;
-  width: clamp(200px, 30vw, 340px);
-  height: auto;
-  overflow: visible;
+.starfield {
+  width: clamp(180px, 28vw, 320px);
+  height: 90px;
   flex-shrink: 1;
   min-width: 0;
   opacity: 0;
-  transition: opacity 0.4s ease 0.1s;
+  transition: opacity 0.6s ease;
 }
 
-.heart-draw--visible {
+.starfield--visible {
   opacity: 1;
 }
 
-/* ── Jeden súvislý ťah — farba, hrúbka, bodkovaný rytmus ── */
-.heart-draw__line {
-  stroke: var(--color-blue-main);
-  stroke-width: 1.6;
-  stroke-dasharray: 6 4;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  /* stroke-dashoffset nastaví JS na getTotalLength(), potom animuje na 0 */
-}
-
-/* ── prefers-reduced-motion: zobraz okamžite ── */
-@media (prefers-reduced-motion: reduce) {
-  .heart-draw {
-    opacity: 1;
-    transition: none;
-  }
-  .heart-draw__line {
-    stroke-dashoffset: 0 !important;
-    transition: none !important;
-  }
+.starfield canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 

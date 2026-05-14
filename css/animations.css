@@ -109,8 +109,28 @@
   animation: fadeInUp 800ms var(--ease-out) 3200ms both;
 }
 
-.hero-cta {
-  animation: fadeInUp 800ms var(--ease-spring) 3600ms both;
+/* Hero CTA — každé tlačidlo vstupuje zvlášť, s jemným staggerom.
+   Primary: scale + fade up → prichádza ako prvé, authoritative.
+   Secondary: o 220ms neskôr — navodzuje sekvenciu, nie simultánnosť. */
+.hero-cta .btn {
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  animation: heroCTAEnter 720ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.hero-cta .btn:nth-child(1) {
+  animation-delay: 3600ms;
+}
+
+.hero-cta .btn:nth-child(2) {
+  animation-delay: 3820ms;
+}
+
+@keyframes heroCTAEnter {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 

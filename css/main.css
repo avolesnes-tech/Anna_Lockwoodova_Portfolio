@@ -316,6 +316,8 @@ blockquote {
   padding: 13px 28px;
   border-radius: 999px;              /* plný pill — najmäkšia forma */
   border: 1px solid transparent;     /* base — concrete jeho variant */
+  position: relative;
+  overflow: hidden;                  /* potrebné pre shimmer pseudo-element */
   transition:
     background-color var(--dur-mid) var(--ease-default),
     color            var(--dur-mid) var(--ease-default),
@@ -333,17 +335,46 @@ blockquote {
   transform: translateY(0);
 }
 
-/* Primárny — soft filled pill v royal blue
-   Žiadny box-shadow v default stave (eliminuje "kričaní"). */
+/* Primárny — deep ink navy pill
+   Hlbšia, autoritatívnejšia verzia — viac konzistentná s celkovým
+   editorial naladenú stránky. Hover sa jemne rozjasní na royal blue. */
 .btn--primary {
-  background-color: var(--color-blue-main);
+  background-color: var(--color-ink);
   color: var(--color-white);
-  border-color: var(--color-blue-main);
+  border-color: var(--color-ink);
+}
+
+/* Shimmer — svetelný odlesk periódicky prechádza tlačidlom.
+   Aktivuje sa po vstupnej animácii (delay 4.6s), opakuje každé 4s.
+   Efekt: prémiový luxusný feeling bez kričania. */
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -80%;
+  width: 45%;
+  height: 220%;
+  background: linear-gradient(
+    108deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.20) 50%,
+    transparent 80%
+  );
+  animation: btnShimmer 4s ease-in-out 4.6s infinite;
+  pointer-events: none;
+  border-radius: 0;
 }
 
 .btn--primary:hover {
-  background-color: var(--color-ink); /* hlbšia royal navy pri hover */
-  border-color: var(--color-ink);
+  background-color: var(--color-blue-main); /* jemne sa rozjasní */
+  border-color: var(--color-blue-main);
+}
+
+@keyframes btnShimmer {
+  0%   { left: -80%;  opacity: 1; }
+  28%  { left: 130%;  opacity: 1; }
+  29%  { left: 130%;  opacity: 0; }
+  100% { left: 130%;  opacity: 0; }
 }
 
 /* Sekundárny — ghost pill s jemným borderom
@@ -371,7 +402,7 @@ blockquote {
 
 /* Pri hover sa šípka v primary jemne posunie dolu (pre "Pozrieť projekty ↓") */
 .btn--primary:hover span[aria-hidden] {
-  transform: translateY(2px);
+  transform: translateY(3px);
 }
 
 /* Pri hover v secondary šípka → ide doprava (mikropohyb otvorenia cesty) */
