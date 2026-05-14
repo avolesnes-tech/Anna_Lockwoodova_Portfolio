@@ -1,7 +1,7 @@
 /* =============================================================
-   distortion.js — SVG feTurbulence vlnová deformácia na hover
-   Aplikuje sa na <img> vo vnútri .strip-item cez inline SVG filter
-   #strip-wave (definovaný v index.html).
+   distortion.js — entry-burst vlnová deformácia na hover
+   Efekt sa spustí raz pri mouseenter, rýchlo vyvrcholí
+   a sám sa utlmí — obrázok sa stabilizuje čisto.
    ============================================================= */
 
 (function () {
@@ -20,29 +20,36 @@
     if (!items.length) return;
 
     let currentScale = 0;
-    let targetScale  = 0;
     let time         = 0;
+    let phase        = 'idle'; // 'rising' | 'falling' | 'idle'
     let rafId        = null;
     let activeImg    = null;
 
     function tick() {
-      time += 0.02;
-      currentScale += (targetScale - currentScale) * 0.07;
+      time += 0.025;
 
-      // Jemne živá frekvencia — plynulé vlnenie, nie statické
-      const fx = 0.014 + Math.sin(time * 0.9)  * 0.004;
-      const fy = 0.019 + Math.cos(time * 0.65) * 0.004;
+      if (phase === 'rising') {
+        currentScale += (1.0 - currentScale) * 0.14;
+        if (currentScale > 0.65) phase = 'falling';
+      } else if (phase === 'falling') {
+        currentScale *= 0.82; // exponenciálny útlm
+      }
+
+      const fx = 0.013 + Math.sin(time * 1.1)  * 0.003;
+      const fy = 0.018 + Math.cos(time * 0.75) * 0.003;
       turbulence.setAttribute('baseFrequency', fx.toFixed(4) + ' ' + fy.toFixed(4));
-      dispMap.setAttribute('scale', (currentScale * 16).toFixed(2));
+      dispMap.setAttribute('scale', (currentScale * 14).toFixed(2));
 
-      if (Math.abs(targetScale - currentScale) > 0.002 || targetScale > 0.001) {
+      if (currentScale > 0.004) {
         rafId = requestAnimationFrame(tick);
       } else {
+        dispMap.setAttribute('scale', '0');
         if (activeImg) {
           activeImg.style.filter = '';
           activeImg = null;
         }
         currentScale = 0;
+        phase = 'idle';
         rafId = null;
       }
     }
@@ -55,12 +62,10 @@
         if (activeImg && activeImg !== img) activeImg.style.filter = '';
         activeImg = img;
         img.style.filter = 'url(#strip-wave)';
-        targetScale = 1;
-        if (!rafId) rafId = requestAnimationFrame(tick);
-      });
-
-      item.addEventListener('mouseleave', () => {
-        targetScale = 0;
+        currentScale = 0;
+        phase = 'rising';
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(tick);
       });
     });
   }
