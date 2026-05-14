@@ -106,14 +106,21 @@
   function initParallax() {
     if (prefersReduced) return;
 
-    const leaves = document.querySelectorAll('.leaf-parallax');
-    if (!leaves.length) return;
+    const leaves        = document.querySelectorAll('.leaf-parallax');
+    const dioramaLayers = document.querySelectorAll('[data-diorama-speed]');
+    if (!leaves.length && !dioramaLayers.length) return;
 
     function onScroll() {
       const scrollY = window.scrollY;
+
       leaves.forEach(leaf => {
         const rate = parseFloat(leaf.dataset.parallaxRate) || 0.15;
         leaf.style.transform = `translateY(${scrollY * rate}px)`;
+      });
+
+      dioramaLayers.forEach(layer => {
+        const speed = parseFloat(layer.dataset.dioramaSpeed) || 0.06;
+        layer.style.transform = `translateY(${scrollY * speed}px)`;
       });
     }
 
@@ -465,6 +472,57 @@
   /* -----------------------------------------------------------
      INIT — spusti všetko po načítaní DOM
      ----------------------------------------------------------- */
+  /* -----------------------------------------------------------
+     12. BOTANICKÁ LINKA — scroll-driven SVG vinič
+         Vine stem sa kreslí cez stroke-dashoffset driven by scroll.
+         Lístky a kvetina sa objavujú postupne pri threshold progress.
+     ----------------------------------------------------------- */
+  function initBotanicalProgress() {
+    if (prefersReduced) return;
+
+    const svg    = document.getElementById('botanicalProgress');
+    if (!svg) return;
+
+    const stem   = svg.querySelector('.vine-stem');
+    const leaves = svg.querySelectorAll('.vine-leaf');
+    const flower = svg.querySelector('.vine-flower');
+    if (!stem) return;
+
+    requestAnimationFrame(() => {
+      const pathLen = stem.getTotalLength();
+      stem.style.strokeDasharray  = pathLen;
+      stem.style.strokeDashoffset = pathLen;
+      svg.style.opacity = '1';
+
+      function onScroll() {
+        const scrolled  = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress  = maxScroll > 0 ? Math.min(scrolled / maxScroll, 1) : 0;
+
+        stem.style.strokeDashoffset = pathLen * (1 - progress);
+
+        leaves.forEach(leaf => {
+          const t  = parseFloat(leaf.dataset.threshold) || 0;
+          const lp = Math.max(0, Math.min(1, (progress - t) / 0.09));
+          leaf.style.opacity = lp * 0.65;
+        });
+
+        if (flower) {
+          const fp = Math.max(0, Math.min(1, (progress - 0.88) / 0.12));
+          flower.style.opacity   = fp * 0.85;
+          flower.style.transform = `scale(${0.2 + fp * 0.8})`;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    });
+  }
+
+
+  /* -----------------------------------------------------------
+     INIT — spusti všetko po načítaní DOM
+     ----------------------------------------------------------- */
   function init() {
     initReveal();
     initNav();
@@ -477,6 +535,7 @@
     initGalleryFocus();
     initCardTilt();
     initSignature();
+    initBotanicalProgress();
   }
 
   if (document.readyState === 'loading') {
