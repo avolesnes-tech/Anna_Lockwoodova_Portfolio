@@ -25,10 +25,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/main.css?v=37">
-  <link rel="stylesheet" href="css/animations.css?v=37">
-  <link rel="stylesheet" href="css/components.css?v=37">
-  <link rel="stylesheet" href="css/responsive.css?v=37">
+  <link rel="stylesheet" href="css/main.css?v=38">
+  <link rel="stylesheet" href="css/animations.css?v=38">
+  <link rel="stylesheet" href="css/components.css?v=38">
+  <link rel="stylesheet" href="css/responsive.css?v=38">
 </head>
 <body>
 
@@ -103,13 +103,40 @@
 
   <main id="main-content">
 
+    <!-- Botanický scroll progress — vinič na ľavom okraji (desktop 1280px+) -->
+    <svg id="botanicalProgress" viewBox="0 0 24 600"
+         xmlns="http://www.w3.org/2000/svg"
+         aria-hidden="true"
+         preserveAspectRatio="xMidYMid meet">
+      <path class="vine-stem"
+        d="M12,10 C20,60 4,120 12,180 C20,240 4,300 12,360 C20,420 5,470 12,530 C17,555 9,575 12,590"
+        fill="none" stroke="rgba(22,36,90,0.50)" stroke-width="1.2" stroke-linecap="round"/>
+      <path class="vine-leaf" data-threshold="0.10" d="M12,100 Q2,90 4,78 Q11,84 12,100" fill="rgba(22,36,90,0.55)"/>
+      <path class="vine-leaf" data-threshold="0.10" d="M12,100 Q22,90 20,78 Q13,84 12,100" fill="rgba(22,36,90,0.55)"/>
+      <path class="vine-leaf" data-threshold="0.22" d="M12,180 Q23,168 21,156 Q14,162 12,180" fill="rgba(22,36,90,0.55)"/>
+      <path class="vine-leaf" data-threshold="0.35" d="M12,260 Q1,250 3,238 Q10,244 12,260" fill="rgba(22,36,90,0.55)"/>
+      <path class="vine-leaf" data-threshold="0.35" d="M12,260 Q23,250 21,238 Q14,244 12,260" fill="rgba(22,36,90,0.55)"/>
+      <path class="vine-leaf" data-threshold="0.50" d="M12,350 Q22,338 20,326 Q14,332 12,350" fill="rgba(22,36,90,0.55)"/>
+      <path class="vine-leaf" data-threshold="0.63" d="M12,430 Q1,420 3,408 Q10,414 12,430" fill="rgba(22,36,90,0.55)"/>
+      <path class="vine-leaf" data-threshold="0.63" d="M12,430 Q23,420 21,408 Q14,414 12,430" fill="rgba(22,36,90,0.55)"/>
+      <path class="vine-leaf" data-threshold="0.76" d="M12,510 Q22,498 20,486 Q14,492 12,510" fill="rgba(22,36,90,0.55)"/>
+      <g class="vine-flower">
+        <path d="M12,584 Q9,578 12,574 Q15,578 12,584" fill="rgba(22,36,90,0.55)"/>
+        <path d="M8,587 Q4,582 5,577 Q9,581 8,587"   fill="rgba(22,36,90,0.55)"/>
+        <path d="M16,587 Q20,582 19,577 Q15,581 16,587" fill="rgba(22,36,90,0.55)"/>
+        <path d="M12,591 Q11,595 12,598 Q13,595 12,591" fill="rgba(22,36,90,0.55)"/>
+        <circle cx="12" cy="587" r="2.5" fill="rgba(22,36,90,0.70)"/>
+        <circle cx="12" cy="587" r="1.2" fill="rgba(245,238,225,0.85)"/>
+      </g>
+    </svg>
+
     <!-- =======================================================
          HERO SEKCIA
          ======================================================= -->
     <section class="hero" aria-label="Úvod">
 
       <!-- Leaf dekorácia — ľavý horný roh (statická, akvarelová stopa) -->
-      <div class="hero__leaf hero__leaf--tl" aria-hidden="true">
+      <div class="hero__leaf hero__leaf--tl diorama-layer" data-diorama-speed="0.03" aria-hidden="true">
         <picture>
           <source srcset="images/leaves/leaves-full.webp" type="image/webp">
           <img src="images/leaves/leaves-full.png" alt="" role="presentation" loading="lazy" decoding="async" width="700" height="700">
@@ -117,12 +144,15 @@
       </div>
 
       <!-- Leaf dekorácia — pravý dolný roh, zrkadlový (statický) -->
-      <div class="hero__leaf hero__leaf--br" aria-hidden="true">
+      <div class="hero__leaf hero__leaf--br diorama-layer" data-diorama-speed="0.05" aria-hidden="true">
         <picture>
           <source srcset="images/leaves/leaves-full.webp" type="image/webp">
           <img src="images/leaves/leaves-full.png" alt="" role="presentation" loading="lazy" decoding="async" width="700" height="700">
         </picture>
       </div>
+
+      <!-- Mid diorama vrstva — paper-cut kopec silhouette -->
+      <div class="hero__deco--mid diorama-layer" data-diorama-speed="0.08" aria-hidden="true"></div>
 
       <div class="hero__inner">
         <div class="hero__content">
@@ -152,7 +182,7 @@
         </div>
 
         <!-- Hero vizuálny stĺpec — fotka v paspartovom rámiku, naklonená -->
-        <div class="hero__visual">
+        <div class="hero__visual diorama-layer" data-diorama-speed="0.06">
           <figure class="photo-frame photo-frame--hero" aria-label="Anna v ateliéri — papier-mâché práca s plátkovým zlatom, jej oko v hornej časti záberu">
             <div class="photo-frame__mat">
               <picture>
@@ -1002,8 +1032,9 @@
   <script src="js/typewriter.js?v=7"></script>
   <script src="js/cursor.js"></script>
   <script src="js/marquee.js"></script>
-  <script src="js/main.js?v=37"></script>
-  <script src="js/sound.js?v=37"></script>
+  <script src="js/main.js?v=38"></script>
+  <script src="js/sound.js?v=38"></script>
+  <script src="js/distortion.js?v=38"></script>
 
 </body>
 </html>
