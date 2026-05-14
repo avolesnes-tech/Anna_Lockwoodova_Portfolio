@@ -193,7 +193,7 @@
   }
 
   /* Ateliér — mobil: 2 stĺpce */
-  /* Ateliér strip — mobil: 2+3 layout, stagger vypnutý */
+  /* Ateliér strip — mobil: 3×2 grid, stagger vypnutý */
   .atelier-strip {
     flex-wrap: wrap;
     gap: 8px;
@@ -202,12 +202,10 @@
   .strip-slot {
     flex: 1 1 calc(50% - 4px);
     --stagger: 0px !important;
-  }
-  .strip-slot:last-child {
-    flex: 1 1 100%;
+    margin-bottom: 0 !important;
   }
   .strip-item {
-    height: 200px;
+    height: 190px;
   }
 
   /* Footer */

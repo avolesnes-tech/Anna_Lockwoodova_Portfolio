@@ -67,21 +67,21 @@
 
       // Sine + rýchly frekvenčný pokles = "plopp"
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(560, ac.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(110, ac.currentTime + 0.09);
+      osc.frequency.setValueAtTime(440, ac.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(90, ac.currentTime + 0.12);
 
-      // Lowpass filter zmäkčí zvuk — menej syčivý, viac zaoblený
+      // Lowpass filter — mäkký, zaoblený tón
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(900, ac.currentTime);
-      filter.frequency.exponentialRampToValueAtTime(200, ac.currentTime + 0.09);
+      filter.frequency.setValueAtTime(700, ac.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(150, ac.currentTime + 0.12);
 
-      // Krátky útok + rýchly fade-out
+      // Pomalší útok + dlhší jemný fade-out = tichší "dych"
       gain.gain.setValueAtTime(0, ac.currentTime);
-      gain.gain.linearRampToValueAtTime(0.10, ac.currentTime + 0.008);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 0.09);
+      gain.gain.linearRampToValueAtTime(0.062, ac.currentTime + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 0.12);
 
       osc.start(ac.currentTime);
-      osc.stop(ac.currentTime + 0.10);
+      osc.stop(ac.currentTime + 0.13);
     } catch (_) {}
   }
 

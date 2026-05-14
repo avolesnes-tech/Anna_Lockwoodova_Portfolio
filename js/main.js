@@ -355,18 +355,37 @@
     const items = document.querySelectorAll('.strip-item');
     if (!items.length) return;
 
+    // Desktop: just-in-time will-change
     items.forEach(item => {
       item.addEventListener('mouseenter', () => {
         item.style.willChange = 'transform, box-shadow, filter';
       });
-
       item.addEventListener('mouseleave', () => {
-        // Odstránime will-change po dokončení exit transition (500ms)
-        setTimeout(() => {
-          item.style.willChange = 'auto';
-        }, 520);
+        setTimeout(() => { item.style.willChange = 'auto'; }, 780);
       });
     });
+
+    // Mobile: scroll-triggered bubble pop cez IntersectionObserver
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      const popObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          // Zabráni opakovanému triggeru počas toho istého scrollu
+          if (el.dataset.popped === '1') return;
+          el.dataset.popped = '1';
+
+          el.classList.add('strip-item--scroll-pop');
+          el.addEventListener('animationend', () => {
+            el.classList.remove('strip-item--scroll-pop');
+            // Reset — umožní znova po 2s (napr. ak sa scrolluje hore-dole)
+            setTimeout(() => { delete el.dataset.popped; }, 2000);
+          }, { once: true });
+        });
+      }, { threshold: 0.35, rootMargin: '0px 0px -40px 0px' });
+
+      items.forEach(item => popObserver.observe(item));
+    }
   }
 
 

@@ -1503,32 +1503,32 @@
   z-index: 0;
   filter: brightness(1);
 
-  /* EXIT — pomalý, elegantný návrat */
+  /* EXIT — pomalý, silk-smooth návrat */
   transition:
-    transform 620ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    box-shadow 620ms ease,
-    filter 450ms ease,
-    z-index 0ms 620ms;
+    transform 750ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 750ms ease,
+    filter 550ms ease,
+    z-index 0ms 750ms;
 }
 
-/* ENTER — rýchly bubble efekt so spring-overshoot */
+/* ENTER — plynulý expo-out, bez prasknutia, ako keby sa obraz nadýchol */
 .strip-item:hover {
-  transform: scale(1.32) translateZ(0);
+  transform: scale(1.28) translateZ(0);
   z-index: 30;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.12),
-    0 0 90px rgba(255, 255, 255, 0.16),
-    0 44px 88px rgba(0, 0, 0, 0.58);
+    0 0 0 1px rgba(255, 255, 255, 0.10),
+    0 0 80px rgba(255, 255, 255, 0.14),
+    0 40px 80px rgba(0, 0, 0, 0.52);
   transition:
-    transform 390ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 390ms ease,
-    filter 220ms ease,
+    transform 550ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 550ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 280ms ease,
     z-index 0ms;
 }
 
-/* Stmavenie ostatných — silný kontrast = efekt svetla na tmavom pozadí */
+/* Stmavenie ostatných */
 .atelier-strip:has(.strip-item:hover) .strip-item:not(:hover) {
-  filter: brightness(0.14);
+  filter: brightness(0.15);
 }
 
 /* ─── Obrázok ─── */
@@ -1538,13 +1538,25 @@
   object-fit: cover;
   display: block;
   transition:
-    transform 620ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    filter 390ms ease;
+    transform 750ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 400ms ease;
 }
 
 .strip-item:hover img {
-  transform: scale(1.05);
-  filter: brightness(1.18) saturate(1.12);
+  transform: scale(1.04);
+  filter: brightness(1.15) saturate(1.10);
+}
+
+/* ─── Mobile scroll pop — krátka animácia pri vstupe do viewportu ─── */
+@keyframes stripScrollPop {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.07); box-shadow: 0 16px 40px rgba(0,0,0,0.28); }
+  100% { transform: scale(1); box-shadow: none; }
+}
+
+.strip-item--scroll-pop {
+  animation: stripScrollPop 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 5;
 }
 
 /* ─── Label — tag + názov, objaví sa na hover ─── */
