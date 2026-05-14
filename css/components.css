@@ -1428,17 +1428,17 @@
   transition: none;
 }
 
-.skills-section.is-visible .skills-col li {
+.skills-section.visible .skills-col li {
   opacity: 0.85;
   transform: translateX(0);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.skills-section.is-visible .skills-col li:nth-child(2) { transition-delay: 0.07s; }
-.skills-section.is-visible .skills-col li:nth-child(3) { transition-delay: 0.14s; }
-.skills-section.is-visible .skills-col li:nth-child(4) { transition-delay: 0.21s; }
-.skills-section.is-visible .skills-col li:nth-child(5) { transition-delay: 0.28s; }
-.skills-section.is-visible .skills-col li:nth-child(6) { transition-delay: 0.35s; }
+.skills-section.visible .skills-col li:nth-child(2) { transition-delay: 0.07s; }
+.skills-section.visible .skills-col li:nth-child(3) { transition-delay: 0.14s; }
+.skills-section.visible .skills-col li:nth-child(4) { transition-delay: 0.21s; }
+.skills-section.visible .skills-col li:nth-child(5) { transition-delay: 0.28s; }
+.skills-section.visible .skills-col li:nth-child(6) { transition-delay: 0.35s; }
 
 .skills-col li::before {
   content: '·';
