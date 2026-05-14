@@ -32,6 +32,20 @@
 </head>
 <body>
 
+  <!-- SVG filter defs — vlnová deformácia galérie -->
+  <svg id="svgDefs" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+       aria-hidden="true" style="position:absolute;overflow:hidden;pointer-events:none">
+    <defs>
+      <filter id="strip-wave" x="-8%" y="-8%" width="116%" height="116%"
+              color-interpolation-filters="linearRGB">
+        <feTurbulence type="turbulence" baseFrequency="0.014 0.019"
+                      numOctaves="3" seed="7" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0"
+                           xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
   <!-- =========================================================
        CUSTOM CURSOR
        ========================================================= -->
