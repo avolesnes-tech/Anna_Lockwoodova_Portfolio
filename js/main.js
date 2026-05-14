@@ -248,20 +248,18 @@
 
 
   /* -----------------------------------------------------------
-     9. STARFIELD — Canvas mlhovina hviezd vedľa "Prečo si vybrať mňa"
-        Každá hviezda má radial-gradient glow, sine-wave twinkle
-        a gaussian Y-distribúciu (Milky Way band).
-        Reveal animácia: hviezdy sa objavujú zľava doprava.
+     9. DOT WAVE — jemné pohybujúce sa bodky vedľa "Prečo si vybrať mňa"
+        Transparentný canvas, vlnový pohyb, CSS mask fade na okrajoch.
+        Bez viditeľného obdĺžnika — bodky sa strácajú do prázdna.
      ----------------------------------------------------------- */
   function initStarfield() {
     const container = document.querySelector('.starfield');
     if (!container) return;
 
-    // Vytvor canvas a nastav HiDPI
     const canvas = document.createElement('canvas');
-    const dpr    = Math.min(window.devicePixelRatio || 1, 2);
-    const W      = container.offsetWidth  || 280;
-    const H      = container.offsetHeight || 72;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W   = container.offsetWidth  || 280;
+    const H   = container.offsetHeight || 72;
 
     canvas.width  = W * dpr;
     canvas.height = H * dpr;
@@ -272,102 +270,52 @@
     const ctx = canvas.getContext('2d');
     ctx.scale(dpr, dpr);
 
-    // ── Generuj hviezdy s Milky Way distribúciou ──────────────
-    const TOTAL = 160;
-    const stars = [];
-    const cy = H * 0.5;    // centrum pásu
-    const sigma = H * 0.32; // šírka gaussiánu
+    // ── Generuj bodky — organicky rozmiestnené v páse ─────────
+    const COLS = 22;
+    const dots = [];
 
-    // Box-Muller pre gaussian Y
-    function gauss() {
-      const u = 1 - Math.random();
-      const v = Math.random();
-      return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
-    }
-
-    for (let i = 0; i < TOTAL; i++) {
-      const x = Math.random() * W;
-      const y = Math.max(1, Math.min(H - 1, cy + gauss() * sigma));
-
-      // Kategória hviezdy: 55% tiny, 30% medium, 15% bright
-      const roll = Math.random();
-      let r, peak, glowR;
-      if (roll < 0.55) {
-        r = 0.6 + Math.random() * 0.6;   peak = 0.52 + Math.random() * 0.39; glowR = 0;
-      } else if (roll < 0.85) {
-        r = 1.2 + Math.random() * 1.0;   peak = 0.78 + Math.random() * 0.39; glowR = r * 2.2;
-      } else {
-        r = 2.2 + Math.random() * 1.3;   peak = Math.min(1, 0.90 + Math.random() * 0.20); glowR = r * 3.5;
+    for (let i = 0; i < COLS; i++) {
+      // 2–3 bodky na stĺpec, náhodná Y v strednom páse
+      const count = 2 + Math.floor(Math.random() * 2);
+      for (let j = 0; j < count; j++) {
+        const x = (i / (COLS - 1)) * W;
+        dots.push({
+          x,
+          baseY : H * 0.2 + Math.random() * H * 0.6,
+          r     : 0.9 + Math.random() * 1.1,
+          alpha : 0.18 + Math.random() * 0.32,
+          phase : Math.random() * Math.PI * 2,
+          speed : 0.28 + Math.random() * 0.38,
+          amp   : 2.5 + Math.random() * 4,   // amplitúda vlny v px
+        });
       }
-
-      stars.push({
-        x, y, r, peak, glowR,
-        phase : Math.random() * Math.PI * 2,   // fáza blikania
-        speed : 0.25 + Math.random() * 0.6,    // rýchlosť blikania
-        reveal: x / W,                          // 0–1: kedy sa objaví (ľava → pravá)
-      });
     }
 
-    // ── Vykresli jednu hviezdu ────────────────────────────────
-    function drawStar(s, progress, time) {
-      if (progress <= 0) return;
+    // ── Vykresli frame ────────────────────────────────────────
+    function render(ts) {
+      ctx.clearRect(0, 0, W, H);
+      const t = ts / 1000;
 
-      // Twinkle: sínusoida ± 20% jasu, iba pre stredné a jasné
-      const twinkle = s.glowR > 0
-        ? 1 - 0.22 * (0.5 + 0.5 * Math.sin(time * s.speed + s.phase))
-        : 1;
-      const alpha = Math.min(1, progress * 2.5) * s.peak * twinkle;
-      const scale = Math.min(1, progress * 2);
-      const rad   = s.r * scale;
+      for (const d of dots) {
+        // Horizontálny fade — bodky miznú na okrajoch
+        const fadeL = Math.min(1, d.x / (W * 0.16));
+        const fadeR = Math.min(1, (W - d.x) / (W * 0.16));
+        const alpha = d.alpha * fadeL * fadeR;
+        if (alpha < 0.01) continue;
 
-      ctx.save();
-
-      if (s.glowR > 0 && rad > 0.3) {
-        // Glow: tight radial gradient — star-like, not blob-like
-        const glowEdge = rad + s.glowR * scale;
-        const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, glowEdge);
-        g.addColorStop(0,    `rgba(255,255,255,${alpha})`);
-        g.addColorStop(0.12, `rgba(200,220,255,${alpha * 0.85})`);
-        g.addColorStop(0.40, `rgba(100,140,255,${alpha * 0.38})`);
-        g.addColorStop(1,    `rgba(37,64,184,0)`);
+        const y = d.baseY + Math.sin(t * d.speed + d.phase) * d.amp;
 
         ctx.beginPath();
-        ctx.arc(s.x, s.y, glowEdge, 0, Math.PI * 2);
-        ctx.fillStyle = g;
+        ctx.arc(d.x, y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(22,36,90,${alpha.toFixed(3)})`;
         ctx.fill();
-      }
-
-      // Core hviezdy — čistá biela bodka
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, Math.max(0.25, rad), 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
-      ctx.fill();
-
-      ctx.restore();
-    }
-
-    // ── Animačná slučka ───────────────────────────────────────
-    let startTime = null;
-    let rafId     = null;
-    let running   = false;
-    const REVEAL_DUR = 2.2; // sekundy kým sa objavia všetky hviezdy
-
-    function render(ts) {
-      if (!startTime) startTime = ts;
-      const elapsed = (ts - startTime) / 1000;
-
-      ctx.clearRect(0, 0, W, H);
-
-      for (const s of stars) {
-        // Každá hviezda sa objaví keď elapsed presiahne jej reveal threshold
-        const revealProgress = Math.max(0,
-          (elapsed - s.reveal * REVEAL_DUR) / 0.5
-        );
-        drawStar(s, revealProgress, elapsed);
       }
 
       if (running) rafId = requestAnimationFrame(render);
     }
+
+    let rafId  = null;
+    let running = false;
 
     function start() {
       if (running) return;
@@ -381,28 +329,49 @@
       if (rafId) cancelAnimationFrame(rafId);
     }
 
-    // Pauza keď nie je viditeľné (výkon)
     const visObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { start(); }
-        else                  { stop();  }
-      });
+      entries.forEach(e => e.isIntersecting ? start() : stop());
     }, { threshold: 0.1 });
 
     visObserver.observe(container);
 
-    // Redukovaný pohyb: jednorazový statický render
+    // Redukovaný pohyb: statický jednorazový render
     if (prefersReduced) {
       container.classList.add('starfield--visible');
-      startTime = 0;
       ctx.clearRect(0, 0, W, H);
-      for (const s of stars) drawStar(s, 1, 0);
+      render(0);
+      running = false;
     }
   }
 
 
   /* -----------------------------------------------------------
-     10. CARD TILT — 3D perspektívny náklon karty pri hover
+     10. GALLERY FOCUS — just-in-time will-change pre atelier pop-out
+         Pridáme will-change len na aktívny hover, hneď po exit odstránime.
+         Tým šetríme GPU pamäť — žiadne zbytočné compositor vrstvy.
+     ----------------------------------------------------------- */
+  function initGalleryFocus() {
+    if (prefersReduced) return;
+    const items = document.querySelectorAll('.atelier-item');
+    if (!items.length) return;
+
+    items.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        item.style.willChange = 'transform, box-shadow, filter';
+      });
+
+      item.addEventListener('mouseleave', () => {
+        // Odstránime will-change po dokončení exit transition (500ms)
+        setTimeout(() => {
+          item.style.willChange = 'auto';
+        }, 520);
+      });
+    });
+  }
+
+
+  /* -----------------------------------------------------------
+     11. CARD TILT — 3D perspektívny náklon karty pri hover
          rotateX ± 6°, rotateY ± 8°, counter-parallax thumbnail
      ----------------------------------------------------------- */
   function initCardTilt() {
@@ -486,6 +455,7 @@
     initContactForm();
     initSmoothScroll();
     initStarfield();
+    initGalleryFocus();
     initCardTilt();
     initSignature();
   }

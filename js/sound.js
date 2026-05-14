@@ -52,7 +52,7 @@
   }
 
   function init() {
-    const triggers = document.querySelectorAll('.nav__link, .project-card, .btn');
+    const triggers = document.querySelectorAll('.nav__link, .project-card, .atelier-item, .btn');
     triggers.forEach(el => el.addEventListener('mouseenter', playHover));
   }
 

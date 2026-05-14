@@ -234,6 +234,12 @@ blockquote {
   background-color: var(--color-off-white);
 }
 
+/* Atelier sekcia potrebuje overflow:visible pre gallery pop-out efekt
+   (žiadne leaf dekorácie tu nie sú, takže je to bezpečné) */
+#atelier {
+  overflow: visible;
+}
+
 .section--pale-blue {
   background-color: var(--color-blue-pale);
 }
