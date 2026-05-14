@@ -473,7 +473,42 @@
      INIT — spusti všetko po načítaní DOM
      ----------------------------------------------------------- */
   /* -----------------------------------------------------------
-     12. BOTANICKÁ LINKA — scroll-driven SVG vinič
+     12. 3D UNFOLD — Service karty vstávajú zo stola
+         Karty štartujú rotateX(82°) — ležia flat v perspektíve.
+         Pri scrolle sa jedna po druhej postavia so spring easing.
+     ----------------------------------------------------------- */
+  function initServiceCards3D() {
+    if (prefersReduced) return;
+
+    const grid  = document.querySelector('.services-grid');
+    if (!grid) return;
+    const cards = Array.from(grid.querySelectorAll('.service-card'));
+    if (!cards.length) return;
+
+    // Vyrad karty z generického reveal systému — preberáme kontrolu
+    cards.forEach((card, i) => {
+      card.classList.remove('reveal');
+      card.style.setProperty('--card-delay', `${i * 90}ms`);
+    });
+
+    grid.classList.add('grid--3d-active');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.service-card').forEach(card => {
+          card.classList.add('card--unfolded');
+        });
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12 });
+
+    observer.observe(grid);
+  }
+
+
+  /* -----------------------------------------------------------
+     13. BOTANICKÁ LINKA — scroll-driven SVG vinič
          Vine stem sa kreslí cez stroke-dashoffset driven by scroll.
          Lístky a kvetina sa objavujú postupne pri threshold progress.
      ----------------------------------------------------------- */
@@ -524,6 +559,7 @@
      INIT — spusti všetko po načítaní DOM
      ----------------------------------------------------------- */
   function init() {
+    initServiceCards3D(); // musí byť pred initReveal — vyradí karty z reveal systému
     initReveal();
     initNav();
     initActiveNav();
