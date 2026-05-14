@@ -722,7 +722,7 @@
   object-position: 50% 100%;
   transition:
     opacity 0.35s ease,
-    object-position 7s linear 0.3s;
+    object-position 16s linear 0.3s;
 }
 
 @media (prefers-reduced-motion: reduce) {
