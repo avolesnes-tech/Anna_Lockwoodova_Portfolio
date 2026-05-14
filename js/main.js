@@ -352,7 +352,7 @@
      ----------------------------------------------------------- */
   function initGalleryFocus() {
     if (prefersReduced) return;
-    const items = document.querySelectorAll('.atelier-item');
+    const items = document.querySelectorAll('.strip-item');
     if (!items.length) return;
 
     items.forEach(item => {

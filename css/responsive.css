@@ -55,16 +55,12 @@
     display: none;
   }
 
-  /* Ateliér galéria — tablet: 2 stĺpce */
-  .atelier-gallery {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 380px 220px 380px 380px;
+  /* Ateliér strip — tablet: menšia výška, menší stagger */
+  .strip-item {
+    height: clamp(200px, 22vw, 300px);
   }
-
-  /* frida (landscape) naďalej 2 stĺpce = full width */
-  .atelier-item--landscape {
-    grid-column: span 2;
-  }
+  .strip-slot { --stagger: 0px !important; }
+  .atelier-strip { padding-bottom: 16px; }
 
   /* Referencie — 1 stĺpec */
   .testimonials-grid {
@@ -197,15 +193,21 @@
   }
 
   /* Ateliér — mobil: 2 stĺpce */
-  .atelier-gallery {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 200px);
+  /* Ateliér strip — mobil: 2+3 layout, stagger vypnutý */
+  .atelier-strip {
+    flex-wrap: wrap;
     gap: 8px;
+    padding-bottom: 0;
   }
-
-  /* frida na mobile: plná šírka */
-  .atelier-item--landscape {
-    grid-column: span 2;
+  .strip-slot {
+    flex: 1 1 calc(50% - 4px);
+    --stagger: 0px !important;
+  }
+  .strip-slot:last-child {
+    flex: 1 1 100%;
+  }
+  .strip-item {
+    height: 200px;
   }
 
   /* Footer */

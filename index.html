@@ -25,10 +25,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/main.css?v=34">
-  <link rel="stylesheet" href="css/animations.css?v=34">
-  <link rel="stylesheet" href="css/components.css?v=34">
-  <link rel="stylesheet" href="css/responsive.css?v=34">
+  <link rel="stylesheet" href="css/main.css?v=35">
+  <link rel="stylesheet" href="css/animations.css?v=35">
+  <link rel="stylesheet" href="css/components.css?v=35">
+  <link rel="stylesheet" href="css/responsive.css?v=35">
 </head>
 <body>
 
@@ -684,106 +684,55 @@
           <p class="section-tagline">Umenie, z ktorého vychádza moja digitálna tvorba.</p>
         </div>
 
-        <div class="atelier-gallery">
+        <!-- 5 diel na výšku vedľa seba, organicky posunuté -->
+        <div class="atelier-strip reveal">
 
-          <!-- ── RIADOK 1: akvarel portrét · zátiší · digitálna kresba ── -->
-
-          <!-- 1 — Akvarelový portrét so zlatými listami (≈1:1) -->
-          <div class="atelier-item reveal" data-medium="akvarel">
-            <img src="images/atelier/anna_l_akvarel.webp" alt="Akvarelový portrét ženy so zlatými listami vo vlasoch" loading="lazy" decoding="async" width="1260" height="1339">
-            <div class="atelier-item__overlay">
-              <div class="atelier-item__content">
-                <span class="atelier-item__accent" aria-hidden="true"></span>
-                <span class="atelier-item__tag">Akvarel & zlaté detaily</span>
-                <h3 class="atelier-item__title">Portrét s listami</h3>
+          <div class="strip-slot" style="--stagger:0px">
+            <div class="strip-item" data-medium="akvarel">
+              <img src="images/atelier/anna_l_akvarel.webp" alt="Akvarelový portrét ženy so zlatými listami vo vlasoch" loading="lazy" decoding="async" width="1260" height="1339">
+              <div class="strip-item__label">
+                <span class="strip-item__tag">Akvarel</span>
+                <h3 class="strip-item__title">Portrét s listami</h3>
               </div>
             </div>
           </div>
 
-          <!-- 2 — Digitálna detská ilustrácia (3:4 portrét) -->
-          <div class="atelier-item reveal" data-medium="digital">
-            <img src="images/atelier/baletka.webp" alt="Digitálna detská ilustrácia — baletka s čarovnou palicou" loading="lazy" decoding="async" width="968" height="1207">
-            <div class="atelier-item__overlay">
-              <div class="atelier-item__content">
-                <span class="atelier-item__accent" aria-hidden="true"></span>
-                <span class="atelier-item__tag">Digitálna ilustrácia</span>
-                <h3 class="atelier-item__title">Baletka</h3>
+          <div class="strip-slot" style="--stagger:50px">
+            <div class="strip-item" data-medium="digital">
+              <img src="images/atelier/anna_l_dekoracie.webp" alt="Digitálny portrét" loading="lazy" decoding="async" width="1131" height="1599">
+              <div class="strip-item__label">
+                <span class="strip-item__tag">Digitálna ilustrácia</span>
+                <h3 class="strip-item__title">Portrét</h3>
               </div>
             </div>
           </div>
 
-          <!-- 3 — Digitálna kresba (3:4 portrét) -->
-          <div class="atelier-item reveal" data-medium="digital">
-            <img src="images/atelier/anna_l_dekoracie.webp" alt="Digitálna kresba portrétu muža so slúchadlami" loading="lazy" decoding="async" width="1131" height="1599">
-            <div class="atelier-item__overlay">
-              <div class="atelier-item__content">
-                <span class="atelier-item__accent" aria-hidden="true"></span>
-                <span class="atelier-item__tag">Digitálna ilustrácia</span>
-                <h3 class="atelier-item__title">Portrét</h3>
+          <div class="strip-slot" style="--stagger:25px">
+            <div class="strip-item" data-medium="akvarel">
+              <img src="images/atelier/anna_l_akvarel_kvet.webp" alt="Akvarelová maľba — vlasy a víno" loading="lazy" decoding="async" width="1200" height="1600">
+              <div class="strip-item__label">
+                <span class="strip-item__tag">Akvarel</span>
+                <h3 class="strip-item__title">Vlasy &amp; víno</h3>
               </div>
             </div>
           </div>
 
-          <!-- ── RIADOK 2: výšivka Frida (landscape, 2 stĺpce) · výšivka portrét ── -->
-
-          <!-- 4 — Výšivka Frida (4:3 krajinka → 2 stĺpce) -->
-          <div class="atelier-item atelier-item--landscape reveal" data-medium="vysivka">
-            <img src="images/atelier/anna_l_frida.webp" alt="Ručná výšivka — portrét Fridy Kahlo v kruhom ráme" loading="lazy" decoding="async" width="1600" height="1200">
-            <div class="atelier-item__overlay">
-              <div class="atelier-item__content">
-                <span class="atelier-item__accent" aria-hidden="true"></span>
-                <span class="atelier-item__tag">Výšivka</span>
-                <h3 class="atelier-item__title">Frida Kahlo</h3>
+          <div class="strip-slot" style="--stagger:65px">
+            <div class="strip-item" data-medium="vysivka">
+              <img src="images/atelier/anna_l_vysivka.webp" alt="Ručná výšivka — žena s červenými vlasmi a kvetmi" loading="lazy" decoding="async" width="1200" height="1273">
+              <div class="strip-item__label">
+                <span class="strip-item__tag">Výšivka</span>
+                <h3 class="strip-item__title">Žena so šípom</h3>
               </div>
             </div>
           </div>
 
-          <!-- 5 — Výšivka žena s kvetmi (≈1:1) -->
-          <div class="atelier-item reveal" data-medium="vysivka">
-            <img src="images/atelier/anna_l_vysivka.webp" alt="Ručná výšivka — žena s červenými vlasmi a kvetmi" loading="lazy" decoding="async" width="1200" height="1273">
-            <div class="atelier-item__overlay">
-              <div class="atelier-item__content">
-                <span class="atelier-item__accent" aria-hidden="true"></span>
-                <span class="atelier-item__tag">Výšivka</span>
-                <h3 class="atelier-item__title">Žena s kvetmi</h3>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── RIADOK 3: papier-mâché · realistický portrét · etiketa ── -->
-
-          <!-- 6 — Papier-mâché dekor (≈1:1) -->
-          <div class="atelier-item reveal" data-medium="papermache">
-            <img src="images/atelier/anna_l_papermache.webp" alt="Papier-mâché dekor so zlatými plátkovými detailmi" loading="lazy" decoding="async" width="1400" height="1375">
-            <div class="atelier-item__overlay">
-              <div class="atelier-item__content">
-                <span class="atelier-item__accent" aria-hidden="true"></span>
-                <span class="atelier-item__tag">Papier-mâché</span>
-                <h3 class="atelier-item__title">Zlatý dekor</h3>
-              </div>
-            </div>
-          </div>
-
-          <!-- 7 — Vysívaná brošňa (≈1:1) -->
-          <div class="atelier-item reveal" data-medium="vysivka">
-            <img src="images/atelier/brosna.webp" alt="Vysívaná brošňa — portrét s korálkami a flitrami" loading="lazy" decoding="async" width="996" height="1063">
-            <div class="atelier-item__overlay">
-              <div class="atelier-item__content">
-                <span class="atelier-item__accent" aria-hidden="true"></span>
-                <span class="atelier-item__tag">Výšivka</span>
-                <h3 class="atelier-item__title">Brošňa</h3>
-              </div>
-            </div>
-          </div>
-
-          <!-- 8 — Devín etiketa / Brand & Print (3:4) -->
-          <div class="atelier-item reveal" data-medium="print">
-            <img src="images/atelier/devin.jpg" alt="Etiketa bieleho vína Devín — vinárstvo Zlesik" loading="lazy" decoding="async" width="864" height="1224">
-            <div class="atelier-item__overlay">
-              <div class="atelier-item__content">
-                <span class="atelier-item__accent" aria-hidden="true"></span>
-                <span class="atelier-item__tag">Brand &amp; Print</span>
-                <h3 class="atelier-item__title">Devín — Etiketa</h3>
+          <div class="strip-slot" style="--stagger:35px">
+            <div class="strip-item" data-medium="papermache">
+              <img src="images/atelier/anna_l_pm_srdce.webp" alt="Papier-mâché koláčiky s dekoráciami" loading="lazy" decoding="async" width="1199" height="1600">
+              <div class="strip-item__label">
+                <span class="strip-item__tag">Papier-mâché</span>
+                <h3 class="strip-item__title">Koláčiky</h3>
               </div>
             </div>
           </div>
@@ -1031,8 +980,8 @@
   <script src="js/typewriter.js?v=7"></script>
   <script src="js/cursor.js"></script>
   <script src="js/marquee.js"></script>
-  <script src="js/main.js?v=34"></script>
-  <script src="js/sound.js?v=34"></script>
+  <script src="js/main.js?v=35"></script>
+  <script src="js/sound.js?v=35"></script>
 
 </body>
 </html>
