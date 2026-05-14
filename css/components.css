@@ -2534,3 +2534,87 @@
     93% 53%, 100% 44%, 100% 100%
   );
 }
+
+
+/* -------------------------------------------------------------
+   LIGHTBOX — natívny <dialog>, nulové závislosti
+   ------------------------------------------------------------- */
+.lb {
+  padding: 0;
+  border: none;
+  background: transparent;
+  overflow: visible;
+  max-width: 100vw;
+  max-height: 100dvh;
+}
+
+.lb::backdrop {
+  background: rgba(10, 16, 30, 0.90);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.lb[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100dvh;
+}
+
+.lb__figure {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(92vw, 720px);
+  animation: lbEnter 0.3s var(--ease-out) both;
+}
+
+@keyframes lbEnter {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.lb__img {
+  display: block;
+  max-width: 100%;
+  max-height: 82dvh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+.lb__caption {
+  margin-top: 14px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+
+.lb__close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 20px;
+  line-height: 1;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10;
+}

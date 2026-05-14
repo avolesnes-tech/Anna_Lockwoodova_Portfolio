@@ -582,6 +582,55 @@
     }
   }
 
+  /* -----------------------------------------------------------
+     14. LIGHTBOX — galéria Tvorba
+         Klik na strip-item otvorí natívny <dialog> s plnou verziou.
+         Rovnaký súbor obrazku — bez extra sieťových požiadaviek.
+     ----------------------------------------------------------- */
+  function initLightbox() {
+    const dialog = document.getElementById('lb');
+    if (!dialog) return;
+
+    const lbImg     = dialog.querySelector('.lb__img');
+    const lbCaption = dialog.querySelector('.lb__caption');
+    const closeBtn  = dialog.querySelector('.lb__close');
+
+    document.querySelectorAll('.strip-item').forEach(item => {
+      const img = item.querySelector('img');
+      if (!img) return;
+
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label',
+        'Zobraziť väčší obrázok: ' +
+        (item.querySelector('.strip-item__title')?.textContent || img.alt)
+      );
+
+      function openLb() {
+        lbImg.src = '';
+        lbImg.alt = img.alt;
+        lbCaption.textContent = [
+          item.querySelector('.strip-item__tag')?.textContent,
+          item.querySelector('.strip-item__title')?.textContent
+        ].filter(Boolean).join(' — ');
+        dialog.showModal();
+        requestAnimationFrame(() => { lbImg.src = img.src; });
+      }
+
+      item.addEventListener('click', openLb);
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(); }
+      });
+    });
+
+    closeBtn.addEventListener('click', () => dialog.close());
+
+    dialog.addEventListener('click', e => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+
+
   function init() {
     initHeroPhoto();
     initServiceCards3D();
@@ -597,6 +646,7 @@
     initCardTilt();
     initSignature();
     initBotanicalProgress();
+    initLightbox();
   }
 
   if (document.readyState === 'loading') {

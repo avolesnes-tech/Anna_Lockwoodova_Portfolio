@@ -27,7 +27,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/main.css?v=55">
   <link rel="stylesheet" href="css/animations.css?v=55">
-  <link rel="stylesheet" href="css/components.css?v=55">
+  <link rel="stylesheet" href="css/components.css?v=56">
   <link rel="stylesheet" href="css/responsive.css?v=55">
 </head>
 <body>
@@ -990,9 +990,18 @@
   <script src="js/typewriter.js?v=7"></script>
   <script src="js/cursor.js"></script>
   <script src="js/marquee.js"></script>
-  <script src="js/main.js?v=55"></script>
+  <script src="js/main.js?v=56"></script>
   <script src="js/sound.js?v=55"></script>
   <script src="js/distortion.js?v=55"></script>
+
+  <!-- LIGHTBOX -->
+  <dialog id="lb" class="lb" aria-label="Náhľad obrázku">
+    <button class="lb__close" aria-label="Zavrieť">&times;</button>
+    <figure class="lb__figure">
+      <img class="lb__img" src="" alt="" decoding="async">
+      <figcaption class="lb__caption"></figcaption>
+    </figure>
+  </dialog>
 
 </body>
 </html>
