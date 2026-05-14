@@ -1372,15 +1372,19 @@
   position: relative;
   border-top: 2px solid transparent;
   transition:
-    transform 0.3s var(--ease-out),
-    box-shadow 0.3s var(--ease-out),
-    border-top-color 0.3s ease;
+    transform    0.4s var(--ease-out),
+    box-shadow   0.4s var(--ease-out),
+    border-top-color 0.4s ease,
+    background   0.4s ease;
 }
 
 .skills-col:hover {
+  background: linear-gradient(140deg, #0D1A46 0%, #1C35A4 55%, #2B4ACC 100%);
+  border-top-color: rgba(255, 255, 255, 0.20);
+  box-shadow:
+    0 16px 40px rgba(13, 26, 70, 0.35),
+    0 2px 0 rgba(255, 255, 255, 0.06) inset;
   transform: translateY(-5px);
-  box-shadow: 0 10px 28px rgba(22, 36, 90, 0.11);
-  border-top-color: var(--color-blue-main);
 }
 
 .skills-col__title {
@@ -1396,6 +1400,12 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: color 0.4s ease, border-bottom-color 0.4s ease;
+}
+
+.skills-col:hover .skills-col__title {
+  color: rgba(255, 255, 255, 0.97);
+  border-bottom-color: rgba(255, 255, 255, 0.14);
 }
 
 .skills-col__title::before {
@@ -1407,6 +1417,12 @@
   border-radius: 1px;
   flex-shrink: 0;
   opacity: 0.5;
+  transition: background 0.4s ease, opacity 0.4s ease;
+}
+
+.skills-col:hover .skills-col__title::before {
+  background: #fff;
+  opacity: 0.45;
 }
 
 .skills-col ul {
@@ -1431,7 +1447,7 @@
 .skills-section.visible .skills-col li {
   opacity: 0.85;
   transform: translateX(0);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
 }
 
 .skills-section.visible .skills-col li:nth-child(2) { transition-delay: 0.07s; }
@@ -1439,6 +1455,11 @@
 .skills-section.visible .skills-col li:nth-child(4) { transition-delay: 0.21s; }
 .skills-section.visible .skills-col li:nth-child(5) { transition-delay: 0.28s; }
 .skills-section.visible .skills-col li:nth-child(6) { transition-delay: 0.35s; }
+
+.skills-section.visible .skills-col:hover li {
+  color: rgba(255, 255, 255, 0.90);
+  opacity: 1;
+}
 
 .skills-col li::before {
   content: '·';
@@ -1448,6 +1469,11 @@
   font-size: 16px;
   line-height: 1.3;
   opacity: 0.5;
+  transition: color 0.4s ease;
+}
+
+.skills-col:hover li::before {
+  color: rgba(255, 255, 255, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {
