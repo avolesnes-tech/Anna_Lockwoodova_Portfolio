@@ -1295,26 +1295,36 @@
   margin: 0;
 }
 
-/* Page-unfold — torn-note sa odvíja z horného okraja smerom dolu,
-   ako keby ste otvorili zloženú stránku v bloku.
-   Prepisuje štandardný reveal (translateY) pre tento prvok. */
-.torn-note.reveal {
+/* Wrapper pre page-unfold efekt — filter na .torn-note by blokoval
+   3D perspektívu, preto animujeme wrapper (bez filtra) a .torn-note
+   si zachová svoj drop-shadow a statický tilt. */
+.torn-note-wrap {
+  max-width: 580px;
+  margin: clamp(32px, 5vw, 52px) auto clamp(16px, 3vw, 24px);
+}
+
+.torn-note-wrap.reveal {
   opacity: 0;
-  transform: rotate(-0.65deg) perspective(700px) rotateX(-84deg);
+  transform: perspective(700px) rotateX(-84deg);
   transform-origin: top center;
   transition:
     opacity   0.5s  ease,
     transform 1.1s  cubic-bezier(0.22, 1.0, 0.36, 1);
 }
 
-.torn-note.reveal.visible {
+.torn-note-wrap.reveal.visible {
   opacity: 1;
-  transform: rotate(-0.65deg) perspective(700px) rotateX(0deg);
+  transform: perspective(700px) rotateX(0deg);
+}
+
+/* Presunúť margin zo .torn-note na wrapper, aby nebol dvojitý */
+.torn-note-wrap .torn-note {
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .torn-note.reveal {
-    transform: rotate(-0.65deg);
+  .torn-note-wrap.reveal {
+    transform: none;
   }
 }
 
