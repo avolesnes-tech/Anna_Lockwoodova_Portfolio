@@ -105,13 +105,16 @@
   to   { transform: scaleX(1); transform-origin: left; }
 }
 
-.hero-subtitle {
-  animation: fadeInUp 800ms var(--ease-out) 5600ms both;
+/* Hero tagline — statický text, plynulý fadeInUp po signature */
+.hero-tagline {
+  animation: fadeInUp 1000ms cubic-bezier(0.22, 1, 0.36, 1) 3200ms both;
 }
 
-/* Hero CTA — každé tlačidlo vstupuje zvlášť, s jemným staggerom.
-   Primary: scale + fade up → prichádza ako prvé, authoritative.
-   Secondary: o 220ms neskôr — navodzuje sekvenciu, nie simultánnosť. */
+.hero-subtitle {
+  animation: fadeInUp 800ms var(--ease-out) 4200ms both;
+}
+
+/* Hero CTA — každé tlačidlo vstupuje zvlášť, s jemným staggerom. */
 .hero-cta .btn {
   opacity: 0;
   transform: translateY(18px) scale(0.96);
@@ -119,11 +122,11 @@
 }
 
 .hero-cta .btn:nth-child(1) {
-  animation-delay: 6000ms;
+  animation-delay: 4700ms;
 }
 
 .hero-cta .btn:nth-child(2) {
-  animation-delay: 6220ms;
+  animation-delay: 4920ms;
 }
 
 @keyframes heroCTAEnter {

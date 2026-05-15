@@ -298,18 +298,9 @@
 .hero__leaf--br {
   bottom: -120px;
   right: -120px;
-  width: 540px;                      /* o čosi väčšia plocha — corner anchor */
-  transform: scale(-1, -1);          /* zrkadlo: kompozícia listov ide do rohu */
+  width: 540px;
+  /* transform: scale(-1,-1) presunutý na img — div je voľný pre entrance animáciu */
 
-  /* Mask gradient (na element pred transformom — fyzicky to znamená:
-     plný pixel v "top left" elementu sa po scale(-1,-1) ocitne v pravom
-     dolnom rohu viewportu).
-     Stops:
-       0–35%  plná intenzita — listy sa drží farba v rohu výrazne dlhšie
-       35–60% jemný úbytok (do 0.7) — prirodzený akvarelový fade
-       60–85% výraznejšie miznutie (do 0.25)
-       85–100% úplne priehľadné — listy splynú s pozadím
-  */
   -webkit-mask-image:
     radial-gradient(
       ellipse 125% 120% at top left,
@@ -332,18 +323,65 @@
     );
 }
 
-/* Listy v pravom dolnom rohu môžu byť výraznejšie ako vľavo hore —
-   pravý dolný roh je za fotkou, takže nekonkurujú obsahu. */
-.hero__leaf--br img {
-  opacity: 0.68;
-}
-
 .hero__leaf img {
   width: 100%;
   height: auto;
   filter: invert(1) hue-rotate(195deg) saturate(2.6) brightness(0.55);
   opacity: 0.58;
 }
+
+/* BR: flip na img aby bol div slobodný pre CSS entrance animáciu */
+.hero__leaf--br img {
+  opacity: 0.68;
+  transform: scale(-1, -1);
+}
+
+
+/* =============================================================
+   LÍSTKY — entrance z rohov + plynulé dýchanie
+   ============================================================= */
+
+/* TL: vchádza z ľavého horného rohu — fúknutie vetra, spring landing */
+@keyframes leafEnterTL {
+  0%   { opacity: 0; transform: translate(-80px, -70px) rotate(-6deg) scale(0.88); }
+  65%  {             transform: translate(7px, 6px)     rotate(0.8deg) scale(1.01); }
+  100% { opacity: 1; transform: translate(0, 0)         rotate(0deg)   scale(1);    }
+}
+
+/* BR: vchádza z pravého dolného rohu (div nemá scale, flip je na img) */
+@keyframes leafEnterBR {
+  0%   { opacity: 0; transform: translate(80px, 70px) rotate(5deg) scale(0.88); }
+  65%  {             transform: translate(-7px, -6px) rotate(-0.7deg) scale(1.01); }
+  100% { opacity: 1; transform: translate(0, 0)       rotate(0deg) scale(1);     }
+}
+
+.hero__leaf--tl {
+  animation: leafEnterTL 2.0s cubic-bezier(0.22, 1, 0.36, 1) 300ms both;
+}
+
+.hero__leaf--br {
+  animation: leafEnterBR 2.0s cubic-bezier(0.22, 1, 0.36, 1) 520ms both;
+}
+
+/* Plynulé dýchanie opacity — organický, živý pocit po vstupe */
+@keyframes leafBreatheTL {
+  0%, 100% { opacity: 0.58; }
+  50%       { opacity: 0.74; }
+}
+
+@keyframes leafBreatheBR {
+  0%, 100% { opacity: 0.68; }
+  50%       { opacity: 0.86; }
+}
+
+.hero__leaf--tl img {
+  animation: leafBreatheTL 8s ease-in-out 2400ms infinite;
+}
+
+.hero__leaf--br img {
+  animation: leafBreatheBR 10s ease-in-out 3200ms infinite;
+}
+
 
 /* Na mobile leaf skryjeme — text zaberá celú šírku */
 @media (max-width: 1024px) {
