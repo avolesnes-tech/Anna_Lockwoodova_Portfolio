@@ -1052,6 +1052,13 @@
   margin-top: 0;
 }
 
+.projects-callout__heading.services-note {
+  font-size: 16px;
+  color: var(--color-ink);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
 
 /* -------------------------------------------------------------
    4. O MNE SEKCIA
