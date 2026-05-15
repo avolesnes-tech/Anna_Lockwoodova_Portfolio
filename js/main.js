@@ -578,13 +578,16 @@
 
     frame.style.animationPlayState = 'paused';
 
-    const start = () => { frame.style.animationPlayState = ''; };
+    const onReady = () => {
+      frame.style.animationPlayState = '';
+      frame.classList.add('img--loaded');
+    };
 
     if (img.complete) {
-      img.decode ? img.decode().then(start).catch(start) : start();
+      img.decode ? img.decode().then(onReady).catch(onReady) : onReady();
     } else {
       img.addEventListener('load', () => {
-        img.decode ? img.decode().then(start).catch(start) : start();
+        img.decode ? img.decode().then(onReady).catch(onReady) : onReady();
       }, { once: true });
     }
   }

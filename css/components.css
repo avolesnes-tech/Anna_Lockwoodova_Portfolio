@@ -462,6 +462,32 @@
 /* Hero fotka má portrait pomer 3:4 */
 .photo-frame--hero .photo-frame__mat {
   aspect-ratio: 3 / 4;
+  background-color: #BF7268; /* dominant colour sampled from portrait */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer sweep over skeleton while image loads */
+.photo-frame--hero .photo-frame__mat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: heroImgShimmer 1.8s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.photo-frame--hero.img--loaded .photo-frame__mat::before {
+  animation: none;
+  opacity: 0;
 }
 
 .photo-frame--hero .photo-frame__mat img {
@@ -469,6 +495,26 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  opacity: 0;
+  transition: opacity 500ms ease;
+  position: relative;
+  z-index: 2;
+  /* Failsafe: reveal after 3 s even if JS decode never fires */
+  animation: heroImgFallback 500ms ease 3s forwards;
+}
+
+.photo-frame--hero.img--loaded .photo-frame__mat img {
+  opacity: 1;
+  animation: none;
+}
+
+@keyframes heroImgShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes heroImgFallback {
+  to { opacity: 1; }
 }
 
 /* Hover — iba pauza, žiadny animation:none (ten by spôsobil snap) */
