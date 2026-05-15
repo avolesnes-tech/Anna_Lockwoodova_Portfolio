@@ -39,8 +39,8 @@
       'card.lumenglass.desc': 'Sklárska firma si zaslúži web, ktorý odráža precíznosť jej remesla. Klientsky projekt realizovaný na WordPresse — čistý, prehľadný a dôveryhodný dizajn, ktorý premieňa návštevníkov na zákazníkov.',
       'card.lumenglass.link': 'Pozrieť projekt',
 
-      'projects.callout.heading': 'Interaktivita, ktorú cítiš.',
-      'projects.callout.body': 'Mám rada, keď web nereaguje len na kliknutia, ale na prítomnosť. Pohyb, ktorý odpovedá. Detail, ktorý prekvapí. Nie preto, aby to niekto videl — ale preto, aby to niekto pocítil.',
+      'projects.callout.heading': 'Každý web sa dá zatvoriť. Ten správny sa zatvoriť nechce.',
+      'projects.callout.body': 'Interaktivita nie je efekt pre efekt — je to rozdiel medzi stránkou, ktorú návštevník preskroluje, a stránkou, na ktorej zostane. Prvky, ktoré reagujú, prekvapujú a pozývajú ďalej, premieňajú pasívneho čitateľa na niekoho, kto si vás pamätá — a odporučí.',
       'projects.callout.cta': 'Napísať mi',
 
       'section.about.label': 'O mne',
@@ -217,8 +217,8 @@
       'card.lumenglass.desc': 'A glass company deserves a website that reflects the precision of their craft. A client project built on WordPress — clean, clear and trustworthy design that turns visitors into customers.',
       'card.lumenglass.link': 'View project',
 
-      'projects.callout.heading': 'Interactivity you can feel.',
-      'projects.callout.body': 'I like websites that don\'t just respond to clicks — they respond to presence. Movement that answers. A detail that surprises. Not so someone notices it — but so someone feels it.',
+      'projects.callout.heading': 'Every website can be closed. The right one makes you want to stay.',
+      'projects.callout.body': 'Interactivity isn\'t effect for effect\'s sake — it\'s the difference between a page a visitor scrolls past and one they stay on. Elements that respond, surprise and invite further turn a passive reader into someone who remembers you — and recommends you.',
       'projects.callout.cta': 'Write to me',
 
       'section.about.label': 'About me',
