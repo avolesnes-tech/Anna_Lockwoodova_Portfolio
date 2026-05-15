@@ -241,17 +241,8 @@
 
 
   /* -----------------------------------------------------------
-     8. JAZYKOVÝ TOGGLE — shell (texty sa doplnia neskôr)
+     8. JAZYKOVÝ TOGGLE — implementácia v i18n.js
      ----------------------------------------------------------- */
-  window.setLang = function (lang) {
-    const btns = document.querySelectorAll('.nav__lang-btn');
-    btns.forEach(btn => {
-      btn.classList.toggle('nav__lang-btn--active', btn.getAttribute('lang') === lang);
-      btn.setAttribute('aria-pressed', btn.getAttribute('lang') === lang ? 'true' : 'false');
-    });
-    document.documentElement.setAttribute('lang', lang);
-    // TODO: implementácia prekladov v ďalšej fáze
-  };
 
 
   /* -----------------------------------------------------------
@@ -610,27 +601,36 @@
     const lbImg     = dialog.querySelector('.lb__img');
     const lbCaption = dialog.querySelector('.lb__caption');
     const closeBtn  = dialog.querySelector('.lb__close');
+    const prevBtn   = dialog.querySelector('.lb__prev');
+    const nextBtn   = dialog.querySelector('.lb__next');
 
-    document.querySelectorAll('.strip-item').forEach(item => {
-      const img = item.querySelector('img');
-      if (!img) return;
+    const items = [...document.querySelectorAll('.strip-item')].filter(i => i.querySelector('img'));
+    let current = 0;
 
+    function showItem(index) {
+      current = (index + items.length) % items.length;
+      const item = items[current];
+      const img  = item.querySelector('img');
+      lbImg.src = '';
+      lbImg.alt = img.alt;
+      lbCaption.textContent = [
+        item.querySelector('.strip-item__tag')?.textContent,
+        item.querySelector('.strip-item__title')?.textContent
+      ].filter(Boolean).join(' — ');
+      requestAnimationFrame(() => { lbImg.src = img.src; });
+    }
+
+    items.forEach((item, index) => {
       item.setAttribute('role', 'button');
       item.setAttribute('tabindex', '0');
       item.setAttribute('aria-label',
         'Zobraziť väčší obrázok: ' +
-        (item.querySelector('.strip-item__title')?.textContent || img.alt)
+        (item.querySelector('.strip-item__title')?.textContent || item.querySelector('img').alt)
       );
 
       function openLb() {
-        lbImg.src = '';
-        lbImg.alt = img.alt;
-        lbCaption.textContent = [
-          item.querySelector('.strip-item__tag')?.textContent,
-          item.querySelector('.strip-item__title')?.textContent
-        ].filter(Boolean).join(' — ');
+        showItem(index);
         dialog.showModal();
-        requestAnimationFrame(() => { lbImg.src = img.src; });
       }
 
       item.addEventListener('click', openLb);
@@ -639,10 +639,17 @@
       });
     });
 
+    prevBtn.addEventListener('click', () => showItem(current - 1));
+    nextBtn.addEventListener('click', () => showItem(current + 1));
     closeBtn.addEventListener('click', () => dialog.close());
 
     dialog.addEventListener('click', e => {
       if (e.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  showItem(current - 1);
+      if (e.key === 'ArrowRight') showItem(current + 1);
     });
   }
 

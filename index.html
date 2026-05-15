@@ -26,8 +26,8 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/main.css?v=55">
-  <link rel="stylesheet" href="css/animations.css?v=57">
-  <link rel="stylesheet" href="css/components.css?v=62">
+  <link rel="stylesheet" href="css/animations.css?v=58">
+  <link rel="stylesheet" href="css/components.css?v=63">
   <link rel="stylesheet" href="css/responsive.css?v=56">
 </head>
 <body>
@@ -51,17 +51,17 @@
        ========================================================= -->
   <div class="cursor" id="cursor" aria-hidden="true">
     <div class="cursor__ring"></div>
-    <span class="cursor__label">Zobraziť</span>
+    <span class="cursor__label" data-i18n="cursor.label">Zobraziť</span>
   </div>
 
   <!-- =========================================================
        MOBILNÉ MENU OVERLAY
        ========================================================= -->
   <nav class="mobile-menu" id="mobileMenu" aria-label="Mobilné menu" aria-hidden="true">
-    <a href="#projekty" class="mobile-menu__link" onclick="closeMobileMenu()">Projekty</a>
-    <a href="#o-mne" class="mobile-menu__link" onclick="closeMobileMenu()">O mne</a>
-    <a href="#atelier" class="mobile-menu__link" onclick="closeMobileMenu()">Tvorba</a>
-    <a href="#kontakt" class="mobile-menu__link" onclick="closeMobileMenu()">Kontakt</a>
+    <a href="#projekty" class="mobile-menu__link" onclick="closeMobileMenu()" data-i18n="nav.projects">Projekty</a>
+    <a href="#o-mne" class="mobile-menu__link" onclick="closeMobileMenu()" data-i18n="nav.about">O mne</a>
+    <a href="#atelier" class="mobile-menu__link" onclick="closeMobileMenu()" data-i18n="nav.work">Tvorba</a>
+    <a href="#kontakt" class="mobile-menu__link" onclick="closeMobileMenu()" data-i18n="nav.contact">Kontakt</a>
   </nav>
 
   <!-- =========================================================
@@ -70,13 +70,13 @@
   <header class="nav" id="mainNav" role="banner">
     <div class="nav__inner">
 
-      <a href="#" class="nav__logo" aria-label="Anna Lockwoodová — domov">Anna Lockwoodová</a>
+      <a href="#" class="nav__logo" aria-label="Anna Lockwoodová — domov" data-i18n-label="nav.logo.label">Anna Lockwoodová</a>
 
       <nav class="nav__links" aria-label="Hlavná navigácia">
-        <a href="#projekty" class="nav__link">Projekty</a>
-        <a href="#o-mne" class="nav__link">O mne</a>
-        <a href="#atelier" class="nav__link">Tvorba</a>
-        <a href="#kontakt" class="nav__link">Kontakt</a>
+        <a href="#projekty" class="nav__link" data-i18n="nav.projects">Projekty</a>
+        <a href="#o-mne" class="nav__link" data-i18n="nav.about">O mne</a>
+        <a href="#atelier" class="nav__link" data-i18n="nav.work">Tvorba</a>
+        <a href="#kontakt" class="nav__link" data-i18n="nav.contact">Kontakt</a>
 
         <div class="nav__lang" aria-label="Jazyková verzia">
           <button class="nav__lang-btn nav__lang-btn--active" lang="sk" aria-pressed="true" onclick="setLang('sk')">SK</button>
@@ -92,6 +92,7 @@
         aria-expanded="false"
         aria-controls="mobileMenu"
         onclick="toggleMobileMenu()"
+        data-i18n-label="nav.hamburger.label"
       >
         <span class="hamburger__line"></span>
         <span class="hamburger__line"></span>
@@ -160,21 +161,21 @@
           <span class="hero__eyebrow hero-name" lang="sk">Anna Lockwoodová</span>
           <span class="hero__line-divider hero-line" aria-hidden="true"></span>
 
-          <h1 class="hero__tagline hero-tagline" id="heroTagline">
+          <h1 class="hero__tagline hero-tagline" id="heroTagline" data-i18n-html="hero.tagline">
             Robím weby ako umenie&nbsp;—<br>s dôrazom na zámer, cit a detail.
           </h1>
 
-          <p class="hero__subtitle hero-subtitle">
+          <p class="hero__subtitle hero-subtitle" data-i18n="hero.subtitle">
             Web dizajn &amp; UI/UX pre značky, ktoré veria, že detail rozhoduje.
           </p>
 
           <div class="hero__cta-group hero-cta">
             <a href="#projekty" class="btn btn--primary">
-              Pozrieť projekty
+              <span data-i18n="hero.cta.projects">Pozrieť projekty</span>
               <span aria-hidden="true">↓</span>
             </a>
             <a href="#kontakt" class="btn btn--secondary">
-              Napíšte mi
+              <span data-i18n="hero.cta.contact">Napíšte mi</span>
               <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -220,8 +221,8 @@
       <div class="container">
 
         <div class="portfolio-section__header section-heading reveal">
-          <span class="section-heading__label">Vybrané projekty</span>
-          <h2 id="projektySekcia">Web dizajn.</h2>
+          <span class="section-heading__label" data-i18n="section.projects.label">Vybrané projekty</span>
+          <h2 id="projektySekcia" data-i18n="section.projects.h2">Web dizajn.</h2>
         </div>
 
         <div class="portfolio-grid reveal-group">
@@ -236,10 +237,10 @@
               </picture>
               <img class="project-card__full-img" src="images/projects/mapa-spomienok-full.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
               <div class="project-card__overlay" aria-hidden="true">
-                <span>Otvoriť projekt ↗</span>
+                <span data-i18n="card.mapa.overlay">Otvoriť projekt ↗</span>
               </div>
               <div class="project-card__badge">
-                <span class="badge badge--blue">Osobný projekt</span>
+                <span class="badge badge--blue" data-i18n="card.mapa.badge">Osobný projekt</span>
               </div>
             </a>
 
@@ -250,12 +251,12 @@
                   <span class="badge badge--outline">Storytelling</span>
                   <span class="badge badge--outline">GitHub Pages</span>
                 </div>
-                <span class="project-card__year">2025</span>
+                <span class="project-card__year">2026</span>
               </div>
               <hr class="project-card__divider">
 
               <h3 class="project-card__title" id="mapa-title">Mapa Spomienok</h3>
-              <p class="project-card__desc">
+              <p class="project-card__desc" data-i18n="card.mapa.desc">
                 Čo ak by mapa mohla uchovávať príbehy?
                 Web venovaný Anne Šenšelovej a spolku Lipa som navrhla ako živý archív:
                 interaktívna mapa zbiera spomienky na predkov od návštevníkov
@@ -264,7 +265,7 @@
 
               <div class="project-card__footer">
                 <a href="https://avolesnes-tech.github.io/anna-senselova/index.html" target="_blank" rel="noopener" class="project-card__link" aria-label="Pozrieť projekt Mapa Spomienok v novom okne">
-                  <span>Pozrieť projekt</span>
+                  <span data-i18n="card.mapa.link">Pozrieť projekt</span>
                   <span class="project-card__link-arrow" aria-hidden="true">→</span>
                 </a>
               </div>
@@ -281,10 +282,10 @@
               </picture>
               <img class="project-card__full-img" src="images/projects/lumenglass-full.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
               <div class="project-card__overlay" aria-hidden="true">
-                <span>Otvoriť projekt ↗</span>
+                <span data-i18n="card.lumenglass.overlay">Otvoriť projekt ↗</span>
               </div>
               <div class="project-card__badge">
-                <span class="badge badge--blue">Klient</span>
+                <span class="badge badge--blue" data-i18n="card.lumenglass.badge">Klient</span>
               </div>
             </a>
 
@@ -295,12 +296,12 @@
                   <span class="badge badge--outline">WordPress</span>
                   <span class="badge badge--outline">Klientský</span>
                 </div>
-                <span class="project-card__year">2025</span>
+                <span class="project-card__year">2026</span>
               </div>
               <hr class="project-card__divider">
 
               <h3 class="project-card__title" id="lumenglass-title">LumenGlass</h3>
-              <p class="project-card__desc">
+              <p class="project-card__desc" data-i18n="card.lumenglass.desc">
                 Sklárska firma si zaslúži web, ktorý odráža precíznosť jej remesla.
                 Klientsky projekt realizovaný na WordPresse — čistý, prehľadný
                 a dôveryhodný dizajn, ktorý premieňa návštevníkov na zákazníkov.
@@ -308,7 +309,7 @@
 
               <div class="project-card__footer">
                 <a href="https://lumenglass.sk/" target="_blank" rel="noopener" class="project-card__link" aria-label="Pozrieť projekt LumenGlass v novom okne">
-                  <span>Pozrieť projekt</span>
+                  <span data-i18n="card.lumenglass.link">Pozrieť projekt</span>
                   <span class="project-card__link-arrow" aria-hidden="true">→</span>
                 </a>
               </div>
@@ -338,23 +339,23 @@
 
           <div class="about-section__text-col">
             <div class="section-heading reveal">
-              <span class="section-heading__label">O mne</span>
-              <h2 id="oMneSekcia">Taká som.</h2>
+              <span class="section-heading__label" data-i18n="section.about.label">O mne</span>
+              <h2 id="oMneSekcia" data-i18n="section.about.h2">Taká som.</h2>
             </div>
 
             <div class="about-section__body reveal">
-              <p>
+              <p data-i18n="about.p1">
                 Nevyberám si medzi umením a dizajnom. Robím oboje —
                 a práve to robí moju prácu inou.
               </p>
-              <p>
+              <p data-i18n="about.p2">
                 Roky práce s tradičnými umeleckými technikami ako
                 je akvarel, papier-mâché a výšivka, mi dali niečo,
                 čo by som sa na dizajnérskych kurzoch nenaučila —
                 cit vidieť, cit vnímať, cit práce s kompozíciou,
                 farbou a rytmom.
               </p>
-              <p>
+              <p data-i18n="about.p3">
                 Keď som objavila webový dizajn, zaujala ma možnosť
                 preniesť ten istý prístup do digitálneho priestoru.
                 Skombinovala som svoje estetické cítenie, kreativitu
@@ -363,7 +364,7 @@
                 že krásny a funkčný web nie sú protiklady, ale len
                 dve strany tej istej mince.
               </p>
-              <p>
+              <p data-i18n="about.p4">
                 Dnes navrhujem a tvorím weby, kde krása neoberá
                 funkčnosť o priestor. A kde funkčnosť nepotlačí štýl.
               </p>
@@ -371,7 +372,7 @@
 
             <!-- Inline poznámka o instagrame s atelier papier tvorbou -->
             <p class="about-section__note reveal">
-              Moja staršia papierová tvorba žije na Instagrame
+              <span data-i18n="about.instagram">Moja staršia papierová tvorba žije na Instagrame</span>
               <a
                 href="https://www.instagram.com/atelier_papier.sk/"
                 target="_blank"
@@ -381,12 +382,12 @@
             </p>
 
             <div class="about-section__skills reveal">
-              <span class="skill-tag">Webový dizajn</span>
+              <span class="skill-tag" data-i18n="about.skill.web">Webový dizajn</span>
               <span class="skill-tag">UI &amp; UX</span>
               <span class="skill-tag">Brand &amp; Print</span>
-              <span class="skill-tag">Akvarel</span>
+              <span class="skill-tag" data-i18n="about.skill.watercolour">Akvarel</span>
               <span class="skill-tag">Papier-mâché</span>
-              <span class="skill-tag">Výšivka</span>
+              <span class="skill-tag" data-i18n="about.skill.embroidery">Výšivka</span>
               <span class="skill-tag">Content Creation</span>
             </div>
           </div>
@@ -419,11 +420,11 @@
       <div class="container">
 
         <div class="section-heading reveal">
-          <span class="section-heading__label">Služby</span>
-          <h2 id="sluzbyNadpis">Ako môžem pomôcť.</h2>
+          <span class="section-heading__label" data-i18n="section.services.label">Služby</span>
+          <h2 id="sluzbyNadpis" data-i18n="section.services.h2">Ako môžem pomôcť.</h2>
         </div>
 
-        <p class="services-intro reveal">
+        <p class="services-intro reveal" data-i18n="services.intro">
           Každý projekt je iný svet — iná cieľovka, iný tón, iné technické
           nároky. Práve to ma baví. Tu je to, čo dnes viem ponúknuť.
         </p>
@@ -432,12 +433,12 @@
 
           <div class="service-card reveal">
             <div class="service-card__ornament" aria-hidden="true"></div>
-            <h3 class="service-card__title">Prezentačné weby<br>na mieru.</h3>
-            <p class="service-card__desc">
+            <h3 class="service-card__title" data-i18n-html="service1.title">Prezentačné weby<br>na mieru.</h3>
+            <p class="service-card__desc" data-i18n="service1.desc">
               Statické HTML weby alebo WordPress — podľa toho, čo dáva zmysel.
               Vlastný dizajn, žiadne šablóny. Rýchle, mobilné, pripravené pre Google.
             </p>
-            <p class="service-card__target">
+            <p class="service-card__target" data-i18n-html="service1.target">
               <strong>Pre koho</strong>
               malé firmy, remeselníci, ateliéry, butiky, freelanceri.
             </p>
@@ -445,13 +446,13 @@
 
           <div class="service-card reveal">
             <div class="service-card__ornament" aria-hidden="true"></div>
-            <h3 class="service-card__title">Storytelling &amp;<br>značkové weby.</h3>
-            <p class="service-card__desc">
+            <h3 class="service-card__title" data-i18n-html="service2.title">Storytelling &amp;<br>značkové weby.</h3>
+            <p class="service-card__desc" data-i18n="service2.desc">
               Weby pre značky, ktoré majú príbeh. Galérie, časové osi,
               interaktívne mapy, biografie, archívy. Vlastná typografia,
               privacy-first, bez tracking skriptov.
             </p>
-            <p class="service-card__target">
+            <p class="service-card__target" data-i18n-html="service2.target">
               <strong>Pre koho</strong>
               kultúrne projekty, neziskovky, múzeá, autori, umelci, rodinné firmy.
             </p>
@@ -459,12 +460,12 @@
 
           <div class="service-card reveal">
             <div class="service-card__ornament" aria-hidden="true"></div>
-            <h3 class="service-card__title">WordPress weby<br>a custom Elementor.</h3>
-            <p class="service-card__desc">
+            <h3 class="service-card__title" data-i18n-html="service3.title">WordPress weby<br>a custom Elementor.</h3>
+            <p class="service-card__desc" data-i18n="service3.desc">
               Komerčné WordPress weby s vlastnými Elementor widgetmi. Multi-page weby
               s produktovými kategóriami, SEO optimalizáciou a performance tuningom.
             </p>
-            <p class="service-card__target">
+            <p class="service-card__target" data-i18n-html="service3.target">
               <strong>Pre koho</strong>
               remeselníci, sklárske a stolárske firmy, stavbári, interiérové štúdiá.
             </p>
@@ -472,12 +473,12 @@
 
           <div class="service-card reveal">
             <div class="service-card__ornament" aria-hidden="true"></div>
-            <h3 class="service-card__title">Webové aplikácie<br>a adresáre.</h3>
-            <p class="service-card__desc">
+            <h3 class="service-card__title" data-i18n-html="service4.title">Webové aplikácie<br>a adresáre.</h3>
+            <p class="service-card__desc" data-i18n="service4.desc">
               Adresáre s filtrovaním a recenziami, membership weby, freemium platformy,
               multi-step formuláre, AI nástroje. Cloudflare Pages + Supabase backend.
             </p>
-            <p class="service-card__target">
+            <p class="service-card__target" data-i18n-html="service4.target">
               <strong>Pre koho</strong>
               komunity, oborové platformy, startupy, B2B portály.
             </p>
@@ -485,13 +486,13 @@
 
           <div class="service-card reveal">
             <div class="service-card__ornament" aria-hidden="true"></div>
-            <h3 class="service-card__title">UI / UX dizajn<br>&amp; redesign.</h3>
-            <p class="service-card__desc">
+            <h3 class="service-card__title" data-i18n-html="service5.title">UI / UX dizajn<br>&amp; redesign.</h3>
+            <p class="service-card__desc" data-i18n="service5.desc">
               Návrh rozhraní, ktoré sa používajú ľahko a s radosťou. Redesign
               existujúcich webov — od auditu po nový vzhľad. Wireframy, prototypy,
               dizajn systémy.
             </p>
-            <p class="service-card__target">
+            <p class="service-card__target" data-i18n-html="service5.target">
               <strong>Pre koho</strong>
               firmy s existujúcim webom, ktorý už nestíha. Startupy pred launchom.
             </p>
@@ -499,14 +500,14 @@
 
           <div class="service-card reveal">
             <div class="service-card__ornament" aria-hidden="true"></div>
-            <h3 class="service-card__title">Grafika, print<br>&amp; custom ilustrácie.</h3>
-            <p class="service-card__desc">
+            <h3 class="service-card__title" data-i18n-html="service6.title">Grafika, print<br>&amp; custom ilustrácie.</h3>
+            <p class="service-card__desc" data-i18n="service6.desc">
               Etikety, obaly, vizitky, plagáty a ďalšie tlačoviny navrhnuté
               s rovnakou starostlivosťou ako web. A keď treba niečo naozaj
               vlastné — ručne maľované akvarelové ilustrácie alebo digitálna
               kresba priamo pre váš projekt.
             </p>
-            <p class="service-card__target">
+            <p class="service-card__target" data-i18n-html="service6.target">
               <strong>Pre koho</strong>
               malé značky, vinárstva, kaviarne, kozmetika, módne projekty
               a každý, kto chce grafiku s dušou.
@@ -517,12 +518,12 @@
 
         <div class="torn-note-wrap reveal">
           <div class="torn-note">
-            <p class="services-note">
+            <p class="services-note" data-i18n="services.note">
               Cenu pripravujem individuálne podľa rozsahu a charakteru projektu.
               Napíšte mi pár slov o tom, čo plánujete — pošlem nezáväznú ponuku do 48 hodín.
             </p>
             <div class="text-center">
-              <a href="#kontakt" class="btn btn--link">Napísať mi →</a>
+              <a href="#kontakt" class="btn btn--link" data-i18n="services.note.cta">Napísať mi →</a>
             </div>
           </div>
         </div>
@@ -530,55 +531,55 @@
         <!-- Technické zručnosti -->
         <div class="skills-section reveal mt-lg">
           <div class="skills-section__header">
-            <h2 style="font-size: var(--text-2xl);">Čo mám overené v praxi.</h2>
-            <p class="section-tagline">Veci, ktoré som si skutočne odskúšala — na reálnych projektoch, pre reálnych ľudí.</p>
+            <h2 style="font-size: var(--text-2xl);" data-i18n="skills.h2">Čo mám overené v praxi.</h2>
+            <p class="section-tagline" data-i18n="skills.tagline">Veci, ktoré som si skutočne odskúšala — na reálnych projektoch, pre reálnych ľudí.</p>
           </div>
 
           <div class="skills-grid">
             <div class="skills-col">
-              <div class="skills-col__title">Dizajn &amp; Frontend</div>
+              <div class="skills-col__title" data-i18n="skills.col1.title">Dizajn &amp; Frontend</div>
               <ul>
-                <li>Weby písané ručne v kóde — bez šablón</li>
-                <li>Vlastná typografia a vizuálny jazyk</li>
-                <li>Animácie, efekty pri scrollovaní, interaktivita</li>
-                <li>Ručné dekoratívne prvky (akvarely, ilustrácie)</li>
-                <li>Fungovanie na mobile, tablete aj desktope</li>
-                <li>Prístupné pre každého — aj pre používateľov s hendikepom</li>
+                <li data-i18n="skills.col1.li1">Weby písané ručne v kóde — bez šablón</li>
+                <li data-i18n="skills.col1.li2">Vlastná typografia a vizuálny jazyk</li>
+                <li data-i18n="skills.col1.li3">Animácie, efekty pri scrollovaní, interaktivita</li>
+                <li data-i18n="skills.col1.li4">Ručné dekoratívne prvky (akvarele, ilustrácie)</li>
+                <li data-i18n="skills.col1.li5">Fungovanie na mobile, tablete aj desktope</li>
+                <li data-i18n="skills.col1.li6">Prístupné pre každého — aj pre používateľov s hendikepom</li>
               </ul>
             </div>
 
             <div class="skills-col">
-              <div class="skills-col__title">WordPress &amp; CMS</div>
+              <div class="skills-col__title" data-i18n="skills.col2.title">WordPress &amp; CMS</div>
               <ul>
-                <li>WordPress s Elementorom — na mieru</li>
-                <li>Vlastné bloky a komponenty navyše</li>
-                <li>Redesign a migrácia existujúcich webov</li>
-                <li>Základy SEO — aby vás Google našiel</li>
-                <li>Rýchlosť a optimalizácia obrázkov</li>
-                <li>Zálohovanie a obnova webu</li>
+                <li data-i18n="skills.col2.li1">WordPress s Elementorom — na mieru</li>
+                <li data-i18n="skills.col2.li2">Vlastné bloky a komponenty navyše</li>
+                <li data-i18n="skills.col2.li3">Redesign a migrácia existujúcich webov</li>
+                <li data-i18n="skills.col2.li4">Základy SEO — aby vás Google našiel</li>
+                <li data-i18n="skills.col2.li5">Rýchlosť a optimalizácia obrázkov</li>
+                <li data-i18n="skills.col2.li6">Zálohovanie a obnova webu</li>
               </ul>
             </div>
 
             <div class="skills-col">
-              <div class="skills-col__title">Aplikácie &amp; Platformy</div>
+              <div class="skills-col__title" data-i18n="skills.col3.title">Aplikácie &amp; Platformy</div>
               <ul>
-                <li>Komplexnejšie weby s databázou a registráciou</li>
-                <li>AI nástroje priamo na webe (prekladače, wizardy)</li>
-                <li>Adresáre, platformy, predplatné</li>
-                <li>Viacstupňové formuláre a rezervačné systémy</li>
-                <li>Dvojjazyčné weby (SK / EN)</li>
+                <li data-i18n="skills.col3.li1">Komplexnejšie weby s databázou a registráciou</li>
+                <li data-i18n="skills.col3.li2">AI nástroje priamo na webe (prekladače, wizardy)</li>
+                <li data-i18n="skills.col3.li3">Adresáre, platformy, predplatné</li>
+                <li data-i18n="skills.col3.li4">Viacstupňové formuláre a rezervačné systémy</li>
+                <li data-i18n="skills.col3.li5">Dvojjazyčné weby (SK / EN)</li>
               </ul>
             </div>
 
             <div class="skills-col">
-              <div class="skills-col__title">Brand &amp; Print</div>
+              <div class="skills-col__title" data-i18n="skills.col4.title">Brand &amp; Print</div>
               <ul>
-                <li>Etikety a obaly (víno, jedlo, kozmetika)</li>
-                <li>Vizuálna identita — logo, farby, písmo</li>
-                <li>Akvarelové ilustrácie pre tlač aj web</li>
-                <li>Ľudové a prírodné motívy v modernom spracovaní</li>
-                <li>Príprava podkladov pre tlačiareň</li>
-                <li>Obsah pre Instagram a sociálne siete</li>
+                <li data-i18n="skills.col4.li1">Etikety a obaly (víno, jedlo, kozmetika)</li>
+                <li data-i18n="skills.col4.li2">Vizuálna identita — logo, farby, písmo</li>
+                <li data-i18n="skills.col4.li3">Akvarelové ilustrácie pre tlač aj web</li>
+                <li data-i18n="skills.col4.li4">Ľudové a prírodné motívy v modernom spracovaní</li>
+                <li data-i18n="skills.col4.li5">Príprava podkladov pre tlačiareň</li>
+                <li data-i18n="skills.col4.li6">Obsah pre Instagram a sociálne siete</li>
               </ul>
             </div>
           </div>
@@ -586,7 +587,7 @@
 
         <!-- Prečo ja — diferenciátory -->
         <div class="section-heading diff-heading reveal mt-lg">
-          <h2 style="font-size: var(--text-2xl);">Prečo si vybrať mňa.</h2>
+          <h2 style="font-size: var(--text-2xl);" data-i18n="diff.h2">Prečo si vybrať mňa.</h2>
 
           <!-- Mlhovina hviezd — generovaná JS-om, spustená IntersectionObserverom -->
           <div class="starfield" aria-hidden="true"></div>
@@ -595,8 +596,8 @@
         <div class="diff-grid reveal-group" style="margin-top: 32px;">
           <div class="diff-card reveal">
             <span class="diff-card__number">01.</span>
-            <h3 class="diff-card__title">Dizajn aj kód —<br>jedna osoba.</h3>
-            <p class="diff-card__desc">
+            <h3 class="diff-card__title" data-i18n-html="diff.card1.title">Dizajn aj kód —<br>jedna osoba.</h3>
+            <p class="diff-card__desc" data-i18n="diff.card1.desc">
               Nemusíte hľadať dizajnéra a developera zvlášť.
               Robím oboje — a viem, kde sa stretávajú.
             </p>
@@ -604,8 +605,8 @@
 
           <div class="diff-card reveal">
             <span class="diff-card__number">02.</span>
-            <h3 class="diff-card__title">Každá výzva<br>je vítaná.</h3>
-            <p class="diff-card__desc">
+            <h3 class="diff-card__title" data-i18n-html="diff.card2.title">Každá výzva<br>je vítaná.</h3>
+            <p class="diff-card__desc" data-i18n="diff.card2.desc">
               Historická téma, moderný minimalizmus alebo klientska
               prezentácia — nebojím sa žánrov. Každý projekt
               dostane prístup šitý na mieru.
@@ -614,19 +615,17 @@
 
           <div class="diff-card reveal">
             <span class="diff-card__number">03.</span>
-            <h3 class="diff-card__title">Umelecké oko,<br>technická presnosť.</h3>
-            <p class="diff-card__desc">
-              Celoživotná záľuba v umení — akvarel, papier-mâché,
-              výšivka — sa priamo premieta do toho, ako vidím
-              kompozíciu, farbu a rytmus. Weby, ktoré tvorím,
-              to cítiť.
+            <h3 class="diff-card__title" data-i18n-html="diff.card3.title">Umelecké oko,<br>technická presnosť.</h3>
+            <p class="diff-card__desc" data-i18n="diff.card3.desc">
+              Moja celoživotná záľuba v umení sa priamo premieta do toho, ako vidím
+              kompozíciu, farbu a rytmus. Pri mojich výsledných weboch to cítiť.
             </p>
           </div>
 
           <div class="diff-card reveal">
             <span class="diff-card__number">04.</span>
-            <h3 class="diff-card__title">Privacy-first<br>ako default.</h3>
-            <p class="diff-card__desc">
+            <h3 class="diff-card__title" data-i18n-html="diff.card4.title">Privacy-first<br>ako default.</h3>
+            <p class="diff-card__desc" data-i18n="diff.card4.desc">
               Žiadne tracking skripty, žiadne cookies tretích strán, vlastné fonty.
               GDPR-friendly bez kompromisov.
             </p>
@@ -635,14 +634,14 @@
 
         <!-- Ako pracujeme spolu — proces -->
         <div class="section-heading reveal mt-lg" style="margin-bottom: 40px;">
-          <h2 style="font-size: var(--text-2xl);">Ako pracujeme spolu.</h2>
+          <h2 style="font-size: var(--text-2xl);" data-i18n="process.h2">Ako pracujeme spolu.</h2>
         </div>
 
         <div class="process-grid reveal-group">
           <div class="process-step reveal">
             <div class="process-step__number">01.</div>
-            <h3 class="process-step__title">Brief &amp; návrh</h3>
-            <p class="process-step__desc">
+            <h3 class="process-step__title" data-i18n="process.step1.title">Brief &amp; návrh</h3>
+            <p class="process-step__desc" data-i18n="process.step1.desc">
               Prejdeme spolu váš zámer, cieľovku, referencie a rozsah.
               Dostanete ponuku do 5 dní.
             </p>
@@ -650,16 +649,16 @@
 
           <div class="process-step reveal">
             <div class="process-step__number">02.</div>
-            <h3 class="process-step__title">Dizajn &amp; schválenie</h3>
-            <p class="process-step__desc">
+            <h3 class="process-step__title" data-i18n="process.step2.title">Dizajn &amp; schválenie</h3>
+            <p class="process-step__desc" data-i18n="process.step2.desc">
               Pripravím vizuálny návrh kľúčových stránok. Iterujeme do schválenia.
             </p>
           </div>
 
           <div class="process-step reveal">
             <div class="process-step__number">03.</div>
-            <h3 class="process-step__title">Realizácia</h3>
-            <p class="process-step__desc">
+            <h3 class="process-step__title" data-i18n="process.step3.title">Realizácia</h3>
+            <p class="process-step__desc" data-i18n="process.step3.desc">
               Naprogramujem web, optimalizujem rýchlosť, doplníme obsah
               a otestujeme na všetkých zariadeniach.
             </p>
@@ -667,8 +666,8 @@
 
           <div class="process-step reveal">
             <div class="process-step__number">04.</div>
-            <h3 class="process-step__title">Spustenie &amp; odovzdanie</h3>
-            <p class="process-step__desc">
+            <h3 class="process-step__title" data-i18n="process.step4.title">Spustenie &amp; odovzdanie</h3>
+            <p class="process-step__desc" data-i18n="process.step4.desc">
               Web ide naživo. Naučím vás, ako si ho viete sami spravovať.
               Mesiac bezplatnej podpory po spustení.
             </p>
@@ -685,9 +684,9 @@
       <div class="container">
 
         <div class="atelier-preview__header section-heading reveal">
-          <span class="section-heading__label">Ukážky mojich prác</span>
-          <h2 id="atelierNadpis">Tvorba.</h2>
-          <p class="section-tagline">Môj kreatívny svet, v ktorom sa spája digitálne aj tradičné umenie a ktorý poháňa aj moje web dizajnové riešenia.</p>
+          <span class="section-heading__label" data-i18n="section.atelier.label">Ukážky mojich prác</span>
+          <h2 id="atelierNadpis" data-i18n="section.atelier.h2">Tvorba.</h2>
+          <p class="section-tagline" data-i18n="section.atelier.tagline">Môj kreatívny svet, v ktorom sa spája digitálne aj tradičné umenie a ktorý poháňa aj moje web dizajnové riešenia.</p>
         </div>
 
         <!-- 5 diel na výšku vedľa seba, organicky posunuté -->
@@ -697,8 +696,8 @@
             <div class="strip-item" data-medium="akvarel">
               <img src="images/atelier/anna_l_akvarel.webp" alt="Akvarelový portrét ženy so zlatými listami vo vlasoch" loading="lazy" decoding="async" width="1260" height="1339">
               <div class="strip-item__label">
-                <span class="strip-item__tag">Akvarel</span>
-                <h3 class="strip-item__title">Portrét s listami</h3>
+                <span class="strip-item__tag" data-i18n="atelier.item1.tag">Akvarel</span>
+                <h3 class="strip-item__title" data-i18n="atelier.item1.title">Portrét s listami</h3>
               </div>
             </div>
           </div>
@@ -707,8 +706,8 @@
             <div class="strip-item" data-medium="digital">
               <img src="images/atelier/anna_l_dekoracie.webp" alt="Digitálny portrét" loading="lazy" decoding="async" width="1131" height="1599">
               <div class="strip-item__label">
-                <span class="strip-item__tag">Digitálna ilustrácia</span>
-                <h3 class="strip-item__title">Portrét</h3>
+                <span class="strip-item__tag" data-i18n="atelier.item2.tag">Digitálna ilustrácia</span>
+                <h3 class="strip-item__title" data-i18n="atelier.item2.title">Portrét</h3>
               </div>
             </div>
           </div>
@@ -717,8 +716,8 @@
             <div class="strip-item" data-medium="akvarel">
               <img src="images/atelier/anna_l_akvarel_kvet.webp" alt="Akvarelová maľba — granátové jablko" loading="lazy" decoding="async" width="1200" height="1600">
               <div class="strip-item__label">
-                <span class="strip-item__tag">Akvarel</span>
-                <h3 class="strip-item__title">Granátové jablko</h3>
+                <span class="strip-item__tag" data-i18n="atelier.item3.tag">Akvarel</span>
+                <h3 class="strip-item__title" data-i18n="atelier.item3.title">Granátové jablko</h3>
               </div>
             </div>
           </div>
@@ -727,8 +726,8 @@
             <div class="strip-item" data-medium="vysivka">
               <img src="images/atelier/anna_l_vysivka.webp" alt="Ručná výšivka — žena s červenými vlasmi a kvetmi" loading="lazy" decoding="async" width="1200" height="1273">
               <div class="strip-item__label">
-                <span class="strip-item__tag">Výšivka</span>
-                <h3 class="strip-item__title">Žena so šípom</h3>
+                <span class="strip-item__tag" data-i18n="atelier.item4.tag">Výšivka</span>
+                <h3 class="strip-item__title" data-i18n="atelier.item4.title">Žena so šípom</h3>
               </div>
             </div>
           </div>
@@ -737,8 +736,8 @@
             <div class="strip-item" data-medium="papermache">
               <img src="images/atelier/anna_l_pm_srdce.webp" alt="Papier-mâché koláčiky s dekoráciami" loading="lazy" decoding="async" width="1199" height="1600">
               <div class="strip-item__label">
-                <span class="strip-item__tag">Papier-mâché</span>
-                <h3 class="strip-item__title">Koláčiky</h3>
+                <span class="strip-item__tag" data-i18n="atelier.item5.tag">Papier-mâché</span>
+                <h3 class="strip-item__title" data-i18n="atelier.item5.title">Koláčiky</h3>
               </div>
             </div>
           </div>
@@ -747,8 +746,8 @@
             <div class="strip-item" data-medium="print">
               <img src="images/atelier/devin.webp" alt="Etiketa na víno Devín — grafický dizajn" loading="lazy" decoding="async" width="864" height="1224">
               <div class="strip-item__label">
-                <span class="strip-item__tag">Grafický dizajn</span>
-                <h3 class="strip-item__title">Etiketa na víno</h3>
+                <span class="strip-item__tag" data-i18n="atelier.item6.tag">Grafický dizajn</span>
+                <h3 class="strip-item__title" data-i18n="atelier.item6.title">Etiketa na víno</h3>
               </div>
             </div>
           </div>
@@ -766,33 +765,33 @@
       <div class="container">
 
         <div class="section-heading reveal" style="margin-bottom: clamp(32px,5vw,56px);">
-          <span class="section-heading__label">Spokojní klienti</span>
-          <h2 id="referencieNadpis">Čo hovoria klienti.</h2>
+          <span class="section-heading__label" data-i18n="section.testimonials.label">Spokojní klienti</span>
+          <h2 id="referencieNadpis" data-i18n="section.testimonials.h2">Čo hovoria klienti.</h2>
         </div>
 
         <div class="testimonials-grid reveal-group">
 
           <div class="testimonial-card reveal">
-            <p class="testimonial-card__text">Referencia bude doplnená po získaní spätnej väzby.</p>
+            <p class="testimonial-card__text" data-i18n="testimonial.placeholder">Referencia bude doplnená po získaní spätnej väzby.</p>
             <div>
-              <div class="testimonial-card__author placeholder--ref-meno">Meno Priezvisko</div>
-              <div class="testimonial-card__role placeholder--ref-rola">Pozícia, Firma</div>
+              <div class="testimonial-card__author placeholder--ref-meno" data-i18n="testimonial.name">Meno Priezvisko</div>
+              <div class="testimonial-card__role placeholder--ref-rola" data-i18n="testimonial.role">Pozícia, Firma</div>
             </div>
           </div>
 
           <div class="testimonial-card reveal">
-            <p class="testimonial-card__text">Referencia bude doplnená po získaní spätnej väzby.</p>
+            <p class="testimonial-card__text" data-i18n="testimonial.placeholder">Referencia bude doplnená po získaní spätnej väzby.</p>
             <div>
-              <div class="testimonial-card__author placeholder--ref-meno">Meno Priezvisko</div>
-              <div class="testimonial-card__role placeholder--ref-rola">Pozícia, Firma</div>
+              <div class="testimonial-card__author placeholder--ref-meno" data-i18n="testimonial.name">Meno Priezvisko</div>
+              <div class="testimonial-card__role placeholder--ref-rola" data-i18n="testimonial.role">Pozícia, Firma</div>
             </div>
           </div>
 
           <div class="testimonial-card reveal">
-            <p class="testimonial-card__text">Referencia bude doplnená po získaní spätnej väzby.</p>
+            <p class="testimonial-card__text" data-i18n="testimonial.placeholder">Referencia bude doplnená po získaní spätnej väzby.</p>
             <div>
-              <div class="testimonial-card__author placeholder--ref-meno">Meno Priezvisko</div>
-              <div class="testimonial-card__role placeholder--ref-rola">Pozícia, Firma</div>
+              <div class="testimonial-card__author placeholder--ref-meno" data-i18n="testimonial.name">Meno Priezvisko</div>
+              <div class="testimonial-card__role placeholder--ref-rola" data-i18n="testimonial.role">Pozícia, Firma</div>
             </div>
           </div>
 
@@ -818,18 +817,18 @@
 
           <div class="contact-section__text reveal">
             <div class="section-heading">
-              <span class="section-heading__label">Kontakt</span>
+              <span class="section-heading__label" data-i18n="section.contact.label">Kontakt</span>
               <h2 id="kontaktNadpis" class="kontakt-nadpis">
-                <span class="kontakt-nadpis__word kontakt-nadpis__word--left">Začnime</span><br>
-                <span class="kontakt-nadpis__word kontakt-nadpis__word--right">spoluprácu.</span>
+                <span class="kontakt-nadpis__word kontakt-nadpis__word--left" data-i18n="contact.heading.left">Začnime</span><br>
+                <span class="kontakt-nadpis__word kontakt-nadpis__word--right" data-i18n="contact.heading.right">spoluprácu.</span>
               </h2>
             </div>
-            <p style="margin-top: 24px;">
+            <p style="margin-top: 24px;" data-i18n="contact.p1">
               Máte projekt, kde záleží na každom detaile?
               Napíšte mi. Rada si vypočujem, čo potrebujete,
               a poviem vám úprimne, ako vám viem pomôcť.
             </p>
-            <p>Odpoviem do 48 hodín.</p>
+            <p data-i18n="contact.p2">Odpoviem do 48 hodín.</p>
             <a href="mailto:avolesnes@gmail.com" class="contact-section__email">
               avolesnes@gmail.com
             </a>
@@ -839,10 +838,15 @@
             <form
               class="contact-form"
               id="contactForm"
-              action="https://formspree.io/f/placeholder"
+              action="https://formsubmit.co/avolesnes@gmail.com"
               method="POST"
               novalidate
             >
+              <!-- Formsubmit.co nastavenia -->
+              <input type="hidden" name="_subject" value="Nová správa z portfolia">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
               <div class="form-field">
                 <input
@@ -855,7 +859,7 @@
                   autocomplete="name"
                   aria-required="true"
                 >
-                <label for="name" class="form-field__label">Vaše meno *</label>
+                <label for="name" class="form-field__label" data-i18n="form.name">Vaše meno *</label>
               </div>
 
               <div class="form-field">
@@ -869,23 +873,23 @@
                   autocomplete="email"
                   aria-required="true"
                 >
-                <label for="email" class="form-field__label">E-mail *</label>
+                <label for="email" class="form-field__label" data-i18n="form.email">E-mail *</label>
               </div>
 
               <div class="radio-group" role="group" aria-labelledby="radio-label">
-                <span class="radio-group__label" id="radio-label">O čo ide?</span>
+                <span class="radio-group__label" id="radio-label" data-i18n="form.type.label">O čo ide?</span>
                 <div class="radio-options">
                   <label class="radio-option">
-                    <input type="radio" name="type" value="Nový web od nuly">
-                    <span>Nový web od nuly</span>
+                    <input type="radio" name="type" value="Nový web od nuly" data-i18n-value="form.type.new">
+                    <span data-i18n="form.type.new">Nový web od nuly</span>
                   </label>
                   <label class="radio-option">
-                    <input type="radio" name="type" value="Redesign existujúceho webu">
-                    <span>Redesign existujúceho webu</span>
+                    <input type="radio" name="type" value="Redesign existujúceho webu" data-i18n-value="form.type.redesign">
+                    <span data-i18n="form.type.redesign">Redesign existujúceho webu</span>
                   </label>
                   <label class="radio-option">
-                    <input type="radio" name="type" value="Niečo iné">
-                    <span>Niečo iné</span>
+                    <input type="radio" name="type" value="Niečo iné" data-i18n-value="form.type.other">
+                    <span data-i18n="form.type.other">Niečo iné</span>
                   </label>
                 </div>
               </div>
@@ -900,14 +904,14 @@
                   rows="4"
                   aria-required="true"
                 ></textarea>
-                <label for="message" class="form-field__label">Správa *</label>
+                <label for="message" class="form-field__label" data-i18n="form.message">Správa *</label>
               </div>
 
-              <button type="submit" class="btn btn--primary" id="submitBtn">
+              <button type="submit" class="btn btn--primary" id="submitBtn" data-i18n="form.submit">
                 Odoslať správu →
               </button>
 
-              <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+              <div class="form-success" id="formSuccess" role="alert" aria-live="polite" data-i18n="form.success">
                 ✓ Správa odoslaná. Ozvem sa do 48 hodín.
               </div>
 
@@ -967,10 +971,10 @@
         </div>
 
         <nav class="footer__nav" aria-label="Footer navigácia">
-          <a href="#projekty" class="footer__nav-link">Projekty</a>
-          <a href="#o-mne" class="footer__nav-link">O mne</a>
-          <a href="#atelier" class="footer__nav-link">Tvorba</a>
-          <a href="#kontakt" class="footer__nav-link">Kontakt</a>
+          <a href="#projekty" class="footer__nav-link" data-i18n="nav.projects">Projekty</a>
+          <a href="#o-mne" class="footer__nav-link" data-i18n="nav.about">O mne</a>
+          <a href="#atelier" class="footer__nav-link" data-i18n="nav.work">Tvorba</a>
+          <a href="#kontakt" class="footer__nav-link" data-i18n="nav.contact">Kontakt</a>
         </nav>
 
       </div>
@@ -978,8 +982,8 @@
       <hr class="footer__divider">
 
       <div class="footer__bottom">
-        <span class="footer__copy">© 2026 Anna Lockwoodová · Všetky práva vyhradené</span>
-        <span class="footer__made-with">Vyrobené s citom <span>♡</span></span>
+        <span class="footer__copy" data-i18n="footer.copy">© 2026 Anna Lockwoodová · Všetky práva vyhradené</span>
+        <span class="footer__made-with"><span data-i18n="footer.made">Vyrobené s citom</span> <span>♡</span></span>
       </div>
     </div>
   </footer>
@@ -989,13 +993,16 @@
        ========================================================= -->
   <script src="js/cursor.js"></script>
   <script src="js/marquee.js"></script>
-  <script src="js/main.js?v=57"></script>
+  <script src="js/i18n.js?v=1"></script>
+  <script src="js/main.js?v=58"></script>
   <script src="js/sound.js?v=55"></script>
   <script src="js/distortion.js?v=55"></script>
 
   <!-- LIGHTBOX -->
   <dialog id="lb" class="lb" aria-label="Náhľad obrázku">
-    <button class="lb__close" aria-label="Zavrieť">&times;</button>
+    <button class="lb__close" aria-label="Zavrieť" data-i18n-label="lb.close">&times;</button>
+    <button class="lb__prev" aria-label="Predchádzajúci obrázok" data-i18n-label="lb.prev">&#8249;</button>
+    <button class="lb__next" aria-label="Nasledujúci obrázok" data-i18n-label="lb.next">&#8250;</button>
     <figure class="lb__figure">
       <img class="lb__img" src="" alt="" decoding="async">
       <figcaption class="lb__caption"></figcaption>
