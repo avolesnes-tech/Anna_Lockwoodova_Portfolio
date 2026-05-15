@@ -302,23 +302,21 @@
   /* transform: scale(-1,-1) presunutý na img — div je voľný pre entrance animáciu */
 
   -webkit-mask-image:
-    radial-gradient(
-      ellipse 125% 120% at top left,
+    linear-gradient(
+      to top,
       rgba(0,0,0,1)    0%,
-      rgba(0,0,0,1)    20%,
-      rgba(0,0,0,0.85) 35%,
-      rgba(0,0,0,0.55) 55%,
-      rgba(0,0,0,0.22) 78%,
+      rgba(0,0,0,1)    28%,
+      rgba(0,0,0,0.80) 52%,
+      rgba(0,0,0,0.35) 75%,
       rgba(0,0,0,0)    100%
     );
           mask-image:
-    radial-gradient(
-      ellipse 125% 120% at top left,
+    linear-gradient(
+      to top,
       rgba(0,0,0,1)    0%,
-      rgba(0,0,0,1)    20%,
-      rgba(0,0,0,0.85) 35%,
-      rgba(0,0,0,0.55) 55%,
-      rgba(0,0,0,0.22) 78%,
+      rgba(0,0,0,1)    28%,
+      rgba(0,0,0,0.80) 52%,
+      rgba(0,0,0,0.35) 75%,
       rgba(0,0,0,0)    100%
     );
 }
