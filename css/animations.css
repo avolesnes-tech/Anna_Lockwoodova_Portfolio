@@ -467,6 +467,39 @@
 
 
 /* -------------------------------------------------------------
+   10. SERVICE CARDS — jemný float efekt (vznášanie)
+   Každá karta má iný delay + rýchlosť → organický pohyb.
+   Na hover sa animácia pozastaví, vizuálny feedback dáva shadow.
+   ------------------------------------------------------------- */
+@keyframes serviceFloat {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-7px);  }
+}
+
+.service-card.card--unfolded {
+  animation: serviceFloat var(--float-dur, 4s) ease-in-out var(--float-delay, 0s) infinite;
+}
+
+.services-grid .service-card.card--unfolded:nth-child(1) { --float-dur: 4.0s; --float-delay: 0.0s; }
+.services-grid .service-card.card--unfolded:nth-child(2) { --float-dur: 4.6s; --float-delay: -1.4s; }
+.services-grid .service-card.card--unfolded:nth-child(3) { --float-dur: 3.8s; --float-delay: -2.7s; }
+.services-grid .service-card.card--unfolded:nth-child(4) { --float-dur: 4.3s; --float-delay: -0.9s; }
+.services-grid .service-card.card--unfolded:nth-child(5) { --float-dur: 4.8s; --float-delay: -3.2s; }
+.services-grid .service-card.card--unfolded:nth-child(6) { --float-dur: 3.6s; --float-delay: -1.8s; }
+
+.service-card.card--unfolded:hover {
+  animation-play-state: paused;
+}
+
+/* Prefers reduced motion — float vypnutý */
+@media (prefers-reduced-motion: reduce) {
+  .service-card.card--unfolded {
+    animation: none !important;
+  }
+}
+
+
+/* -------------------------------------------------------------
    10. PAGE LOAD — jemný fade
    ------------------------------------------------------------- */
 @keyframes pageFadeIn {
