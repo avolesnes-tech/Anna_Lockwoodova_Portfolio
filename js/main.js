@@ -497,17 +497,33 @@
       grid.classList.add('grid--3d-active');
 
       requestAnimationFrame(() => {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.querySelectorAll('.service-card').forEach(card => {
-              card.classList.add('card--unfolded');
-            });
-            observer.unobserve(entry.target);
-          });
-        }, { threshold: 0.10 });
+        const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
-        observer.observe(grid);
+        if (isMobile) {
+          // Mobile: každá karta sledovaná samostatne — efekt pri scrolle ku každej
+          const cardObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('card--unfolded');
+              cardObserver.unobserve(entry.target);
+            });
+          }, { threshold: 0.20 });
+
+          cards.forEach(card => cardObserver.observe(card));
+        } else {
+          // Desktop/tablet: všetky karty naraz keď grid vstúpi do view
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) return;
+              entry.target.querySelectorAll('.service-card').forEach(card => {
+                card.classList.add('card--unfolded');
+              });
+              observer.unobserve(entry.target);
+            });
+          }, { threshold: 0.10 });
+
+          observer.observe(grid);
+        }
       });
     });
   }

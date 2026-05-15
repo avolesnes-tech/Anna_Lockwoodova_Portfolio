@@ -1984,13 +1984,13 @@
 .kontakt-nadpis__word--left  { transform: translateX(-50px); }
 .kontakt-nadpis__word--right { transform: translateX(50px);  }
 
-.contact-section__text.is-visible .kontakt-nadpis__word--left {
+.contact-section__text.visible .kontakt-nadpis__word--left {
   opacity: 1;
   transform: translateX(0);
   transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.contact-section__text.is-visible .kontakt-nadpis__word--right {
+.contact-section__text.visible .kontakt-nadpis__word--right {
   opacity: 1;
   transform: translateX(0);
   transition: opacity 0.7s ease 0.12s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;

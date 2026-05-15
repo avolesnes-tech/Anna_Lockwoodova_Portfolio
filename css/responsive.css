@@ -21,7 +21,9 @@
   }
 
   .hero__visual {
-    display: none;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
   }
 
   /* Portfolio — 2 stĺpce */
@@ -227,6 +229,23 @@
   /* Vypnutý custom cursor na mobile/touch */
   .cursor {
     display: none;
+  }
+
+  /* Projekt karty — auto-scroll preview (nahrada hover efektu) */
+  .project-card__full-img {
+    opacity: 1;
+    animation: mobileScrollPreview 14s ease-in-out infinite;
+    transition: none;
+  }
+
+  .portfolio-grid .project-card:nth-child(2) .project-card__full-img {
+    animation-delay: -7s;
+  }
+
+  @keyframes mobileScrollPreview {
+    0%,   12%  { object-position: 50% 0%;   }
+    42%,  58%  { object-position: 50% 100%; }
+    88%,  100% { object-position: 50% 0%;   }
   }
 }
 
