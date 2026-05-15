@@ -106,7 +106,7 @@
 }
 
 .hero-subtitle {
-  animation: fadeInUp 800ms var(--ease-out) 3200ms both;
+  animation: fadeInUp 800ms var(--ease-out) 5600ms both;
 }
 
 /* Hero CTA — každé tlačidlo vstupuje zvlášť, s jemným staggerom.
@@ -119,11 +119,11 @@
 }
 
 .hero-cta .btn:nth-child(1) {
-  animation-delay: 3600ms;
+  animation-delay: 6000ms;
 }
 
 .hero-cta .btn:nth-child(2) {
-  animation-delay: 3820ms;
+  animation-delay: 6220ms;
 }
 
 @keyframes heroCTAEnter {

@@ -72,7 +72,7 @@
 
   // Spusti sekvenciu s oneskorením (meno sa zobrazí skôr)
   async function runTypewriter() {
-    await wait(820); // čaká kým prebehne fadeIn mena + linka
+    await wait(3200); // čaká kým sa dokončí signature v nav (600ms + 2400ms + 200ms reserve)
 
     // Píše riadok 1
     await typeChars(lineEls[0], lines[0], CHAR_SPEED);
