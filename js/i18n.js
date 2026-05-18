@@ -68,12 +68,12 @@
       'service2.desc': 'Weby pre značky, ktoré majú príbeh. Galérie, časové osi, interaktívne mapy, biografie, archívy. Vlastná typografia, privacy-first, bez tracking skriptov.',
       'service2.target': '<strong>Pre koho</strong> kultúrne projekty, neziskovky, múzeá, autori, umelci, rodinné firmy.',
 
-      'service3.title': 'WordPress weby<br>a custom Elementor.',
-      'service3.desc': 'Komerčné WordPress weby s vlastnými Elementor widgetmi. Multi-page weby s produktovými kategóriami, SEO optimalizáciou a performance tuningom.',
+      'service3.title': 'WordPress weby<br>na mieru.',
+      'service3.desc': 'Komerčné WordPress weby navrhnuté pre konkrétne odvetvie. Multi-page weby s produktovými kategóriami, SEO optimalizáciou a performance tuningom.',
       'service3.target': '<strong>Pre koho</strong> remeselníci, sklárske a stolárske firmy, stavbári, interiérové štúdiá.',
 
       'service4.title': 'Webové aplikácie<br>a adresáre.',
-      'service4.desc': 'Adresáre s filtrovaním a recenziami, membership weby, freemium platformy, multi-step formuláre, AI nástroje. Cloudflare Pages + Supabase backend.',
+      'service4.desc': 'Adresáre s filtrovaním a recenziami, membership weby, freemium platformy, multi-step formuláre, AI nástroje — realizované na moderných platformách.',
       'service4.target': '<strong>Pre koho</strong> komunity, oborové platformy, startupy, B2B portály.',
 
       'service5.title': 'UI / UX dizajn<br>&amp; redesign.',
@@ -91,7 +91,7 @@
       'skills.tagline': 'Veci, ktoré som si skutočne odskúšala — na reálnych projektoch, pre reálnych ľudí.',
 
       'skills.col1.title': 'Dizajn & Frontend',
-      'skills.col1.li1': 'Weby písané ručne v kóde — bez šablón',
+      'skills.col1.li1': 'Weby navrhnuté na mieru — bez šablón',
       'skills.col1.li2': 'Vlastná typografia a vizuálny jazyk',
       'skills.col1.li3': 'Animácie, efekty pri scrollovaní, interaktivita',
       'skills.col1.li4': 'Ručné dekoratívne prvky (akvarele, ilustrácie)',
@@ -122,8 +122,8 @@
       'skills.col4.li6': 'Obsah pre Instagram a sociálne siete',
 
       'diff.h2': 'Prečo si vybrať mňa.',
-      'diff.card1.title': 'Dizajn aj kód —<br>jedna osoba.',
-      'diff.card1.desc': 'Nemusíte hľadať dizajnéra a developera zvlášť. Robím oboje — a viem, kde sa stretávajú.',
+      'diff.card1.title': 'Dizajn aj web —<br>jedna osoba.',
+      'diff.card1.desc': 'Nemusíte koordinovať dizajnéra a technické riešenie zvlášť. Celý web — od vzhľadu po spustenie — mám na starosti ja.',
       'diff.card2.title': 'Každá výzva<br>je vítaná.',
       'diff.card2.desc': 'Historická téma, moderný minimalizmus alebo klientska prezentácia — nebojím sa žánrov. Každý projekt dostane prístup šitý na mieru.',
       'diff.card3.title': 'Umelecké oko,<br>technická presnosť.',
@@ -137,7 +137,7 @@
       'process.step2.title': 'Dizajn & schválenie',
       'process.step2.desc': 'Pripravím vizuálny návrh kľúčových stránok. Iterujeme do schválenia.',
       'process.step3.title': 'Realizácia',
-      'process.step3.desc': 'Naprogramujem web, optimalizujem rýchlosť, doplníme obsah a otestujeme na všetkých zariadeniach.',
+      'process.step3.desc': 'Realizujem web, optimalizujem rýchlosť, doplníme obsah a otestujeme na všetkých zariadeniach.',
       'process.step4.title': 'Spustenie & odovzdanie',
       'process.step4.desc': 'Web ide naživo. Naučím vás, ako si ho viete sami spravovať. Mesiac bezplatnej podpory po spustení.',
 
@@ -248,12 +248,12 @@
       'service2.desc': 'Websites for brands with a story. Galleries, timelines, interactive maps, biographies, archives. Custom typography, privacy-first, no tracking scripts.',
       'service2.target': '<strong>For whom:</strong> cultural projects, non-profits, museums, authors, artists, family businesses.',
 
-      'service3.title': 'WordPress websites &amp;<br>custom Elementor.',
-      'service3.desc': 'Commercial WordPress websites with custom Elementor widgets. Multi-page websites with product categories, SEO optimisation and performance tuning.',
+      'service3.title': 'WordPress websites<br>made to measure.',
+      'service3.desc': 'Commercial WordPress websites designed for your specific industry. Multi-page websites with product categories, SEO optimisation and performance tuning.',
       'service3.target': '<strong>For whom:</strong> craftspeople, glasswork and carpentry companies, builders, interior studios.',
 
       'service4.title': 'Web applications<br>&amp; directories.',
-      'service4.desc': 'Directories with filtering and reviews, membership websites, freemium platforms, multi-step forms, AI tools. Cloudflare Pages + Supabase backend.',
+      'service4.desc': 'Directories with filtering and reviews, membership websites, freemium platforms, multi-step forms, AI tools — delivered on modern platforms.',
       'service4.target': '<strong>For whom:</strong> communities, niche platforms, startups, B2B portals.',
 
       'service5.title': 'UI / UX design<br>&amp; redesign.',
@@ -271,7 +271,7 @@
       'skills.tagline': 'Things I\'ve actually tested — on real projects, for real people.',
 
       'skills.col1.title': 'Design & Frontend',
-      'skills.col1.li1': 'Websites written by hand in code — no templates',
+      'skills.col1.li1': 'Websites designed to measure — no templates',
       'skills.col1.li2': 'Custom typography and visual language',
       'skills.col1.li3': 'Animations, scroll effects, interactivity',
       'skills.col1.li4': 'Handmade decorative elements (watercolours, illustrations)',
@@ -302,8 +302,8 @@
       'skills.col4.li6': 'Content for Instagram and social media',
 
       'diff.h2': 'Why choose me.',
-      'diff.card1.title': 'Design and code —<br>one person.',
-      'diff.card1.desc': 'You don\'t need to find a designer and developer separately. I do both — and I know where they meet.',
+      'diff.card1.title': 'Design and web —<br>one person.',
+      'diff.card1.desc': 'You don\'t need to coordinate design and technical delivery separately. The whole website — from look to launch — is my responsibility.',
       'diff.card2.title': 'Every challenge<br>is welcome.',
       'diff.card2.desc': 'Historical theme, modern minimalism or client presentation — I\'m not afraid of genres. Every project gets a tailored approach.',
       'diff.card3.title': 'Artistic eye,<br>technical precision.',
@@ -317,7 +317,7 @@
       'process.step2.title': 'Design & approval',
       'process.step2.desc': 'I prepare a visual proposal for the key pages. We iterate until approval.',
       'process.step3.title': 'Development',
-      'process.step3.desc': 'I build the website, optimise speed, add content and test on all devices.',
+      'process.step3.desc': 'I deliver the website, optimise speed, add content and test on all devices.',
       'process.step4.title': 'Launch & handover',
       'process.step4.desc': 'The website goes live. I\'ll show you how to manage it yourself. One month of free support after launch.',
 
