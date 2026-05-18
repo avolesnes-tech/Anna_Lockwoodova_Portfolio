@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mapa Spomienok — Case Study · Anna Lockwoodová</title>
+  <meta name="description" content="Case study: interaktívny web-archív venovaný Anne Šenšelovej a spolku Lipa — storytelling, interaktívna mapa, GitHub Pages.">
+  <meta name="author" content="Anna Lockwoodová">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css?v=55">
+  <link rel="stylesheet" href="../css/animations.css?v=59">
+  <link rel="stylesheet" href="../css/components.css?v=70">
+  <link rel="stylesheet" href="../css/responsive.css?v=56">
+  <link rel="stylesheet" href="case-study.css?v=1">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav cs-nav" aria-label="Hlavná navigácia">
+    <div class="cs-nav__inner">
+      <a href="../index.html" class="nav__logo" aria-label="Anna Lockwoodová — späť na hlavnú stránku">
+        <span class="nav__signature">Anna Lockwoodová</span>
+      </a>
+      <a href="../index.html#projekty" class="cs-nav__back">
+        <span aria-hidden="true">←</span> Späť na projekty
+      </a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="cs-hero">
+      <div class="cs-hero__img-wrap">
+        <img
+          src="../images/projects/mapa-spomienok-full.webp"
+          alt="Mapa Spomienok — screenshot úvodnej stránky"
+          fetchpriority="high"
+          decoding="async"
+          width="1440" height="900"
+        >
+        <div class="cs-hero__overlay"></div>
+      </div>
+      <div class="cs-hero__content container">
+        <span class="cs-hero__label">Case Study</span>
+        <h1 class="cs-hero__title">Mapa Spomienok</h1>
+        <p class="cs-hero__sub">Čo ak by mapa mohla uchovávať príbehy?</p>
+      </div>
+    </section>
+
+    <!-- META STRIP -->
+    <div class="cs-meta">
+      <div class="container">
+        <div class="cs-meta__grid">
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Čo</span>
+            <span class="cs-meta__value">Webový dizajn, storytelling, interaktivita</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Pre</span>
+            <span class="cs-meta__value">Spolok Lipa — osobný projekt</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Stack</span>
+            <span class="cs-meta__value">HTML · CSS · JavaScript · GitHub Pages</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Rok</span>
+            <span class="cs-meta__value">2026</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Živý web</span>
+            <span class="cs-meta__value">
+              <a href="https://avolesnes-tech.github.io/anna-senselova/index.html" target="_blank" rel="noopener" class="cs-meta__link">
+                Otvoriť projekt ↗
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="cs-body container">
+
+      <!-- BRIEF -->
+      <section class="cs-section reveal">
+        <div class="cs-section__label">01 — Brief</div>
+        <h2 class="cs-section__heading">Kultúrne dedičstvo, ktoré sa nestratí.</h2>
+        <div class="cs-section__text">
+          <p>Anna Šenšelová bola slovenská kultúrna osobnosť, ktorej príbeh sa nesie v spomienkach ľudí z celého Slovenska. Spolok Lipa potreboval miesto, kde tieto spomienky môžu žiť — nie v archívnej databáze, ale v živom, prístupnom formáte, ktorý osloví aj mladšie generácie.</p>
+          <p>Výzvou nebolo len vytvoriť web. Bolo treba navrhnúť <em>zážitok</em> — niečo, čo návštevníka pozve, aby sa stal súčasťou príbehu.</p>
+        </div>
+
+        <div class="cs-goals reveal">
+          <div class="cs-goal">
+            <span class="cs-goal__num">01</span>
+            <p>Vizuálne <strong>nadčasový web</strong> s historickým cítením, nie museálny</p>
+          </div>
+          <div class="cs-goal">
+            <span class="cs-goal__num">02</span>
+            <p>Návštevníci môžu <strong>aktívne prispievať</strong> svojimi spomienkami</p>
+          </div>
+          <div class="cs-goal">
+            <span class="cs-goal__num">03</span>
+            <p>Interaktívna mapa ako <strong>hlavný navigačný prvok</strong></p>
+          </div>
+          <div class="cs-goal">
+            <span class="cs-goal__num">04</span>
+            <p>Hostovanie bez nákladov — <strong>GitHub Pages</strong>, nulový server</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FULL IMAGE -->
+      <div class="cs-img-full reveal">
+        <img
+          src="../images/projects/mapa-spomienok.webp"
+          alt="Mapa Spomienok — úvodná stránka webu"
+          loading="lazy" decoding="async" width="1200" height="750"
+        >
+        <span class="cs-img-caption">Úvodná stránka — atmosférická, s tmavou fotografiou a ručným písmom</span>
+      </div>
+
+      <!-- APPROACH -->
+      <section class="cs-section reveal">
+        <div class="cs-section__label">02 — Prístup</div>
+        <h2 class="cs-section__heading">Storytelling pred informáciou.</h2>
+        <div class="cs-section__text">
+          <p>Prvé rozhodnutie: nepoužijem šablónu. Web o kultúrnej pamäti si zaslúži originálny vizuálny jazyk — tmavé, sépiaové tóny, ručné písmo, organické textúry. Návštevník musí <em>cítiť</em> históriu skôr, ako prečíta jediné slovo.</p>
+          <p>Štruktúra stránky sleduje cestu rozprávky: úvod → príbeh osobnosti → živá mapa spomienok → výzva k účasti. Každá sekcia plynulo prechádza do ďalšej — žiadne ostré strihy, žiadne generické boxy.</p>
+        </div>
+      </section>
+
+      <!-- HIGHLIGHTS -->
+      <section class="cs-section reveal">
+        <div class="cs-section__label">03 — Kľúčové rozhodnutia</div>
+        <h2 class="cs-section__heading">Interaktivita, ktorá slúži príbehu.</h2>
+
+        <div class="cs-highlights reveal">
+          <div class="cs-highlight">
+            <div class="cs-highlight__icon" aria-hidden="true">◉</div>
+            <h3 class="cs-highlight__title">Interaktívna mapa</h3>
+            <p class="cs-highlight__text">Hlavný navigačný prvok — nie len dekorácia. Návštevníci klikajú na miesta spojené so spomienkami a čítajú príbehy priamo na mape.</p>
+          </div>
+          <div class="cs-highlight">
+            <div class="cs-highlight__icon" aria-hidden="true">✦</div>
+            <h3 class="cs-highlight__title">Zero dependencies</h3>
+            <p class="cs-highlight__text">Čistý HTML/CSS/JS bez frameworku. Výsledok: bleskový load, žiadna závislosť na externých knižniciach, jednoduché hostovanie na GitHub Pages.</p>
+          </div>
+          <div class="cs-highlight">
+            <div class="cs-highlight__icon" aria-hidden="true">◎</div>
+            <h3 class="cs-highlight__title">Scroll animácie</h3>
+            <p class="cs-highlight__text">Obsah sa odhaľuje s príchodom — fade-in, parallax efekty. Pohyb vedie pohľad a buduje napätie pred každou novou informáciou.</p>
+          </div>
+          <div class="cs-highlight">
+            <div class="cs-highlight__icon" aria-hidden="true">▤</div>
+            <h3 class="cs-highlight__title">Formulár na spomienky</h3>
+            <p class="cs-highlight__text">Návštevníci môžu priamo na webe pridať svoju spomienku. Jednoduchý formulár, žiadna registrácia, maximálna dostupnosť.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULT -->
+      <section class="cs-section reveal">
+        <div class="cs-section__label">04 — Výsledok</div>
+        <h2 class="cs-section__heading">Živý archív, ktorý rastie.</h2>
+        <div class="cs-section__text">
+          <p>Web beží na GitHub Pages bez akýchkoľvek nákladov na hosting. Interaktívna mapa funguje plynule na všetkých zariadeniach. Projekt ukazuje, že digitálne uchovávanie kultúrnej pamäte nemusí byť suché ani drahé.</p>
+          <p>Pre mňa osobne bol tento projekt dôkazom, že <em>webový dizajn môže mať hĺbku aj dušu</em> — nielen vizuálnu estetiku, ale skutočný účel.</p>
+        </div>
+      </section>
+
+    </div><!-- /cs-body -->
+
+    <!-- CTA -->
+    <section class="cs-cta">
+      <div class="container">
+        <p class="cs-cta__text">Máte projekt s príbehom, ktorý chcete povedať online?</p>
+        <a href="../index.html#kontakt" class="btn btn--primary">Napíšte mi →</a>
+      </div>
+    </section>
+
+    <!-- PROJECT NAV -->
+    <nav class="cs-project-nav" aria-label="Ďalšie projekty">
+      <div class="container">
+        <div class="cs-project-nav__inner">
+          <a href="lumenglass.html" class="cs-project-nav__prev">
+            <span class="cs-project-nav__dir">Predchádzajúci projekt</span>
+            <span class="cs-project-nav__name">← LumenGlass</span>
+          </a>
+          <span class="cs-project-nav__empty"></span>
+        </div>
+      </div>
+    </nav>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__copy">© 2026 Anna Lockwoodová</span>
+      <a href="../index.html#kontakt" class="footer__cta">Spolupráca →</a>
+    </div>
+  </footer>
+
+  <script src="../js/i18n.js?v=4"></script>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1016,6 +1016,25 @@
   }
 }
 
+/* Case study link — sekundárny, vedľa "Pozrieť projekt" */
+.project-card__cs-link {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-blue-main);
+  opacity: 0.7;
+  transition: opacity var(--dur-fast), color var(--dur-fast);
+  white-space: nowrap;
+}
+
+.project-card__cs-link:hover {
+  opacity: 1;
+  color: var(--color-ink);
+}
+
 /* Placeholder obrázok projektu */
 .project-card__placeholder {
   width: 100%;
