@@ -8,14 +8,18 @@
   <meta name="description" content="Case study: kompletný webový dizajn a vývoj pre sklársku firmu LumenGlass — WordPress, custom plugin, prémiový vizuálny jazyk.">
   <meta name="author" content="Anna Lockwoodová">
 
+  <!-- Fonty — async, noblokujúce -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap"></noscript>
 
-  <link rel="stylesheet" href="../css/main.css?v=55">
-  <link rel="stylesheet" href="../css/animations.css?v=59">
-  <link rel="stylesheet" href="../css/components.css?v=71">
-  <link rel="stylesheet" href="../css/responsive.css?v=56">
+  <link rel="stylesheet" href="../css/main.min.css?v=55">
+  <link rel="stylesheet" href="../css/components.min.css?v=71">
+  <link rel="preload" href="../css/animations.min.css?v=59" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="../css/animations.min.css?v=59"></noscript>
+  <link rel="preload" href="../css/responsive.min.css?v=56" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="../css/responsive.min.css?v=56"></noscript>
   <link rel="stylesheet" href="case-study.css?v=1">
 </head>
 <body>

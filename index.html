@@ -17,18 +17,20 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="sk_SK">
 
-  <!-- Fonty -->
+  <!-- Fonty — async, noblokujúce -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Preload kritického fontu pre signature — minimalizuje FOIT/CLS pri pen-write animácii -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Homemade+Apple&display=swap"></noscript>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/main.css?v=55">
-  <link rel="stylesheet" href="css/animations.css?v=59">
-  <link rel="stylesheet" href="css/components.css?v=71">
-  <link rel="stylesheet" href="css/responsive.css?v=56">
+  <!-- CSS — kritické render-blocking -->
+  <link rel="stylesheet" href="css/main.min.css?v=55">
+  <link rel="stylesheet" href="css/components.min.css?v=72">
+  <!-- CSS — nekritické, načítavame asynchrónne -->
+  <link rel="preload" href="css/animations.min.css?v=59" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/animations.min.css?v=59"></noscript>
+  <link rel="preload" href="css/responsive.min.css?v=56" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/responsive.min.css?v=56"></noscript>
 </head>
 <body>
 
@@ -59,6 +61,8 @@
        ========================================================= -->
   <nav class="mobile-menu" id="mobileMenu" aria-label="Mobilné menu" aria-hidden="true">
     <a href="#projekty" class="mobile-menu__link" onclick="closeMobileMenu()" data-i18n="nav.projects">Projekty</a>
+    <a href="projekty/lumenglass.html" class="mobile-menu__link mobile-menu__link--cs" onclick="closeMobileMenu()">↳ LumenGlass <span class="mobile-menu__cs-tag">case study</span></a>
+    <a href="projekty/mapa-spomienok.html" class="mobile-menu__link mobile-menu__link--cs" onclick="closeMobileMenu()">↳ Mapa Spomienok <span class="mobile-menu__cs-tag">case study</span></a>
     <a href="#o-mne" class="mobile-menu__link" onclick="closeMobileMenu()" data-i18n="nav.about">O mne</a>
     <a href="#atelier" class="mobile-menu__link" onclick="closeMobileMenu()" data-i18n="nav.work">Tvorba</a>
     <a href="#kontakt" class="mobile-menu__link" onclick="closeMobileMenu()" data-i18n="nav.contact">Kontakt</a>
@@ -73,7 +77,21 @@
       <a href="#" class="nav__logo" aria-label="Anna Lockwoodová — domov" data-i18n-label="nav.logo.label">Anna Lockwoodová</a>
 
       <nav class="nav__links" aria-label="Hlavná navigácia">
-        <a href="#projekty" class="nav__link" data-i18n="nav.projects">Projekty</a>
+        <div class="nav__item nav__item--drop">
+          <a href="#projekty" class="nav__link nav__link--drop-toggle" data-i18n="nav.projects">Projekty</a>
+          <div class="nav__dropdown" role="menu">
+            <a href="#projekty" class="nav__dropdown-link" role="menuitem" data-i18n="nav.dropdown.all">Všetky projekty</a>
+            <div class="nav__dropdown-divider"></div>
+            <a href="projekty/lumenglass.html" class="nav__dropdown-link nav__dropdown-link--cs" role="menuitem">
+              <span class="nav__dropdown-label">LumenGlass</span>
+              <span class="nav__dropdown-sub">Case study</span>
+            </a>
+            <a href="projekty/mapa-spomienok.html" class="nav__dropdown-link nav__dropdown-link--cs" role="menuitem">
+              <span class="nav__dropdown-label">Mapa Spomienok</span>
+              <span class="nav__dropdown-sub">Case study</span>
+            </a>
+          </div>
+        </div>
         <a href="#o-mne" class="nav__link" data-i18n="nav.about">O mne</a>
         <a href="#atelier" class="nav__link" data-i18n="nav.work">Tvorba</a>
         <a href="#kontakt" class="nav__link" data-i18n="nav.contact">Kontakt</a>
@@ -162,7 +180,7 @@
           <span class="hero__line-divider hero-line" aria-hidden="true"></span>
 
           <h1 class="hero__tagline hero-tagline" id="heroTagline" data-i18n-html="hero.tagline">
-            Robím weby ako umenie&nbsp;—<br>s dôrazom na zámer, cit a detail.
+            Robím weby ako umenie&nbsp;—&nbsp;<br>s dôrazom na zámer, cit a detail.
           </h1>
 
           <p class="hero__subtitle hero-subtitle" data-i18n="hero.subtitle">
@@ -964,6 +982,16 @@
       </div>
     </div>
   </footer>
+
+  <!-- Service Worker — caching pre rýchlejšie opakované načítanie -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/Anna_Lockwoodova_Portfolio/sw.js', { scope: '/Anna_Lockwoodova_Portfolio/' })
+          .catch(() => {});
+      });
+    }
+  </script>
 
   <!-- =========================================================
        JAVASCRIPT

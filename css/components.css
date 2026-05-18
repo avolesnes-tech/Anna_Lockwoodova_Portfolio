@@ -108,6 +108,128 @@
   color: var(--color-blue-main);
 }
 
+/* -------------------------------------------------------------
+   NAV DROPDOWN — Projekty
+   ------------------------------------------------------------- */
+.nav__item {
+  position: relative;
+}
+
+.nav__item--drop {
+  display: flex;
+  align-items: center;
+}
+
+.nav__link--drop-toggle::after {
+  content: '▾';
+  font-size: 8px;
+  margin-left: 5px;
+  opacity: 0.5;
+  display: inline-block;
+  transition: transform var(--dur-fast);
+  vertical-align: middle;
+}
+
+.nav__item--drop:hover .nav__link--drop-toggle::after,
+.nav__item--drop:focus-within .nav__link--drop-toggle::after {
+  transform: rotate(180deg);
+  opacity: 0.8;
+}
+
+.nav__dropdown {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(26,47,82,0.09);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(22,36,90,0.10);
+  min-width: 200px;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--dur-fast), transform var(--dur-fast), visibility var(--dur-fast);
+}
+
+.nav__item--drop:hover .nav__dropdown,
+.nav__item--drop:focus-within .nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav__dropdown-link {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 9px 18px;
+  text-decoration: none;
+  transition: background var(--dur-fast);
+}
+
+.nav__dropdown-link:hover {
+  background: var(--color-blue-pale);
+}
+
+.nav__dropdown-link:not(.nav__dropdown-link--cs) {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  opacity: 0.7;
+}
+
+.nav__dropdown-link:not(.nav__dropdown-link--cs):hover {
+  opacity: 1;
+}
+
+.nav__dropdown-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+}
+
+.nav__dropdown-sub {
+  font-family: var(--font-body);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-blue-main);
+  opacity: 0.7;
+}
+
+.nav__dropdown-divider {
+  height: 1px;
+  background: rgba(26,47,82,0.07);
+  margin: 6px 12px;
+}
+
+/* Mobile menu — case study sublinksy */
+.mobile-menu__link--cs {
+  font-size: 13px !important;
+  letter-spacing: 0.06em !important;
+  padding-left: 32px !important;
+  opacity: 0.75;
+  color: var(--color-ink) !important;
+}
+
+.mobile-menu__cs-tag {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-blue-main);
+  opacity: 0.8;
+  margin-left: 6px;
+}
+
 /* Jazykový toggle */
 .nav__lang {
   display: flex;

@@ -15,13 +15,14 @@
       'cursor.label': 'Zobraziť',
 
       'nav.projects': 'Projekty',
+      'nav.dropdown.all': 'Všetky projekty',
       'nav.about': 'O mne',
       'nav.work': 'Tvorba',
       'nav.contact': 'Kontakt',
       'nav.logo.label': 'Anna Lockwoodová — domov',
       'nav.hamburger.label': 'Otvoriť menu',
 
-      'hero.tagline': 'Robím weby ako umenie —<br>s dôrazom na zámer, cit a detail.',
+      'hero.tagline': 'Robím weby ako umenie —&nbsp;<br>s dôrazom na zámer, cit a detail.',
       'hero.subtitle': 'Web dizajn & UI/UX pre značky, ktoré veria, že detail rozhoduje.',
       'hero.cta.projects': 'Pozrieť projekty',
       'hero.cta.contact': 'Napíšte mi',
@@ -194,6 +195,7 @@
       'cursor.label': 'View',
 
       'nav.projects': 'Projects',
+      'nav.dropdown.all': 'All projects',
       'nav.about': 'About',
       'nav.work': 'Work',
       'nav.contact': 'Contact',
