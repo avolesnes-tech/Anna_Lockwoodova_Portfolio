@@ -22,7 +22,7 @@
       'nav.logo.label': 'Anna Lockwoodová — domov',
       'nav.hamburger.label': 'Otvoriť menu',
 
-      'hero.tagline': 'Robím weby ako umenie —&nbsp;<br>s dôrazom na zámer, cit a detail.',
+      'hero.tagline': 'Robím weby ako umenie –&nbsp;<br>s dôrazom na zámer, cit a detail.',
       'hero.subtitle': 'Web dizajn & UI/UX pre značky, ktoré veria, že detail rozhoduje.',
       'hero.cta.projects': 'Pozrieť projekty',
       'hero.cta.contact': 'Napíšte mi',
