@@ -17,14 +17,20 @@
   let curX   = -100;
   let curY   = -100;
   let rafId  = null;
+  let initialized = false;
 
   // Ak prefers-reduced-motion, stále zobrazíme kurzor ale bez lag-u
   const LAG = prefersReduced ? 1 : 0.12; // 0.12 = jemné zaostávanie
 
-  // Pohyb myši
+  // Pohyb myši — pri prvom pohybe okamžite skočíme na pozíciu (žiadne dobiehanie)
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    if (!initialized) {
+      curX = mouseX;
+      curY = mouseY;
+      initialized = true;
+    }
   });
 
   // Animačná slučka — smooth following
@@ -70,8 +76,13 @@
     });
   }
 
-  // Skry default kurzor keď je nad oknom
-  document.addEventListener('mouseenter', () => {
+  // Keď myš vstúpi do okna (napr. prepnutie záložky), okamžite snap na pozíciu
+  document.addEventListener('mouseenter', e => {
+    curX = e.clientX;
+    curY = e.clientY;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    initialized = true;
     cursorEl.style.opacity = '1';
   });
 
