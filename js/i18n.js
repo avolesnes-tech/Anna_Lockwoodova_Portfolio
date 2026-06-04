@@ -126,7 +126,7 @@
       'process.step3.title': 'Realizácia',
       'process.step3.desc': 'Realizujem web, optimalizujem rýchlosť, doplníme obsah a otestujeme na všetkých zariadeniach.',
       'process.step4.title': 'Spustenie & odovzdanie',
-      'process.step4.desc': 'Web ide naživo. Naučím vás, ako si ho viete sami spravovať. Mesiac bezplatnej podpory po spustení.',
+      'process.step4.desc': 'Web ide naživo. Prvý mesiac podpory po spustení je zadarmo.',
 
       'section.atelier.label': 'Ukážky mojich prác',
       'section.atelier.h2': 'Tvorba.',
@@ -287,7 +287,7 @@
       'process.step3.title': 'Development',
       'process.step3.desc': 'I deliver the website, optimise speed, add content and test on all devices.',
       'process.step4.title': 'Launch & handover',
-      'process.step4.desc': 'The website goes live. I\'ll show you how to manage it yourself. One month of free support after launch.',
+      'process.step4.desc': 'The website goes live. First month of support after launch is free.',
 
       'section.atelier.label': 'Samples of my work',
       'section.atelier.h2': 'Work.',
