@@ -65,7 +65,7 @@
       'service1.target': '<strong>Pre koho</strong> malé firmy, remeselníci, ateliéry, butiky, freelanceri.',
 
       'service2.title': 'Storytelling &amp;<br>značkové weby.',
-      'service2.desc': 'Weby pre značky, ktoré majú príbeh. Galérie, časové osi, interaktívne mapy, biografie, archívy. Vlastná typografia, privacy-first, bez tracking skriptov.',
+      'service2.desc': 'Weby pre značky, ktoré majú príbeh. Galérie, časové osi, interaktívne mapy, biografie, archívy. Vlastná typografia, originálny vizuálny jazyk.',
       'service2.target': '<strong>Pre koho</strong> kultúrne projekty, neziskovky, múzeá, autori, umelci, rodinné firmy.',
 
       'service3.title': 'WordPress weby<br>na mieru.',
@@ -117,8 +117,6 @@
       'diff.card2.desc': 'Historická téma, moderný minimalizmus alebo klientska prezentácia — nebojím sa žánrov. Každý projekt dostane prístup šitý na mieru.',
       'diff.card3.title': 'Umelecké oko,<br>technická presnosť.',
       'diff.card3.desc': 'Moja celoživotná záľuba v umení sa priamo premieta do toho, ako vidím kompozíciu, farbu a rytmus. Pri mojich výsledných weboch to cítiť.',
-      'diff.card4.title': 'Privacy-first<br>ako default.',
-      'diff.card4.desc': 'Žiadne tracking skripty, žiadne cookies tretích strán, vlastné fonty. GDPR-friendly bez kompromisov.',
 
       'process.h2': 'Ako pracujeme spolu.',
       'process.step1.title': 'Brief & návrh',
@@ -228,7 +226,7 @@
       'service1.target': '<strong>For whom:</strong> small businesses, craftspeople, studios, boutiques, freelancers.',
 
       'service2.title': 'Storytelling &amp;<br>brand websites.',
-      'service2.desc': 'Websites for brands with a story. Galleries, timelines, interactive maps, biographies, archives. Custom typography, privacy-first, no tracking scripts.',
+      'service2.desc': 'Websites for brands with a story. Galleries, timelines, interactive maps, biographies, archives. Custom typography, original visual language.',
       'service2.target': '<strong>For whom:</strong> cultural projects, non-profits, museums, authors, artists, family businesses.',
 
       'service3.title': 'WordPress websites<br>made to measure.',
@@ -280,8 +278,6 @@
       'diff.card2.desc': 'Historical theme, modern minimalism or client presentation — I\'m not afraid of genres. Every project gets a tailored approach.',
       'diff.card3.title': 'Artistic eye,<br>technical precision.',
       'diff.card3.desc': 'My lifelong passion for art directly translates into how I see composition, colour and rhythm. You can feel it in my finished websites.',
-      'diff.card4.title': 'Privacy-first<br>by default.',
-      'diff.card4.desc': 'No tracking scripts, no third-party cookies, self-hosted fonts. GDPR-friendly without compromise.',
 
       'process.h2': 'How we work together.',
       'process.step1.title': 'Brief & proposal',
