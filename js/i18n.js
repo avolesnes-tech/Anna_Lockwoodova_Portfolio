@@ -204,7 +204,7 @@
       'card.lumenglass.link': 'View project',
       'card.cs.link': 'Read case study',
 
-      'projects.callout.heading': 'Every website can be closed. The right one makes you want to stay.',
+      'projects.callout.heading': 'A website can be functional and beautiful. You don\'t have to choose.',
       'projects.callout.body': 'Interactivity isn\'t effect for effect\'s sake — it\'s the difference between a page a visitor scrolls past and one they stay on. Elements that respond, surprise and invite further turn a passive reader into someone who remembers you — and recommends you.',
       'projects.callout.cta': 'Write to me',
 
