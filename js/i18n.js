@@ -96,6 +96,7 @@
       'skills.col1.li3': 'Animácie, efekty pri scrollovaní, interaktivita',
       'skills.col1.li4': 'Ručné dekoratívne prvky (akvarele, ilustrácie)',
       'skills.col1.li5': 'Fungovanie na mobile, tablete aj desktope',
+      'skills.col1.li6': 'AI nástroje priamo na webe (prekladače, wizardy)',
 
       'skills.col2.title': 'WordPress & CMS',
       'skills.col2.li1': 'WordPress s Elementorom — na mieru',
@@ -106,6 +107,8 @@
       'skills.col3.li1': 'Vizuálna identita — logo, farby, písmo',
       'skills.col3.li2': 'Akvarelové ilustrácie pre tlač aj web',
       'skills.col3.li3': 'Ľudové a prírodné motívy v modernom spracovaní',
+      'skills.col3.li4': 'Etikety a obaly (víno, jedlo, kozmetika)',
+      'skills.col3.li5': 'Obsah pre Instagram a sociálne siete',
 
       'diff.h2': 'Prečo si vybrať mňa.',
       'diff.card1.title': 'Dizajn aj web —<br>jedna osoba.',
@@ -256,6 +259,7 @@
       'skills.col1.li3': 'Animations, scroll effects, interactivity',
       'skills.col1.li4': 'Handmade decorative elements (watercolours, illustrations)',
       'skills.col1.li5': 'Works on mobile, tablet and desktop',
+      'skills.col1.li6': 'AI tools directly on the website (translators, wizards)',
 
       'skills.col2.title': 'WordPress & CMS',
       'skills.col2.li1': 'WordPress with Elementor — custom-built',
@@ -266,6 +270,8 @@
       'skills.col3.li1': 'Visual identity — logo, colours, typeface',
       'skills.col3.li2': 'Watercolour illustrations for print and web',
       'skills.col3.li3': 'Folk and natural motifs in a modern treatment',
+      'skills.col3.li4': 'Labels and packaging (wine, food, cosmetics)',
+      'skills.col3.li5': 'Content for Instagram and social media',
 
       'diff.h2': 'Why choose me.',
       'diff.card1.title': 'Design and web —<br>one person.',
