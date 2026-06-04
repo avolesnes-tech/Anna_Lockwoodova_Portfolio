@@ -41,7 +41,7 @@
       'card.lumenglass.link': 'Pozrieť projekt',
       'card.cs.link': 'Čítať case study',
 
-      'projects.callout.heading': 'Každý web sa dá zatvoriť. Ten správny sa zatvoriť nechce.',
+      'projects.callout.heading': 'Web môže byť funkčný aj krásny. Nemusíte si vyberať.',
       'projects.callout.body': 'Interaktivita nie je efekt pre efekt — je to rozdiel medzi stránkou, ktorú návštevník preskroluje, a stránkou, na ktorej zostane. Prvky, ktoré reagujú, prekvapujú a pozývajú ďalej, premieňajú pasívneho čitateľa na niekoho, kto si vás pamätá — a odporučí.',
       'projects.callout.cta': 'Napísať mi',
 
