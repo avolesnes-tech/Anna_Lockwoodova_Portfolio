@@ -46,7 +46,7 @@
       'projects.callout.cta': 'Napísať mi',
 
       'section.about.label': 'O mne',
-      'section.about.h2': 'Taká som.',
+      'section.about.h2': 'O mne.',
       'about.p1': 'Nevyberám si medzi umením a dizajnom. Robím oboje — a práve to robí moju prácu inou.',
       'about.p2': 'Roky práce s tradičnými umeleckými technikami ako je akvarel, papier-mâché a výšivka, mi dali niečo, čo by som sa na dizajnérskych kurzoch nenaučila — cit vidieť, cit vnímať, cit práce s kompozíciou, farbou a rytmom.',
       'about.p3': 'Keď som objavila webový dizajn, zaujala ma možnosť preniesť ten istý prístup do digitálneho priestoru. Skombinovala som svoje estetické cítenie, kreativitu a poznatky z vysokoškolského štúdia marketingovej komunikácie a reklamy (UKF Nitra) a zistila som, že krásny a funkčný web nie sú protiklady, ale len dve strany tej istej mince.',
@@ -206,7 +206,7 @@
       'projects.callout.cta': 'Write to me',
 
       'section.about.label': 'About me',
-      'section.about.h2': 'This is me.',
+      'section.about.h2': 'About me.',
       'about.p1': 'I don\'t choose between art and design. I do both — and that\'s what makes my work different.',
       'about.p2': 'Years of working with traditional art techniques such as watercolour, papier-mâché and embroidery gave me something I couldn\'t have learned in design courses — the sense to see, the sense to feel, the sense of working with composition, colour and rhythm.',
       'about.p3': 'When I discovered web design, I was drawn to the possibility of bringing that same approach into the digital space. I combined my aesthetic sensibility, creativity and knowledge from my university studies in marketing communication and advertising (UKF Nitra) and discovered that a beautiful and functional website are not opposites — just two sides of the same coin.',
