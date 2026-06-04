@@ -158,12 +158,6 @@
       'atelier.item6.tag': 'Grafický dizajn',
       'atelier.item6.title': 'Etiketa na víno',
 
-      'section.testimonials.label': 'Spokojní klienti',
-      'section.testimonials.h2': 'Čo hovoria klienti.',
-      'testimonial.placeholder': 'Referencia bude doplnená po získaní spätnej väzby.',
-      'testimonial.name': 'Meno Priezvisko',
-      'testimonial.role': 'Pozícia, Firma',
-
       'section.contact.label': 'Kontakt',
       'contact.heading.left': 'Začnime',
       'contact.heading.right': 'spoluprácu.',
@@ -337,12 +331,6 @@
       'atelier.item5.title': 'Pastries',
       'atelier.item6.tag': 'Graphic design',
       'atelier.item6.title': 'Wine label',
-
-      'section.testimonials.label': 'Happy clients',
-      'section.testimonials.h2': 'What clients say.',
-      'testimonial.placeholder': 'Testimonial will be added after receiving feedback.',
-      'testimonial.name': 'Name Surname',
-      'testimonial.role': 'Position, Company',
 
       'section.contact.label': 'Contact',
       'contact.heading.left': 'Let\'s start',
