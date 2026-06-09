@@ -22,7 +22,7 @@
       'nav.logo.label': 'Anna Lockwoodová — domov',
       'nav.hamburger.label': 'Otvoriť menu',
 
-      'hero.tagline': '<span class="hero__tagline-line">Robím weby ako umenie –</span><span class="hero__tagline-line">s dôrazom na zámer, cit a detail.</span>',
+      'hero.tagline': '<span class="hero__tagline-line">Robím weby ako umenie –</span><span class="hero__tagline-line">s dôrazom na zámer, cit a detail</span>',
       'hero.subtitle': 'Web dizajn & UI/UX pre značky, ktoré veria, že detail rozhoduje.',
       'hero.cta.projects': 'Pozrieť projekty',
       'hero.cta.contact': 'Napíšte mi',
@@ -183,7 +183,7 @@
       'nav.logo.label': 'Anna Lockwoodová — home',
       'nav.hamburger.label': 'Open menu',
 
-      'hero.tagline': '<span class="hero__tagline-line">I build websites like art —</span><span class="hero__tagline-line">with intention, feeling, and detail.</span>',
+      'hero.tagline': '<span class="hero__tagline-line">I build websites like art —</span><span class="hero__tagline-line">with intention, feeling, and detail</span>',
       'hero.subtitle': 'Web design & UI/UX for brands that believe detail makes the difference.',
       'hero.cta.projects': 'See projects',
       'hero.cta.contact': 'Write to me',
